@@ -20,7 +20,7 @@ contract IdentityRegistry is IdentityRegistryInterface {
         bytes metadata; //Perhaps include metadata URI hash to check for manipulation?
     }
 
-    address identityDAO;
+    address identityRegistryScheme;
     mapping (address => Identity) identityRegistry;
 
     /**
@@ -33,17 +33,17 @@ contract IdentityRegistry is IdentityRegistryInterface {
 
     /* Public-facing functions */
 
-    function addIdentity(address addressID, string memory name, bool isRegistered, string memory metadataURI, bytes memory metadata) public onlyIdentityDAO {
+    function addIdentity(address addressID, string memory name, bool isRegistered, string memory metadataURI, bytes memory metadata) public onlyIdentityRegistryScheme {
         _addIdentity(addressID, name, isRegistered, metadataURI, metadata);    
     }
 
 
-    function removeIdentity(address addressID) public onlyIdentityDAO {
+    function removeIdentity(address addressID) public onlyIdentityRegistryScheme {
         _removeIdentity(addressID);
     }
 
 
-    function updateIdentity(address addressID, string memory name, bool isRegistered, string memory metadataURI, bytes memory metadata) public onlyIdentityDAO {
+    function updateIdentity(address addressID, string memory name, bool isRegistered, string memory metadataURI, bytes memory metadata) public onlyIdentityRegistryScheme {
         _updateIdentity(addressID, name, isRegistered, metadataURI, metadata);
     }
 
@@ -77,8 +77,8 @@ contract IdentityRegistry is IdentityRegistryInterface {
         _;
     }
 
-    modifier onlyIdentityDAO {
-        require(msg.sender == identityDAO);
+    modifier onlyIdentityRegistryScheme {
+        require(msg.sender == identityRegistryScheme);
         _;
     }
 

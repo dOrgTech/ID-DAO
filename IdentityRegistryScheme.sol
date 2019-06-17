@@ -2,6 +2,7 @@
 
 Psuedocode:
 
+*/
 
 import './IdentityRegistryInterface.sol'
 
@@ -9,6 +10,11 @@ contract IdentityRegistryScheme is UniversalScheme, VotingMachineCallbacks, Prop
 
   enum ProposalType { ADD, REMOVE, UPDATE }
   address identityRegistryAddress;
+  bytes32 nextProposalID;
+ 
+  constructor() {
+    nextProposalID = 1;
+  }
 
   event AddIdentityProposal(bytes32 indexed _proposalID, address _addressID, string _name, bool _isRegistered, string _metadataURI, bytes _metadata)
   event RemoveIdentityProposal(bytes32 indexed _proposalID, address _addressID, string _name, bool _isRegistered, string _metadataURI, bytes _metadata))
@@ -34,7 +40,11 @@ contract IdentityRegistryScheme is UniversalScheme, VotingMachineCallbacks, Prop
     return (proposal.proposalType, proposal.values);
   }
 
-  function proposeToAddIdentity(address addressID, string memory name, bool isRegistered, string memory metadataURI, bytes memory metadata) returns (bytes32)
+  function proposeToAddIdentity(address addressID, string memory name, bool isRegistered, string memory metadataURI, bytes memory metadata) returns (bytes32) {
+    // Add preparations here...
+    identityProposals[nextProposalID] = IdentityProposal(nextProposalID, msg.sender, ProposalType.ADD, abi.encode(addressID, name, isRegistered, metadataURI, metadata));
+    emit AddIdentityProposal(/* place params here */);
+  }
   function proposeToRemoveIdentity(address addressID) returns (bytes32)
   function proposeToUpdateIdentity(address addressID, string memory name, bool isRegistered, string memory metadataURI, bytes memory metadata) (bytes32)
 
@@ -45,7 +55,10 @@ contract IdentityRegistryScheme is UniversalScheme, VotingMachineCallbacks, Prop
     if(proposal.proposalType == ProposalType.ADD) {
       IdentityRegistryInterface i = IdentityRegistryInterface(identityRegistryAddress);
       //decode params here
-      
+      (bytes32 memory proposalID, address addressID, string memory name, bool isRegistered, string memory metadataURI, bytes memory metadata) = abi.decode(proposal.values, (bytes32, address, string, bool, string, bytes));
+      i.addIdentity(addressID, name, isRegistered, metadataURI, metadata);
+    } else if(proposal.proposalType == ProposalType.UPDATE) {
+      //etc., etc.
     }
     
   }
@@ -59,4 +72,3 @@ contract IdentityRegistryScheme is UniversalScheme, VotingMachineCallbacks, Prop
 
 }
 
-*/
