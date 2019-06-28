@@ -1,7 +1,6 @@
-// File: ../contracts/IdentityRegistry.sol
-
 pragma solidity ^0.5.0;
 
+import "./IIdentityRegistry.sol";
 
 /**
  *
@@ -10,7 +9,27 @@ pragma solidity ^0.5.0;
  * NOTE: Potential to refactor this into a library?
  *
  */
-contract IdentityRegistry is IdentityRegistryInterface {
+contract IdentityRegistry is IIdentityRegistry {
+
+    event Register(
+        address indexed _identity,
+        string _name,
+        bool _isRegistered,
+        string _metadataURI,
+        bytes _metadata
+    );
+
+    event UnRegister(
+        address indexed _identity
+    );
+
+    event IdentityUpdated(
+        address indexed _addressID,
+        string _name,
+        bool _isRegistered,
+        string _metadataURI,
+        bytes _metadata
+    );
 
     //This may be defined in interface
     struct Identity {
@@ -81,9 +100,4 @@ contract IdentityRegistry is IdentityRegistryInterface {
         require(msg.sender == identityRegistryScheme);
         _;
     }
-
-    event IdentityAdded(address _addressID, string _name, bool _isRegistered, string _metadataURI, bytes _metadata);
-    event IdentityRemoved(address _addressID);
-    event IdentityUpdated(address _addressID, string _name, bool _isRegistered, string _metadataURI, bytes _metadata);
- 
 }
