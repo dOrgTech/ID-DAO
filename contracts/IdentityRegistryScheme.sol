@@ -1,20 +1,6 @@
-/*
-
-Psuedocode:
-
-*/
-
 import './IdentityRegistryInterface.sol'
 
 contract IdentityRegistryScheme is UniversalScheme, VotingMachineCallbacks, ProposalExecuteInterface {
-
-  enum ProposalType { ADD, REMOVE, UPDATE }
-  address identityRegistryAddress;
-  bytes32 nextProposalID;
- 
-  constructor() {
-    nextProposalID = 1;
-  }
 
   event AddIdentityProposal(bytes32 indexed _proposalID, address _addressID, string _name, bool _isRegistered, string _metadataURI, bytes _metadata)
   event RemoveIdentityProposal(bytes32 indexed _proposalID, address _addressID, string _name, bool _isRegistered, string _metadataURI, bytes _metadata))
@@ -24,11 +10,12 @@ contract IdentityRegistryScheme is UniversalScheme, VotingMachineCallbacks, Prop
   //TO-DO: Exactly what information should we emit here? Should we expect the proposal to go through? Also, what is advantage of deleting? Should we just edit a bool flag, cheaper gas?
   event ProposalDeleted(bytes32 indexed _proposalID, ProposalType _proposalType)
 
+  enum ProposalType { ADD, REMOVE, UPDATE };
   struct IdentityProposal {
     bytes32 proposalID;
     address proposer;
     ProposalType proposalType;
-    bytes32 values; //Encoded values of proposal, as is different depending on function    
+    bytes32 values; //Encoded values of proposal, as is different depending on function
   }
 
   // Mapping the address of proposer to proposals
