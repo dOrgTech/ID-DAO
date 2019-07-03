@@ -11,14 +11,26 @@ Flows for IdentityDAO integration:
 -Use https://dapp.gooddollar.org/ as a baseline
 
 
-Currently implemented GoodDollar flow:
+
+Table of Contents
+===================
+
+1. Currently Implemented GoodDollar Flow
+2. Prospective Flow
+3. Inspiration/Research on Signup/Identity Verification Flows
+     -Coinbase
+     -3Box
+     -Alchemy
+
+
+Currently Implemented GoodDollar Flow:
 ---------------------------------------
 -Create a wallet ---> Enter details (Full Name) ----> Phone verification
 -Login ---> Enter seed phrase ---> Main app page (landing) 
 
 
-Propective flow:
------------------
+Prospective Flow:
+------------------
 -Create a wallet ---> Enter details (Full Name, Email) AND account verification text boxes (Facebook/LinkedIn/Twitter [ Verify (button)* ]) ---> Approval sent!** 
 
 * Mini-flow of [ Verify ] ---> Instructions page ---> (in new tab) Path for doing on-platform verifying (such as tweeting a unique code) ---> Enter details page
@@ -28,8 +40,10 @@ Propective flow:
 
 
 
-Inspiration/Research on Signup flows:
---------------------------------------
+Inspiration/Research on Signup/Identity Verification Flows:
+------------------------------------------------------------
+
+-Looking at currently existing flows can allow us to reap some of the advantages of the conventional UI/UX principles that are likely integrated into these mass-used webapps
 -3box, Coinbase, Peepeth, (Portis?)
 
 
