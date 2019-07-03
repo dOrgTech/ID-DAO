@@ -224,7 +224,9 @@ Enter your handles and without the @ mark.
 Github  [       Verify(link/button) ]
 Twitter [       Verify(link/button) ]
 
-On click Github verify:
+
+
+=> On click Github verify:
 
 ----------
 NEW MODAL
@@ -275,6 +277,53 @@ OUT OF MODAL
 Github [ EMAIL (check icon)       Remove(link/button)]
 
 
+
+=> On click Twitter
+
+NEW MODAL:
+
+[Twitter icon] Verify your Twitter account
+Linking your Twitter account to your 3Box profile allows your friends and
+apps to trust you more.
+
+
+1
+
+Tweet a unique key from the account you want to
+connect
+
+[ _______ ]
+
+
+[ Tweet this (button) ]
+
+
+2
+
+Check if your Twitter account was successfully verified below!
+
+[ Twitter not yet verified / Your Twitter is verified! ]
+
+[ Verify (button) ]
+
+
+  => On Tweet this button:
+
+Twitter opened:
+"What's happening?"
+
+[ (Textbox)
+
+This tweet links my 3Box profile to my twitter account! 
+
+Join web3's social profiles network by creating your account on http://3box.io/ today. 
+@3boxdb
+
+✅    
+did:muport:________________________________________       
+✅ 
+
+]
 
 ============================================================================
 
