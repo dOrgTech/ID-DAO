@@ -30,7 +30,74 @@ Propective flow:
 
 Inspiration/Research on Signup flows:
 --------------------------------------
--3box, Coinbase, (Portis?)
+-3box, Coinbase, Peepeth, (Portis?)
 
 
+
+
+Coinbase:
+----------
+Sign Up --> Create your account
+-First name
+-Last name
+-Email
+-Password
+-State
+[ ](By continuing I certify that I am 18 years of age, and I agree to the User Agreement and Privacy Policy.)
+[ Create Account (button)]
+---> Verify your email
+
+(Loading circle around email icon)
+(We sent a verification email to EMAIL. Click the link inside to get started!)
+
+(Email didn't arrive?)
+(Go back to coinbase.com) (Note, this is outside the center div, more as a "footer")
+
+----> Phone Number Verification
+
+
+Add your phone number
+
+Country
+[ (Flag) United States ] (dropdown)
+
+Your Phone Number
+[ 123 - 456 - 7890 ]
+
+This will secure your account by testing a short confirmation code to your phone when logging in.
+
+[ Send code (button)]
+(Go back to coinbase.com) (Note, this is outside the center div, more as a "footer")
+
+||| ON CLICK, NEW CENTER DIV |||
+Please enter the seven digit code we just send to your number +x xxx xxx xx02 (displays last two digits on number, rest redacted by xs)
+
+[ Chat icon ] [ 0 0 0 0 0 0 0 ]
+
+Didn't receive the SMS? Re-send SMS
+Use another phone number
+
+[ Submit ]
+
+
+----> Identity Verification
+
+
+Verify your identity
+
+New York state financial regulations require us to verify your identity. Once complete, you can buy, sell or transfer cryptocurrency.
+
+-First name
+-Last name
+-What will you use Coinbase for? (dropdown)
+-Date of birth (three dropdowns)
+-What is your source of funds?
+-Street Address
+-Current Occupation
+-Employer
+-Last 4 digits of SSN
+
+[ Continue (button) ]
+
+----> Landing page
 
