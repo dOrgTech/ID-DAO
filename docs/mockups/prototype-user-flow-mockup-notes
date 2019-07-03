@@ -55,6 +55,8 @@ Tell us more about yourself
 -Last name
 -Email
 
+-Address
+
 Verified Accounts
   -Facebook  [     (Verify) ] * 
   -Google    [     (Verify) ] *
@@ -187,9 +189,30 @@ An email has been sent to you...
 Additional Considerations
 ---------------------------
 -Password vs. wallet phrase
+  -Alternatively, PIN/phone number
+  -(Forgot PIN?)
+    -Seed reserved for backup
 
+-Editing information/Deleting Information - will this reflect in user flow?
+  -Why would a user edit/delete information?
+    -Updating public address?
+  -Expiring identities as a solution ()
 
+-Allow GoodDollar users to vote on other users?
+  -Disagree - can prevent mass market to shoot this out as a DAO, simply keep as this identity verification
 
+-User flow for User Flow that is already on already on registry, import identity somehow
+  -Think of perspective from an attacker - make sure user *can't* be on the list twice
+  -Maybe if non-malicious - propose a deletion/edit of an identity?
+    -Issue - if malicious, then they can simply say "hey, my identity was stolen! please approve me to steal UBI funds" (much like phone company phishing)
 
+-Should a seperate address (sender) be able to add/edit/delete identity of another person? (e.g. From 0x984: Add 0x100 to registry)
+  -Could have malicious element
+  -However, making it this way allows entities/dApps to add identities on their behalf
+    -Otherwise, GoodDollar will have to hold private keys on-chain
 
+-Make sure distinguish between on-server privacy, and on-chain Identity Registry
 
+-Phone number - not strong, because someone can make identity Identity
+
+-What unique info can we keep on-chain that will ensure non-duplicate identities
