@@ -172,3 +172,112 @@ Please do not redact, watermark or otherwise obscure any part of your ID. This w
 
 [ Upload (button) ]
 Go back
+
+
+==============================================================================
+
+3box
+-----
+
+-Login is simply Metamask sign-in + signature requested
+
+
+
+Identifying information:
+-Basic (Add basic information so others can recognize you.)
+  -Name
+  -Description
+  -Spirit Emoji
+
+-About
+  -Location
+  -Website or URL
+  -Birthday
+  -Member Since (auto-filled, simply a constant label)
+
+Contact
+  -Email
+
+-Work
+  -Employer
+  -Job Title
+
+-Education
+  -School
+  -Degree
+  -Major
+  -Year
+
+Form for Verified Accounts:
+
+Verified Accounts
+
+Connect your existing social
+accounts to build a stronger
+reputation.
+
+(above chunk occupies the left)
+
+
+Enter your handles and without the @ mark.
+
+Github  [       Verify(link/button) ]
+Twitter [       Verify(link/button) ]
+
+On click Github verify:
+
+----------
+NEW MODAL
+----------
+
+Verify your Github account
+
+Linking your Github account to your 3box profile allows youir friends and apps to trust you more.
+ 
+(below 3 steps are in columns)
+
+1
+
+Copy your unique key below.
+
+[key in box here]
+
+[Click to copy (button)]
+
+
+2
+
+Open a new gist file in Github
+and paste the key in the body of the file.
+Save the gist as public with any
+valid name and file type.
+
+[Open a gist file (button)] ---> https://gist.github.com/ (Create a new Gist)
+
+3
+
+Check if your Github account was successfully verified below!
+
+(In a blue box)
+[ Github not yet verified / Your Github is verified! ]
+
+[ Verify (button) ] (on click --> check Github gists)
+
+
+
+[ Done (button) ]
+
+
+----------------
+OUT OF MODAL
+----------------
+
+Github [ EMAIL (check icon)       Remove(link/button)]
+
+
+
+
+
+
+
+
