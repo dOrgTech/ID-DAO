@@ -12,6 +12,10 @@ Table of Contents
 1. Currently Implemented GoodDollar Flow *
 2. Prospective Flow *
 3. User Flows in Detail
+  *. Account Verification Flows
+4. Additional Considerations
+
+
 
 *NOTE: These two are replicated in the current "notes" document, done here for convenience, may be moved over here, making the "notes" something reserved for the research on user flows piece.
 
@@ -29,6 +33,7 @@ Prospective Flow:
 * Mini-flow of [ Verify ] ---> Instructions page ---> (in new tab) Path for doing on-platform verifying (such as tweeting a unique code) ---> Enter details page
 ** Send email confirming approval sending, and give seed phrase. At this point, the user has an account on GoodDollar, simply not approved (and can access approval status in this way)
 
+TODO: Identity flow for creating raw proposals without necessarily needing to be logged in (make sure not intrusive/difficult for new user)
 
 
 User Flows in Detail:
@@ -96,7 +101,8 @@ An email has been sent to you...
 -Twitter
   -Modal dedicated for Twitter verification
     -Instructions
-   
+    -Generate secret key, auto-populate tweet with info for user, then simply verify!
+
  -----------------------------------------------------------------
 
    [Twitter icon] Verify your Twitter account
@@ -178,6 +184,9 @@ An email has been sent to you...
 
 
 
+Additional Considerations
+---------------------------
+-Password vs. wallet phrase
 
 
 
