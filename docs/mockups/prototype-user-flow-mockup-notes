@@ -51,13 +51,17 @@ Tell us more about yourself
 -Email
 
 Verified Accounts
-  -Facebook  [     (Verify) ] 
-  -Google    [     (Verify) ]
-  -Twitter   [     (Verify) ]
-  -GitHub    [     (Verify) ]
-
+  -Facebook  [     (Verify) ] * 
+  -Google    [     (Verify) ] *
+  -Twitter   [     (Verify) ] *
+  -GitHub    [     (Verify) ] *
+(If verified, add check icon and "Remove" link-button)
 
 -Additional Info (textbox)
+[ 
+
+                    ]
+
 
 [ Continue (button) ]
 
@@ -78,9 +82,59 @@ Email:
 
 -----------------------------------------
 
+Sent for Approval!
+
+An email has been sent to you...
 
 
+-----------------------------------------
 
+* Account Verification Flows:
+------------------------------
+
+-GitHub
+  -Modal dedicated for GitHub verification
+    -Instructions
+    -Generate secret key, request to add to gist, check gist
+
+ ----------------------------------------------
+ 
+  Verify your Github account
+
+    1
+
+    Copy your unique key below.
+
+    [key in box here]
+
+    [Click to copy (button)]
+
+
+    2
+
+    Open a new gist file in Github
+    and paste the key in the body of the file.
+    Save the gist as public with any
+    valid name and file type.
+
+    [Open a gist file (button)] ---> https://gist.github.com/ (Create a new Gist)
+
+    3
+
+    Check if your Github account was successfully verified below!
+
+    (In a blue box)
+    [ Github not yet verified / Your Github is verified! ]
+
+    [ Verify (button) ] (on click --> check Github gists)
+
+    [ Done (button) ]
+
+
+ -------------------------------------------------
+
+
+-
 
 
 
