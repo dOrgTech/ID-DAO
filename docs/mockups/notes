@@ -1,0 +1,27 @@
+IdentityDAO User Flow Mockups:
+===============================
+
+-Emphasis on high-level, user experience and end product
+-Utilize their current seed phrase method for login (for the moment)
+
+
+Flows for IdentityDAO integration:
+-Create account (for verification flow)
+-Create/Update/Remove Proposal UI
+-Use https://dapp.gooddollar.org/ as a baseline
+
+
+Currently implemented GoodDollar flow:
+---------------------------------------
+-Create a wallet ---> Enter details (Full Name) ----> Phone verification
+-Login ---> Enter seed phrase ---> Main app page (landing) 
+
+
+
+
+
+
+
+
+
+
