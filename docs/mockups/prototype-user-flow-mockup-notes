@@ -92,6 +92,49 @@ An email has been sent to you...
 * Account Verification Flows:
 ------------------------------
 
+
+-Twitter
+  -Modal dedicated for Twitter verification
+    -Instructions
+   
+ -----------------------------------------------------------------
+
+   [Twitter icon] Verify your Twitter account
+   Linking your Twitter account to your 3Box profile allows your friends and
+   apps to trust you more.
+
+
+   1
+
+   Tweet a unique key from the account you want to
+   connect
+
+   [ _______ ]
+
+   [ Tweet this (button) ] => On Tweet this button:
+
+      Twitter opened:
+      "What's happening?"
+
+      [ (Textbox)
+
+         Verifying my Twitter with IdentityDAO!
+
+         [Insert brief desciption on Identity DAO here]
+         Verification key: ______________________________________________
+ 
+                                                           [
+
+   2
+
+   Check if your Twitter account was successfully verified below!
+
+   [ Twitter not yet verified / Your Twitter is verified! ]
+
+   [ Verify (button) ]
+
+
+
 -GitHub
   -Modal dedicated for GitHub verification
     -Instructions
@@ -133,8 +176,6 @@ An email has been sent to you...
 
  -------------------------------------------------
 
-
--
 
 
 
