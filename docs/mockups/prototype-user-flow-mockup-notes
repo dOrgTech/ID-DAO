@@ -34,6 +34,52 @@ Prospective Flow:
 User Flows in Detail:
 ----------------------
 
+[Welcome message]
+
+By clicking the "Create a wallet" button, you are accepting our Terms of Service and Privacy Policy.
+
+[ Create a wallet (button) ]
+Already have a wallet? (link)
+
+----------------------------------------
+
+Tell us more about yourself
+
+-First name 
+-Middle name (opt)
+-Last name
+-Email
+
+Verified Accounts
+  -Facebook  [     (Verify) ] 
+  -Google    [     (Verify) ]
+  -Twitter   [     (Verify) ]
+  -GitHub    [     (Verify) ]
+
+
+-Additional Info (textbox)
+
+[ Continue (button) ]
+
+----------------------------------------
+
+Review Info for Approval
+
+Please check to see if these details are correct. If there are any typing errors, or you'd like to change a detail, click "Return and Edit"
+
+First name:
+Last name:
+Email:
+...
+
+
+[ Return and Edit ]
+[ Submit for Approval (button) ] ===> on click, modal: "Are you sure you'd like to submit this for approval? [ Go back ] [ Submit ]"
+
+-----------------------------------------
+
+
+
 
 
 
