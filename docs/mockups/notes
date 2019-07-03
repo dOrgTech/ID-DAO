@@ -101,3 +101,74 @@ New York state financial regulations require us to verify your identity. Once co
 
 ----> Landing page
 
+...
+
+Within Dashboard, we eventually run into need to verify identity, which brings up this modal:
+
+Identity Verification Requested
+
+Select ID type
+
+[ Driver's License ] [ Photo ID ]
+
+I don't have one of these IDs
+
+||| On clicking an ID type: |||
+
+
+Choose an upload method
+
+[ Webcam ] [ Mobile Camera ] [ File Upload ]
+
+Go back
+
+
+( If clicking Webcam: )
+
+
+Example
+[DIV below is on the left, takes up approx. 40% of the space]
+
+(Minimalist image of ID card)
+
+• Turn up your brightness and avoid glare
+• First name and last name clearly visible
+• Date of birth clearly visible
+• ID number clearly visible
+• Fully in frame, not cut off on any side
+
+[DIV below is on the right, takes up approx. 60% of the space]
+
+[ Please enable your webcam ] (large gray box)
+
+( If clicking Mobile Camera: )
+
+
+Upload from your mobile phone
+
+Click the link we just sent to +x xxx xxx xx01 and upload photos of your driver's license
+( Loading gif )
+
+Please do not leave this page until you are done uploading.
+
+Go back
+
+
+( If clicking File Upload: )
+
+Upload images
+
+Upload pictures of your photo id (JPEG or PNG).
+
+[ (icon of window) 
+Drag & drop 
+or click to 
+upload ]
+Front
+
+(same as above piece, but for back. Front and back buttons are side-to-side)
+
+Please do not redact, watermark or otherwise obscure any part of your ID. This will help ensure we can verify your identity document as quickly and accurately as possible.
+
+[ Upload (button) ]
+Go back
