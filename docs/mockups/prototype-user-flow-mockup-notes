@@ -159,6 +159,10 @@ User with rejected approval
 
 User with existing GoodDollar attempting to register
 
+  Create Account ---> Choose a PIN ---> (Optional) Fingerprint/FaceID? (mobile) ---> Enter minimal details (Full Name, Email) ---> Already in our system! (Login*, Restore account**)
+
+  * Mini-flow of entire "Log in" scenario
+  ** Mini-flow of entire "User forgot their PIN" scenario
 
 
 
