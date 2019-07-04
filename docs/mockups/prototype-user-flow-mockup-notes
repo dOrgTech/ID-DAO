@@ -29,12 +29,24 @@ Currently Implemented GoodDollar Flow:
 
 Prospective Flow:
 ------------------
--Create a wallet ---> Enter details (Full Name, Email) AND account verification text boxes (Facebook/LinkedIn/Twitter [ Verify (button)* ]) ---> Approval sent!**
 
-* Mini-flow of [ Verify ] ---> Instructions page ---> (in new tab) Path for doing on-platform verifying (such as tweeting a unique code) ---> Enter details page
-** Send email confirming approval sending, and give seed phrase. At this point, the user has an account on GoodDollar, simply not approved (and can access approval status in this way)
+Initial Account Creation
 
-TODO: Identity flow for creating raw proposals without necessarily needing to be logged in (make sure not intrusive/difficult for new user)
+  -Create Account ---> Choose a PIN ---> (Optional) Fingerprint/FaceID? (mobile) ---> Enter minimal details (Full Name, Email) ---> Account Landing Page 
+
+Identity Verification for User
+
+  Account Landing Page ---> Identity (address, camera image) and account verification text boxes (Facebook/LinkedIn/Twitter [ Verify (button)* ]) ---> Approval sent!**
+
+
+  * Mini-flow of Individual Account Verification
+
+    [ Verify ] ---> Instructions page ---> (in new tab) Path for doing on-platform verifying (such as tweeting a unique code) ---> Enter details page
+
+
+  (Extra note)
+  ** Send email confirming approval sending, and give seed phrase. At this point, the user has an account on GoodDollar, simply not approved (and can access approval status in this way)
+
 
 
 User Flows in Detail:
@@ -56,7 +68,9 @@ Tell us more about yourself
 -Last name
 -Email
 
--Address
+-Date of birth
+-Address (physical location)
+
 
 Verified Accounts
   -Facebook  [     (Verify) ] * 
@@ -225,6 +239,7 @@ Additional Considerations
 
 -If logged in and still waiting for approval (and approval rejected), (Contact Us for Support if not approved)
 
+(This is copied from above; may not be relevant due to discussion above) TODO: Identity flow for creating raw proposals without necessarily needing to be logged in (make sure not intrusive/difficult for new user)
 
 =============
 META-NOTE:     Go for something, don't keep additional considerations in the document, make trade-offs to give coherent picture and avoid uncertainty (consulting comes from us)
