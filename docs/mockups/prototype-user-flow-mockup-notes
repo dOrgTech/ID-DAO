@@ -36,7 +36,7 @@ User Scenarios
 Basic 
 
 -Initial Account Creation
--New user logging in for first time
+-New user verifying identity
 -User with GoodDollar account (signing in)
 
 Exception Scenarios
@@ -59,7 +59,7 @@ Security Scenarios
 Basic
 
 -Initial Account Creation
--New user logging in for first time
+-New user verifying identity
 -User with GoodDollar account (signing in)
 
 Exception Scenarios
@@ -87,16 +87,37 @@ Log-in Process (New user logging in for first time)
 
 ===
 
-Identity Verification for User
+Identity Verification for User (New user verifying identity)
 
-  Account Landing Page ---> Identity (address, camera image) and account verification text boxes (Facebook/LinkedIn/Twitter [ Verify (button)* ]) ---> Approval sent!**
+  Account Landing Page ---> Identity (address, all information, ID card*, camera image**) and account verification text boxes (Facebook/LinkedIn/Twitter [ Verify (button)*** ]) ---> Approval sent!****
 
-  * Mini-flow of Individual Account Verification
+  * Mini-flow of ID Document Verification
+
+    Brief Instructions and Select an ID type (Driver's license, ID card, Passport) ---> Select an upload method (Webcam/Mobile Camera (a), File Upload (b)) ---> Next
+
+      a. Webcam/Mobile Camera
+        Instructions on Photo (e.g. ID card in line with square borders) and Camera Screen ---> Use this photo? (can be in same modal/screen) ---> Next
+
+      b. File Upload
+        Brief instructions on file upload, click/drag image ---> Use this image? ---> Next
+
+  ** Mini-flow of Photo Identity Verification
+
+    Brief Instructions and Select an upload method (Webcam/Mobile Camera (a), File Upload (b)) ---> Next
+
+      a. Webcam/Mobile Camera
+        Instructions on Photo (e.g. face in camera) and Camera Screen ---> Use this photo? (can be in same modal/screen) ---> Next
+
+      b. File Upload
+        Brief instructions on file upload, click/drag image ---> Use this image? ---> Next
+
+
+  *** Mini-flow of Individual Account Verification
 
     [ Verify ] ---> Instructions page ---> (in new tab) Path for doing on-platform verifying (such as tweeting a unique code) ---> Enter details page
 
   (Extra note)
-  ** Send email confirming approval sending, and give seed phrase. At this point, the user has an account on GoodDollar, simply not approved (and can access approval status in this way)
+  **** Send email confirming approval sending, and give seed phrase. At this point, the user has an account on GoodDollar, simply not approved (and can access approval status in this way)
 
 ===
 
