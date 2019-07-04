@@ -125,8 +125,8 @@ Identity Verification for User (New user verifying identity)
 
 
 
-===
 
+===
 
 
 ============================  
@@ -135,14 +135,31 @@ Exception Scenarios
 
 User forgot their PIN
 
+  Main Landing Page ---> Log In (forgot your PIN?) ---> Options (Restore account with seed backup*, Contact support**) 
 
+  * Mini-flow of Seed Backup
+  
+    Enter Seed ---> Enter a new PIN ---> Success! Try logging in again ---> Log in page (perhaps redirect) 
+
+  ** Mini-flow of Contact Support
+   
+    Restore Account Support Instructions and Information ("Contact us at support@gooddollar.org to... Please provide the following: ")
+
+===
 
 User with rejected approval
 
+  Main Landing Page ---> Log In ---> Main Landing Page ---> Identity Verification (status, resend approval) ---> Review details (Revise*, Submit) ---> Approval re-sent! 
 
+  * Mini-flow of Identity Approval Revision
 
+    Revise information (fields filled in with last approval's data) ---> Review details (Revise*, Submit)
+
+===
 
 User with existing GoodDollar attempting to register
+
+
 
 
 ========================================================
@@ -305,6 +322,8 @@ Additional Considerations
   -Alternatively, PIN/phone number
   -(Forgot PIN?)
     -Seed reserved for backup
+    -Add email confirmation/phone number confirmation/2FA (Google Authenticator/Duo/Authy)
+
 
 -Editing information/Deleting Information - will this reflect in user flow?
   -Why would a user edit/delete information?
