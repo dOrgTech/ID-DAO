@@ -10,11 +10,12 @@ Table of Contents
 ===================
 
 1. Currently Implemented GoodDollar Flow *
-2. Prospective Flow *
-3. User Flows in Detail
+2. User Scenarios
+  *. User Scenarios for GoodDollar Prototype Proposal 
+3. Prospective Flow *
+4. User Flows in Detail
   *. Account Verification Flows
-4. Additional Considerations
-5. User Scenarios
+5. Additional Considerations
 6. Proposal Document Skeleton 
 
 
@@ -32,20 +33,41 @@ Currently Implemented GoodDollar Flow:
 User Scenarios
 ---------------
 
+Basic 
+
 -Initial Account Creation
 -New user logging in for first time
 -User with GoodDollar account (signing in)
-  -User waiting for approval
-  -User approval rejected, option to appeal
+
+Exception Scenarios
+
 -User forgot their PIN
+-User with rejected approval
 -User with existing GoodDollar attempting to register
   -User with existing IdentityRegistry attempting to register
   -(NOTE: Leave this out for now)
   -(Loose assumption that GoodDollar is the only one connected to IdentityRegistry (we live in GoodDollar land!))
 
-
+Security Scenarios
 
 -Malicious user attempting to enter existing GoodDollar (attack on recovery option)
+
+
+(User Scenarios for GoodDollar Prototype Proposal)
+----------------------------------------------------
+
+Basic
+
+-Initial Account Creation
+-New user logging in for first time
+-User with GoodDollar account (signing in)
+
+Exception Scenarios
+
+-User forgot their PIN
+-User with rejected approval
+-User with existing GoodDollar attempting to register
+
 
 ========================================================
 
@@ -78,15 +100,9 @@ Identity Verification for User
 
 ===
 
-(Perhaps name everything below something like "extra-normal cases?" User flows that will occur when user has trouble)
-
 User with GoodDollar account (signing in)
 
   
-  -User waiting for approval
-  -User approval rejected, option to appeal
-
--Malicious user attempting to enter existing GoodDollar (attack on recovery option)
 
 
 ========================================================
