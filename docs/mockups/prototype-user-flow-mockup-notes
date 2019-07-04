@@ -352,7 +352,7 @@ Additional Considerations
     -Perhaps only can add yourself?
       -Can work around this by having GoodDollar accept a signature, GoodDollar submits
 
--Make sure distinguish between on-server privacy, and on-chain Identity Registry
+-Make sure to distinguish between on-server privacy, and on-chain Identity Registry
 
 -Phone number - not strong, because someone can make identity Identity
 
@@ -367,15 +367,6 @@ META-NOTE:     Go for something, don't keep additional considerations in the doc
 =============
 
 
-========================
-
-
-English Language Decision Tree
---------------------------------
-
--Has account ---> 
- 
-
 
 =========================
 
@@ -388,7 +379,7 @@ Milestone Proposal (simply meat of scenarios and decisions):
 
 I. Intro (concise)
 II. User Scenarios
-III. Decision tree
+III. Decision tree (Prospective flow)
 IV. User flows with UI (tying this together) 
 
 
@@ -397,7 +388,7 @@ Formal proposal:
 I. Issue to Tackle
 II. Summary of Solution; Proposal
 III. User Scenarios
-IV. Decision tree
+IV. Decision tree (Prospective flow)
 V. User flows with UI (tying this together) 
 
 ===================================
