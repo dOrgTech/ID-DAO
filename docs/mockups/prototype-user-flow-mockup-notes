@@ -36,8 +36,8 @@ User Scenarios
 Basic 
 
 -Initial Account Creation
--New user verifying identity
 -User with GoodDollar account (signing in)
+-New user verifying identity
 
 Exception Scenarios
 
@@ -59,8 +59,8 @@ Security Scenarios
 Basic
 
 -Initial Account Creation
--New user verifying identity
 -User with GoodDollar account (signing in)
+-New user verifying identity
 
 Exception Scenarios
 
@@ -75,13 +75,17 @@ Exception Scenarios
 Prospective Flow:
 ------------------
 
+============================  
+Basic
+============================
+
 Initial Account Creation
 
   Create Account ---> Choose a PIN ---> (Optional) Fingerprint/FaceID? (mobile) ---> Enter minimal details (Full Name, Email) ---> Account Landing Page 
 
 ===
 
-Log-in Process (New user logging in for first time)
+Log-in Process (signing in)
 
   Main Landing Page ---> Enter PIN ---> Account Landing Page
 
@@ -119,11 +123,26 @@ Identity Verification for User (New user verifying identity)
   (Extra note)
   **** Send email confirming approval sending, and give seed phrase. At this point, the user has an account on GoodDollar, simply not approved (and can access approval status in this way)
 
+
+
 ===
 
-User with GoodDollar account (signing in)
 
-  
+
+============================  
+Exception Scenarios
+============================
+
+User forgot their PIN
+
+
+
+User with rejected approval
+
+
+
+
+User with existing GoodDollar attempting to register
 
 
 ========================================================
