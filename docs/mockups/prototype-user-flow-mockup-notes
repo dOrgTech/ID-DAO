@@ -27,27 +27,69 @@ Currently Implemented GoodDollar Flow:
 -Login ---> Enter seed phrase ---> Main app page (landing)
 
 
+========================================================
+
+User Scenarios
+---------------
+
+-Initial Account Creation
+-New user logging in for first time
+-User with GoodDollar account (signing in)
+  -User waiting for approval
+  -User approval rejected, option to appeal
+-User forgot their PIN
+-User with existing GoodDollar attempting to register
+  -User with existing IdentityRegistry attempting to register
+  -(NOTE: Leave this out for now)
+  -(Loose assumption that GoodDollar is the only one connected to IdentityRegistry (we live in GoodDollar land!))
+
+
+
+-Malicious user attempting to enter existing GoodDollar (attack on recovery option)
+
+========================================================
+
+
 Prospective Flow:
 ------------------
 
 Initial Account Creation
 
-  -Create Account ---> Choose a PIN ---> (Optional) Fingerprint/FaceID? (mobile) ---> Enter minimal details (Full Name, Email) ---> Account Landing Page 
+  Create Account ---> Choose a PIN ---> (Optional) Fingerprint/FaceID? (mobile) ---> Enter minimal details (Full Name, Email) ---> Account Landing Page 
+
+===
+
+Log-in Process (New user logging in for first time)
+
+  Main Landing Page ---> Enter PIN ---> Account Landing Page
+
+===
 
 Identity Verification for User
 
   Account Landing Page ---> Identity (address, camera image) and account verification text boxes (Facebook/LinkedIn/Twitter [ Verify (button)* ]) ---> Approval sent!**
 
-
   * Mini-flow of Individual Account Verification
 
     [ Verify ] ---> Instructions page ---> (in new tab) Path for doing on-platform verifying (such as tweeting a unique code) ---> Enter details page
 
-
   (Extra note)
   ** Send email confirming approval sending, and give seed phrase. At this point, the user has an account on GoodDollar, simply not approved (and can access approval status in this way)
 
+===
 
+(Perhaps name everything below something like "extra-normal cases?" User flows that will occur when user has trouble)
+
+User with GoodDollar account (signing in)
+
+  
+  -User waiting for approval
+  -User approval rejected, option to appeal
+
+-Malicious user attempting to enter existing GoodDollar (attack on recovery option)
+
+
+========================================================
 
 User Flows in Detail:
 ----------------------
@@ -244,25 +286,6 @@ Additional Considerations
 =============
 META-NOTE:     Go for something, don't keep additional considerations in the document, make trade-offs to give coherent picture and avoid uncertainty (consulting comes from us)
 =============
-
-
-========================================================
-
-User Scenarios
----------------
-
--New user logging in for first time
--User with GoodDollar account (signing in)
-  -User waiting for approval
-  -User approval rejected, option to appeal
--User with existing GoodDollar attempting to register
-  -User with existing IdentityRegistry attempting to register
-  -(NOTE: Leave this out for now)
-  -(Loose assumption that GoodDollar is the only one connected to IdentityRegistry (we live in GoodDollar land!))
-
-
--Malicious user attempting to enter existing GoodDollar (attack on recovery option)
-
 
 
 ========================
