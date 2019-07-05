@@ -38,6 +38,8 @@ Basic
 -Initial Account Creation
 -User with GoodDollar account (signing in)
 -New user verifying identity
+-User wants to edit identity
+-User wants to remove identity
 
 Exception Scenarios
 
@@ -87,13 +89,13 @@ Initial Account Creation
 
 Log-in Process (signing in)
 
-  Main Landing Page ---> Enter PIN ---> Account Landing Page
+  Main Landing Page ---> Enter PIN (or Fingerprint/FaceID) ---> Account Landing Page
 
 ===
 
 Identity Verification for User (New user verifying identity)
 
-  Account Landing Page ---> Identity (address, all information, ID card*, camera image**) and account verification text boxes (Facebook/LinkedIn/Twitter [ Verify (button)*** ]) ---> Approval sent!****
+  Account Landing Page ---> (Action that triggers/forces identity) ---> Identity (address, all information, ID card*, camera image (e.g. holding paper with timestamp)**) and account verification text boxes (Facebook/LinkedIn/Twitter [ Verify (button)*** ]) ---> Approval sent!****
 
   * Mini-flow of ID Document Verification
 
@@ -124,7 +126,20 @@ Identity Verification for User (New user verifying identity)
   **** Send email confirming approval sending, and give seed phrase. At this point, the user has an account on GoodDollar, simply not approved (and can access approval status in this way)
 
 
+On upcoming proposal:
+=====================
 
+-Account verification - will we be checking to see if the tweet is valid, or should we pass this responsibility onto the DAO?
+  -[ ANSWER IN UPCOMING PROTOTYPE ]
+  -Note: Look at HumanityDAO
+
+-Where do the blobs of data live?
+  -Type of data
+  -Add example JSON, pseudocode (check the chat explanation)
+  -...And how it will show to the user
+
+-Mockups of user experience
+  -e.g. mockup of the email
 
 ===
 
@@ -329,6 +344,10 @@ Additional Considerations
     -Add email confirmation/phone number confirmation/2FA (Google Authenticator/Duo/Authy)
 
 
+-Account verification - will we be checking to see if the tweet is valid, or should we pass this responsibility onto the DAO?
+  -[ ANSWER IN UPCOMING PROTOTYPE ]
+  -Note: Look at HumanityDAO
+
 -Editing information/Deleting Information - will this reflect in user flow?
   -Why would a user edit/delete information?
     -Updating public address?
@@ -363,6 +382,7 @@ Additional Considerations
 
 -GoodDollar as identity oracle: "Ah nice, if you think of gooddollar's server as an identity oracle, this is exactly how https://www.brightid.org/ has implemented their identity solution. A collection of oracles that the users in the network can choose to listen to or not. Instead it'd be an "auditing DAO" that chooses which oracles are faithful to decide what's what. Initially the only oracle would be GoodDollar in this case."
 
+-FaceID/Fingerprint; see Status wallet (mobile)
 
 (This is copied from above; may not be relevant due to discussion above) TODO: Identity flow for creating raw proposals without necessarily needing to be logged in (make sure not intrusive/difficult for new user)
 
