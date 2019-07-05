@@ -357,8 +357,12 @@ Additional Considerations
 -Phone number - not strong, because someone can make identity Identity
 
 -What unique info can we keep on-chain that will ensure non-duplicate identities
+  -Perhaps hashing sensitive information, helping voters determine between non-duplicates?
 
 -If logged in and still waiting for approval (and approval rejected), (Contact Us for Support if not approved)
+
+-GoodDollar as identity oracle: "Ah nice, if you think of gooddollar's server as an identity oracle, this is exactly how https://www.brightid.org/ has implemented their identity solution. A collection of oracles that the users in the network can choose to listen to or not. Instead it'd be an "auditing DAO" that chooses which oracles are faithful to decide what's what. Initially the only oracle would be GoodDollar in this case."
+
 
 (This is copied from above; may not be relevant due to discussion above) TODO: Identity flow for creating raw proposals without necessarily needing to be logged in (make sure not intrusive/difficult for new user)
 
