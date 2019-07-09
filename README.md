@@ -59,17 +59,17 @@ Some of the scenarios below may be encountered along the above process and have 
 
 ![](./docs/img/Scenario_Flow_Exception_User_with_Rejected_Add_Proposal.png)
 
-## Updating (Edit Identity)
+## Update Identity
+
+### GoodDollar User Update Process
+
+![](./docs/img/GoodDollar_Wireframe_Update_Identity.png)
 
 Users will also be able to update their identity if necessary; for example, a new Twitter handle, a new personal address, or any other identifying information that may change over time may need an update at some point.
 
 In order to make sure this information is kept up to date, users will be required to update their identity every 2 years and undergo the identity verification steps again.
 
-### GoodDollar
-
-![](./docs/img/GoodDollar_Wireframe_Update_Identity.png)
-
-### Alchemy
+### Alchemy Edit Verification
 
 On Alchemy, any changes or edits to a pre-existing identity will be reflected by the UI. Anything that has stayed the same will be omitted.
 
@@ -85,9 +85,9 @@ A rejected proposal to edit a user's information by the DAO is treated much like
 
 ![](./docs/img/Scenario_Flow_Exception_User_with_Rejected_Edit_Proposal.png)
 
-## Off-boarding (Remove Identity)
+## Remove Identity
 
-### GoodDollar
+### GoodDollar User Off-boarding
 
 Removing an identity from the GoodDollar app is fairly straightforward. Within the GoodDollar app's menu bar, the user would simply tap "Delete Account", and confirm the deletion. Finally, the GoodDollar server relays the signed transaction to remove the account to the network, and an email is sent to the user on success.
 
