@@ -45,7 +45,7 @@ returns:
 
 ![](./docs/img/Alchemy-Add-Identity.png)
 
-In Alchemy, the proposal payload that was prepared in the GoodDollar app is shown in the UI. Any verifications from the GoodDollar's oracle is queried by Alchemy and populated. With this information, human voters can check these to determine whether the proposal is real. 
+In Alchemy, the proposal payload that was prepared in the GoodDollar app is shown in the UI. Any verifications from GoodDollar's oracle are queried by Alchemy and shown. Two primary use cases for this oracle are government ID verification and external account OAuths. With this information, human voters can check these to determine whether the proposal is real. 
 
 ### Scenario Flowchart
 
@@ -59,21 +59,21 @@ Some of the scenarios below may be encountered along the above process and have 
 
 ![](./docs/img/Scenario_Flow_Exception_User_with_Rejected_Add_Proposal.png)
 
-## Updating (Edit Identity)
+## Updating Identity
+
+### GoodDollar Edit Identity
+
+![](./docs/img/GoodDollar_Wireframe_Update_Identity.png)
 
 Users will also be able to update their identity if necessary; for example, a new Twitter handle, a new personal address, or any other identifying information that may change over time may need an update at some point.
 
 In order to make sure this information is kept up to date, users will be required to update their identity every 2 years and undergo the identity verification steps again.
 
-### GoodDollar
-
-![](./docs/img/GoodDollar_Wireframe_Update_Identity.png)
-
-### Alchemy
-
-On Alchemy, any changes or edits to a pre-existing identity will be reflected by the UI. Anything that has stayed the same will be omitted.
+### Alchemy Edit Verification
 
 ![](./docs/img/Alchemy-Edit-Identity.png)
+
+On Alchemy, any changes or edits to a pre-existing identity will be reflected by the UI. Anything that has stayed the same will be omitted.
 
 ### Scenario Flowchart
 
