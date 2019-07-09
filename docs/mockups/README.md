@@ -1,5 +1,11 @@
 # Mockups
 
+* [UI_UX_RESEARCH_NOTES.md](UI_UX_RESEARCH_NOTES.md)
+* [ADDITIONAL_CONSIDERATIONS.md](ADDITIONAL_CONSIDERATIONS.md)
+
+
+## Misc.
+
 IdentityDAO Registry Proposal UI Mockup can be found here: 
 https://wireframe.cc/Dt3UBr
 
