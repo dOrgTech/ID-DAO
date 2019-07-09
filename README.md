@@ -90,19 +90,15 @@ A rejected proposal to edit a user's information by the DAO is treated much like
 
 ### GoodDollar User Off-boarding
 
-Removing an identity from the GoodDollar app is fairly straightforward. Within the GoodDollar app's menu bar, the user would simply tap "Delete Account", and confirm the deletion. Finally, the GoodDollar server relays the signed transaction to remove the account to the network, and an email is sent to the user on success.
-
 ![](./docs/img/GoodDollar_Wireframe_Delete_Identity.png)
+
+Removing an identity from the GoodDollar app is fairly straightforward. Within the GoodDollar app's menu bar, the user would simply tap "Delete Account", and confirm the deletion. Finally, the GoodDollar server relays the signed transaction to remove the account to the network, and an email is sent to the user on success.
 
 ### Scenario Flowchart
 
 ![](./docs/img/Scenario_Flow_Offboarding_Delete_Identity.png)
 
 ## Miscellaneous Scenarios
-
-Any scenarios below are flows which either do not specifically pertain to any of the three main scenarios (adding, editing, removing an identity) or are interchangeable "sub-flows" referenced by the main flows.
-
-The first two are interchangeable "sub-flows", whereas the last one, *Deletion of GoodDollar User's Identity from DAO*, reflects a case where a suspicious user from the DAO raises a proposal to remove the identity from the registry and succeeds. They can choose to either start the process again, or contact support.
 
 ### User Forgot PIN
 
@@ -112,6 +108,6 @@ The first two are interchangeable "sub-flows", whereas the last one, *Deletion o
 
 ![](./docs/img/Scenario_Flow_Contact_Support.png)
 
-### Deletion of GoodDollar User's Identity from DAO
+### DAO Removes GoodDollar User's Identity
 
 ![](./docs/img/Scenario_Flow_Exception_DAO_Removes_User.png)
