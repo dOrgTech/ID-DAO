@@ -45,12 +45,7 @@ returns:
 
 ![](./docs/img/Alchemy-Add-Identity.png)
 
-In Alchemy, the proposal payload that was prepared in the GoodDollar app is shown in the UI. 
-
-GoodDollar relay + oracle
-
-
-Use of "oracles" can be used to determine verification of materials from other sources; for example, this can be an opportunity to add further verification to a user by verifying that personal ID checks have passed from GoodDollar server-side, as well as social media accounts, adding further validity to submitted proposals, and easing the process of having it voted through.
+In Alchemy, the proposal payload that was prepared in the GoodDollar app is shown in the UI. Any verifications from the GoodDollar's oracle is queried by Alchemy and populated. With this information, human voters can check these to determine whether the proposal is real. 
 
 ### Scenario Flowchart
 
