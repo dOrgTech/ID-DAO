@@ -1,56 +1,42 @@
-IdentityDAO User Flow Mockups:
-===============================
+# IdentityDAO User Flow Mockups:
 
--Emphasis on high-level, user experience and end product
--Utilize their current seed phrase method for login (for the moment)
-
-
-Flows for IdentityDAO integration:
--Create account (for verification flow)
--Create/Update/Remove Proposal UI
--Use https://dapp.gooddollar.org/ as a baseline
-
-
-
-Table of Contents
-===================
+## Table of Contents
 
 1. Currently Implemented GoodDollar Flow
 2. Prospective Flow
 3. Inspiration/Research on Signup/Identity Verification Flows
-     -Coinbase
-     -3Box
-     -Alchemy
+     * Coinbase
+     * 3Box
+     * Alchemy
 
 
-Currently Implemented GoodDollar Flow:
----------------------------------------
--Create a wallet ---> Enter details (Full Name) ----> Phone verification
--Login ---> Enter seed phrase ---> Main app page (landing) 
+## Currently Implemented GoodDollar Flow:
+
+* Create a wallet ---> Enter details (Full Name) ----> Phone verification
+* Login ---> Enter seed phrase ---> Main app page (landing) 
 
 
-Prospective Flow:
-------------------
--Create a wallet ---> Enter details (Full Name, Email) AND account verification text boxes (Facebook/LinkedIn/Twitter [ Verify (button)* ]) ---> Approval sent!** 
+## Prospective Flow:
 
-* Mini-flow of [ Verify ] ---> Instructions page ---> (in new tab) Path for doing on-platform verifying (such as tweeting a unique code) ---> Enter details page
+* Create a wallet ---> Enter details (Full Name, Email) AND account verification text boxes (Facebook/LinkedIn/Twitter [ Verify (button)* ]) ---> Approval sent!** 
+
+/* Mini-flow of [ Verify ] ---> Instructions page ---> (in new tab) Path for doing on-platform verifying (such as tweeting a unique code) ---> Enter details page
 ** Send email confirming approval sending, and give seed phrase. At this point, the user has an account on GoodDollar, simply not approved (and can access approval status in this way)
 
 
 
 
 
-Inspiration/Research on Signup/Identity Verification Flows:
-------------------------------------------------------------
+## Inspiration/Research on Signup/Identity Verification Flows:
 
--Looking at currently existing flows can allow us to reap some of the advantages of the conventional UI/UX principles that are likely integrated into these mass-used webapps
--3box, Coinbase, Peepeth, (Portis?)
-
+* Looking at currently existing flows can allow us to reap some of the advantages of the conventional UI/UX principles that are likely integrated into these mass-used webapps
+* 3box, Coinbase, Peepeth, (Portis?)
 
 
 
-Coinbase:
-----------
+
+### Coinbase:
+
 Sign Up --> Create your account
 -First name
 -Last name
@@ -190,11 +176,9 @@ Go back
 
 ==============================================================================
 
-3box
------
+### 3box
 
 -Login is simply Metamask sign-in + signature requested
-
 
 
 Identifying information:
@@ -341,8 +325,7 @@ did:muport:________________________________________
 
 ============================================================================
 
-Alchemy
---------
+### Alchemy
 
 Identity Verification:
 
