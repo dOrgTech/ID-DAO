@@ -11,11 +11,11 @@ After the user goes through GoodDollar's login in / create account flow, they'll
 Example Proposal Payload:
 ```json
 {
-  "name" : "Ori Shimony",
-  "address" : "0x6230204B1714C691804D1c71F325FDb0e184339Q", 
+  "name" : "Bob Hutchings",
+  "address" : "0x1bc9e52baa93dab1a47c3168fd82ed08856ec83", 
   "media": {
     "selfie" : "ipfs://ijnyttg6th7y7f5g",
-    "video" : "ipfs://NUAh08hniaksm,laks",
+    "video" : "ipfs://NUAh08hniaksmlaks",
   },
   "social" : {
     "Twitter" : "https://twitter.com/dOrg_tech/status/1110270197665951744",
@@ -32,7 +32,7 @@ Example Proposal Payload:
 Example Oracle Query:
 ```json
 Oracle:
-"GoodDollar" => "https://verify.gooddollar.org/0x6230204B1714C691804D1c71F325FDb0e184339Q"
+"GoodDollar" => "https://verify.gooddollar.org/0x1bc9e52baa93dab1a47c3168fd82ed08856ec83"
 returns:
 {
   "facebook-oauth" : true,
