@@ -1,18 +1,14 @@
 # IdentityDAO 
 
-## Onboarding (Add Identity)
+## Add Identity
 
-### GoodDollar
-
-The User Onboarding piece of the GoodDollar app will have users create an account on GoodDollar. After typing in some basic information such as name and email, the user is asked to select a PIN. The user can also optionally setup an additional fingerprint/face ID form of authentication, on their phones. Finally, the user is logged in, and the GoodDollar server email the recovery seed mnemonic to the user. At this stage, the user has an account on Gooddollar, but has simply not had an identity approved yet.
-
-In order to claim tokens, however, the identity first needs to be verified. Any action that requires identity will trigger the "Verify Identity" flow. Fields such as the selfie, video, and social account verifications will be verified by the DAO, and funneled through Alchemy as part of a voted proposal.
-
-After submission user-side, the GoodDollar server will submit the Identity Proposal to the network on the behalf of the user (e.g. via a server-side wallet), and send a confirmation email to the user.
+### GoodDollar User Onboarding
 
 ![](./docs/img/GoodDollar_Wireframe_Add_Identity.png)
 
-### Data
+After the user goes through GoodDollar's login in / create account flow, they'll be asked to verify their identity. The user will be asked to provide a selfie, video, and social account verifications. These will all be verified by the DAO through a proposal accessible through alchemy.
+
+Example Proposal Payload:
 ```json
 {
   "name" : "Ori Shimony",
@@ -33,6 +29,7 @@ After submission user-side, the GoodDollar server will submit the Identity Propo
 }
 ```
 
+Example Oracle Query:
 ```json
 Oracle:
 "GoodDollar" => "https://verify.gooddollar.org/0x6230204B1714C691804D1c71F325FDb0e184339Q"
@@ -44,11 +41,16 @@ returns:
 }
 ```
 
-### Alchemy
-
-On Alchemy, all of the publicly available proof for an identity is easily displayed within the proposal's UI. Use of "oracles" can be used to determine verification of materials from other sources; for example, this can be an opportunity to add further verification to a user by verifying that personal ID checks have passed from GoodDollar server-side, as well as social media accounts, adding further validity to submitted proposals, and easing the process of having it voted through.
+### Alchemy Identity Verification
 
 ![](./docs/img/Alchemy-Add-Identity.png)
+
+In Alchemy, the proposal payload that was prepared in the GoodDollar app is shown in the UI. 
+
+GoodDollar relay + oracle
+
+
+Use of "oracles" can be used to determine verification of materials from other sources; for example, this can be an opportunity to add further verification to a user by verifying that personal ID checks have passed from GoodDollar server-side, as well as social media accounts, adding further validity to submitted proposals, and easing the process of having it voted through.
 
 ### Scenario Flowchart
 
