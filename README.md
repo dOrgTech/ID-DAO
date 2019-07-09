@@ -14,8 +14,8 @@ Example Proposal Payload:
   "name" : "Bob Hutchings",
   "address" : "0x1bc9e52baa93dab1a47c3168fd82ed08856ec83", 
   "media": {
-    "selfie" : "ipfs://ijnyttg6th7y7f5g",
-    "video" : "ipfs://NUAh08hniaksmlaks",
+    "selfie" : "ipfs://QmSrPmbaUKA3ZodhzPWZnpFgcPMFWF4QsxXbkWfEptTBJd",
+    "video" : "ipfs://WeStGmTvKOZ3ZfdacKASnpFcsCFGGV1WxcCvnLzBmvVCNq",
   },
   "social" : {
     "Twitter" : "https://twitter.com/dOrg_tech/status/1110270197665951744",
