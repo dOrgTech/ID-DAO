@@ -82,13 +82,13 @@ A rejected proposal to edit a user's information by the DAO is treated much like
 
 ![](./docs/img/out/Scenario_Flow_Exception_User_with_Rejected_Edit_Proposal.png)
 
-## Remove I.D.
+## Delete I.D.
 
 ### GoodDollar User Off-boarding
 
 ![](./docs/img/out/GoodDollar_Wireframe_Delete_Identity.png)
 
-Removing an identity from the GoodDollar app is fairly straightforward. Within the GoodDollar app's menu bar, the user would simply tap "Delete Account", and confirm the deletion. Finally, the GoodDollar server relays the signed transaction to remove the account to the network, and an email is sent to the user on success.
+Deleting an identity from the GoodDollar app is fairly straightforward. Within the GoodDollar app's menu bar, the user would simply tap "Delete Account", and confirm the deletion. Finally, the GoodDollar server relays the signed transaction to remove the account to the network, and an email is sent to the user on success.
 
 ### Scenario Flowchart
 
