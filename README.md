@@ -86,9 +86,9 @@ Every 2 years, the user is prompted to re-prove their identity.
 
 ### Exception Scenarios
 
-A rejected proposal to edit a user's information by the DAO is treated much like a rejected proposal to add a user, and is reflected in a very similar way user-side.
-
 #### Edit I.D. Rejected
+
+A rejected proposal to edit a user's information by the DAO is treated much like a rejected proposal to add a user, and is reflected in a very similar way user-side.
 
 ![](./docs/img/out/Scenario_Flow_Exception_User_with_Rejected_Edit_Proposal.png)
 
