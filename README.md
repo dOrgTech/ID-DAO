@@ -18,7 +18,7 @@ After the user goes through GoodDollar's login in / create account flow, they'll
     "video" : "ipfs://WeStGmTvKOZ3ZfdacKASnpFcsCFGGV1WxcCvnLzBmvVCNq",
   },
   "social" : {
-    "Twitter" : "https://twitter.com/dOrg_tech/status/1110270197665951744",
+    "Twitter" : "https://twitter.com/Hutchin_Bunchin/status/1110270197665951744",
     "LinkedIn" : "...",
     "Github" : "...",
   },
