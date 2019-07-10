@@ -49,13 +49,19 @@ In Alchemy, the proposal payload that was prepared in the GoodDollar app is show
 
 ### Scenario Flowchart
 
+Before the first time the user claims GD tokens, they are prompted to prove their identity.
+
 ![](./docs/img/out/Scenario_Flow_Onboarding_Add_Identity.png)
 
 ### Exception Scenarios
 
 Some of the scenarios below may be encountered along the above process and have been briefly fleshed out below. These include a user with a current account already existing on the GoodDollar server attempting to re-register, and a user that has submitted a proposal, but has had it rejected by the DAO.
 
+#### Existing GoodDollar Account
+
 ![](./docs/img/out/Scenario_Flow_Exception_Existing_User_Attempting_to_Register.png)
+
+#### Add I.D. Rejected
 
 ![](./docs/img/out/Scenario_Flow_Exception_User_with_Rejected_Add_Proposal.png)
 
@@ -74,11 +80,15 @@ On Alchemy, any changes or edits to a pre-existing identity will be reflected by
 
 ### Scenario Flowchart
 
+Every 2 years, the user is prompted to re-prove their identity.
+
 ![](./docs/img/out/Scenario_Flow_Updating_Edit_Identity.png)
 
 ### Exception Scenarios
 
 A rejected proposal to edit a user's information by the DAO is treated much like a rejected proposal to add a user, and is reflected in a very similar way user-side.
+
+#### Edit I.D. Rejected
 
 ![](./docs/img/out/Scenario_Flow_Exception_User_with_Rejected_Edit_Proposal.png)
 
@@ -91,6 +101,8 @@ A rejected proposal to edit a user's information by the DAO is treated much like
 Deleting an identity from the GoodDollar app is fairly straightforward. Within the GoodDollar app's menu bar, the user would simply tap "Delete Account", and confirm the deletion. Finally, the GoodDollar server relays the signed transaction to remove the account to the network, and an email is sent to the user on success.
 
 ### Scenario Flowchart
+
+At any time, the user can remove their own account from the registry.
 
 ![](./docs/img/out/Scenario_Flow_Offboarding_Delete_Identity.png)
 
