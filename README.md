@@ -1,14 +1,14 @@
 # IdentityDAO 
 
-## Add Identity
+## Add I.D.
 
-### GoodDollar User Onboarding
+### GoodDollar User On-boarding
 
 ![](./docs/img/out/GoodDollar_Wireframe_Add_Identity.png)
 
 After the user goes through GoodDollar's login in / create account flow, they'll be asked to verify their identity. The user will be asked to provide a selfie, video, and social account verifications. These will all be verified by the DAO through a proposal accessible through alchemy.
 
-Example Proposal Payload:
+*Example Proposal Payload:*
 ```json
 {
   "name" : "Bob Hutchings",
@@ -29,7 +29,7 @@ Example Proposal Payload:
 }
 ```
 
-Example Oracle Query:
+*Example Oracle Query:*
 ```json
 Oracle:
 "GoodDollar" => "https://verify.gooddollar.org/0x1bc9e52baa93dab1a47c3168fd82ed08856ec83"
@@ -41,7 +41,7 @@ returns:
 }
 ```
 
-### Alchemy Identity Verification
+### Alchemy Add I.D. Verification
 
 ![](./docs/img/out/Alchemy-Add-Identity.png)
 
@@ -60,17 +60,13 @@ Some of the scenarios below may be encountered along the above process and have 
 ![](./docs/img/out/Scenario_Flow_Exception_User_with_Rejected_Add_Proposal.png)
 
 
-## Updating Identity
+## Edit I.D.
 
-### GoodDollar Edit Identity
-
-![](./docs/img/out/GoodDollar_Wireframe_Update_Identity.png)
-
-### GoodDollar User Update Process
+### GoodDollar User Profile Update
 
 ![](./docs/img/out/GoodDollar_Wireframe_Update_Identity.png)
 
-### Alchemy Edit Verification
+### Alchemy Edit I.D. Verification
 
 ![](./docs/img/out/Alchemy-Edit-Identity.png)
 
@@ -86,7 +82,7 @@ A rejected proposal to edit a user's information by the DAO is treated much like
 
 ![](./docs/img/out/Scenario_Flow_Exception_User_with_Rejected_Edit_Proposal.png)
 
-## Remove Identity
+## Remove I.D.
 
 ### GoodDollar User Off-boarding
 
