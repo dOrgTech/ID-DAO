@@ -5,7 +5,7 @@ Edited: Jul 11, 2019 10:29 PM
 
 # Identity DAO Technical Spec v0.3
 
-![](noun_identity_883111-433bd6ff-aedb-43d7-9f8a-004556fc34d7.png)
+![](img/noun_identity_883111-433bd6ff-aedb-43d7-9f8a-004556fc34d7.png)
 
 ## IdentityDAO Javascript Library
 
@@ -20,7 +20,7 @@ For development convenience, an Identity DAO Javascript library may be provided 
 
 Example of a potential Identity DAO UI: 
 
-![](image-c3feb9ec-a9c6-4d5a-8fe3-50101b5b3e7d.EI7M4Z.png)
+![](img/image-c3feb9ec-a9c6-4d5a-8fe3-50101b5b3e7d.EI7M4Z.png)
 
 Note that the “Proposed by:” field is automatically filled based on the logged in user. This can work as additional visual confirmation on what the proposal will generate.
 
@@ -52,22 +52,22 @@ The other two fields provide the opportunity to store a name and metadata direct
 
 The next few sections will provide an overview of this architecture, alongside sample psuedo-code in Solidity.
 
-![](image-b0daf74f-2eaa-4bfa-be2b-061c3979cfd2.SZ4H4Z.png)
+![](img/image-b0daf74f-2eaa-4bfa-be2b-061c3979cfd2.SZ4H4Z.png)
 
 ### Sample Code:
 
 **IdentityRegistryInterface.sol**
 
-![](image-ff894a72-c1fb-4722-85bc-9fb39c0d29b1.A5DS4Z.png)
+![](img/image-ff894a72-c1fb-4722-85bc-9fb39c0d29b1.A5DS4Z.png)
 
 **IdentityRegistry.sol**
 
-![](image-0282cb40-2360-4cec-9328-4aee9400ba35.KYBS4Z.png)
+![](img/image-0282cb40-2360-4cec-9328-4aee9400ba35.KYBS4Z.png)
 
-![](image-5c72d30d-4304-46d7-9d0c-d45cd37f4a57.M6004Z.png)
+![](img/image-5c72d30d-4304-46d7-9d0c-d45cd37f4a57.M6004Z.png)
 
 **IdentityRegistryScheme.sol**
 
-![](image-cc560425-ead6-4a72-9e74-522e59e59d50.YCHR4Z.png)
+![](img/image-cc560425-ead6-4a72-9e74-522e59e59d50.YCHR4Z.png)
 
-![](image-d5ed29a1-2d7d-42f7-a044-35d69067eb18.62Y24Z.png)
+![](img/image-d5ed29a1-2d7d-42f7-a044-35d69067eb18.62Y24Z.png)

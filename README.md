@@ -1,5 +1,7 @@
 # IdentityDAO 
 
+Below are product-focused high-level specs for the GoodDollar IdentityDAO project. For technical specs, [click here.](docs/IdentityDAO-Technical-Spec-v0-3-Markdown-43382a9c-9015-486e-b4c8-177f6c7250ca.md)
+
 ## Add Identity
 
 ### GoodDollar User Onboarding
