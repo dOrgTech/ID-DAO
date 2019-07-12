@@ -1,11 +1,23 @@
 # IdentityDAO 
 
+<<<<<<< HEAD
 Below are product-focused high-level specs for the GoodDollar IdentityDAO project. For technical specs, [click here.](docs/IdentityDAO-Technical-Spec-v0-3-Markdown-43382a9c-9015-486e-b4c8-177f6c7250ca.md)
+||||||| merged common ancestors
+## Add Identity
+=======
+## Add I.D.
+>>>>>>> da8aa3649d463c2bddef4115ae2f4c23afe3b295
 
+<<<<<<< HEAD
 
 ## Add I.D.
 
 ### GoodDollar User On-boarding
+||||||| merged common ancestors
+### GoodDollar User Onboarding
+=======
+### GoodDollar User On-boarding
+>>>>>>> da8aa3649d463c2bddef4115ae2f4c23afe3b295
 
 ![](./docs/img/out/GoodDollar_Wireframe_Add_Identity.png)
 
@@ -60,22 +72,60 @@ Before the first time the user claims GD tokens, they are prompted to prove thei
 
 Some of the scenarios below may be encountered along the above process and have been briefly fleshed out below. These include a user with a current account already existing on the GoodDollar server attempting to re-register, and a user that has submitted a proposal, but has had it rejected by the DAO.
 
+<<<<<<< HEAD
+#### Existing GoodDollar Account
+||||||| merged common ancestors
+![](./docs/img/out/Scenario_Flow_Exception_Existing_User_Attempting_to_Register.png)
+=======
 #### Existing GoodDollar Account
 
 ![](./docs/img/out/Scenario_Flow_Exception_Existing_User_Attempting_to_Register.png)
+>>>>>>> da8aa3649d463c2bddef4115ae2f4c23afe3b295
 
+<<<<<<< HEAD
+![](./docs/img/out/Scenario_Flow_Exception_Existing_User_Attempting_to_Register.png)
+||||||| merged common ancestors
+![](./docs/img/out/Scenario_Flow_Exception_User_with_Rejected_Add_Proposal.png)
+=======
 #### Add I.D. Rejected
 
 ![](./docs/img/out/Scenario_Flow_Exception_User_with_Rejected_Add_Proposal.png)
+>>>>>>> da8aa3649d463c2bddef4115ae2f4c23afe3b295
 
+#### Add I.D. Rejected
+
+<<<<<<< HEAD
+![](./docs/img/out/Scenario_Flow_Exception_User_with_Rejected_Add_Proposal.png)
+||||||| merged common ancestors
+## Updating Identity
+=======
+## Edit I.D.
+>>>>>>> da8aa3649d463c2bddef4115ae2f4c23afe3b295
+
+<<<<<<< HEAD
+||||||| merged common ancestors
+### GoodDollar Edit Identity
+=======
+### GoodDollar User Profile Update
+>>>>>>> da8aa3649d463c2bddef4115ae2f4c23afe3b295
 
 ## Edit I.D.
 
+<<<<<<< HEAD
 ### GoodDollar User Profile Update
 
 ![](./docs/img/out/GoodDollar_Wireframe_Update_Identity.png)
 
 ### Alchemy Edit I.D. Verification
+||||||| merged common ancestors
+### GoodDollar User Update Process
+
+![](./docs/img/out/GoodDollar_Wireframe_Update_Identity.png)
+
+### Alchemy Edit Verification
+=======
+### Alchemy Edit I.D. Verification
+>>>>>>> da8aa3649d463c2bddef4115ae2f4c23afe3b295
 
 ![](./docs/img/out/Alchemy-Edit-Identity.png)
 
