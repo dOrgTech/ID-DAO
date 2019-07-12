@@ -2,25 +2,26 @@
 
 Below are product-focused high-level specs for the GoodDollar IdentityDAO project. For technical specs, [click here.](docs/IdentityDAO-Technical-Spec-v0-3-Markdown-43382a9c-9015-486e-b4c8-177f6c7250ca.md)
 
-## Add Identity
 
-### GoodDollar User Onboarding
+## Add I.D.
+
+### GoodDollar User On-boarding
 
 ![](./docs/img/out/GoodDollar_Wireframe_Add_Identity.png)
 
 After the user goes through GoodDollar's login in / create account flow, they'll be asked to verify their identity. The user will be asked to provide a selfie, video, and social account verifications. These will all be verified by the DAO through a proposal accessible through alchemy.
 
-Example Proposal Payload:
+*Example Proposal Payload:*
 ```json
 {
-  "name" : "Ori Shimony",
-  "address" : "0x6230204B1714C691804D1c71F325FDb0e184339Q", 
+  "name" : "Bob Hutchings",
+  "address" : "0x1bc9e52baa93dab1a47c3168fd82ed08856ec83", 
   "media": {
-    "selfie" : "ipfs://ijnyttg6th7y7f5g",
-    "video" : "ipfs://NUAh08hniaksm,laks",
+    "selfie" : "ipfs://QmSrPmbaUKA3ZodhzPWZnpFgcPMFWF4QsxXbkWfEptTBJd",
+    "video" : "ipfs://WeStGmTvKOZ3ZfdacKASnpFcsCFGGV1WxcCvnLzBmvVCNq",
   },
   "social" : {
-    "Twitter" : "https://twitter.com/dOrg_tech/status/1110270197665951744",
+    "Twitter" : "https://twitter.com/Hutchin_Bunchin/status/1110270197665951744",
     "LinkedIn" : "...",
     "Github" : "...",
   },
@@ -31,10 +32,10 @@ Example Proposal Payload:
 }
 ```
 
-Example Oracle Query:
+*Example Oracle Query:*
 ```json
 Oracle:
-"GoodDollar" => "https://verify.gooddollar.org/0x6230204B1714C691804D1c71F325FDb0e184339Q"
+"GoodDollar" => "https://verify.gooddollar.org/0x1bc9e52baa93dab1a47c3168fd82ed08856ec83"
 returns:
 {
   "facebook-oauth" : true,
@@ -43,7 +44,7 @@ returns:
 }
 ```
 
-### Alchemy Identity Verification
+### Alchemy Add I.D. Verification
 
 ![](./docs/img/out/Alchemy-Add-Identity.png)
 
@@ -51,28 +52,30 @@ In Alchemy, the proposal payload that was prepared in the GoodDollar app is show
 
 ### Scenario Flowchart
 
+Before the first time the user claims GD tokens, they are prompted to prove their identity.
+
 ![](./docs/img/out/Scenario_Flow_Onboarding_Add_Identity.png)
 
 ### Exception Scenarios
 
 Some of the scenarios below may be encountered along the above process and have been briefly fleshed out below. These include a user with a current account already existing on the GoodDollar server attempting to re-register, and a user that has submitted a proposal, but has had it rejected by the DAO.
 
+#### Existing GoodDollar Account
+
 ![](./docs/img/out/Scenario_Flow_Exception_Existing_User_Attempting_to_Register.png)
+
+#### Add I.D. Rejected
 
 ![](./docs/img/out/Scenario_Flow_Exception_User_with_Rejected_Add_Proposal.png)
 
 
-## Updating Identity
+## Edit I.D.
 
-### GoodDollar Edit Identity
-
-![](./docs/img/out/GoodDollar_Wireframe_Update_Identity.png)
-
-### GoodDollar User Update Process
+### GoodDollar User Profile Update
 
 ![](./docs/img/out/GoodDollar_Wireframe_Update_Identity.png)
 
-### Alchemy Edit Verification
+### Alchemy Edit I.D. Verification
 
 ![](./docs/img/out/Alchemy-Edit-Identity.png)
 
@@ -80,23 +83,29 @@ On Alchemy, any changes or edits to a pre-existing identity will be reflected by
 
 ### Scenario Flowchart
 
+Every 2 years, the user is prompted to re-prove their identity.
+
 ![](./docs/img/out/Scenario_Flow_Updating_Edit_Identity.png)
 
 ### Exception Scenarios
+
+#### Edit I.D. Rejected
 
 A rejected proposal to edit a user's information by the DAO is treated much like a rejected proposal to add a user, and is reflected in a very similar way user-side.
 
 ![](./docs/img/out/Scenario_Flow_Exception_User_with_Rejected_Edit_Proposal.png)
 
-## Remove Identity
+## Delete I.D.
 
 ### GoodDollar User Off-boarding
 
 ![](./docs/img/out/GoodDollar_Wireframe_Delete_Identity.png)
 
-Removing an identity from the GoodDollar app is fairly straightforward. Within the GoodDollar app's menu bar, the user would simply tap "Delete Account", and confirm the deletion. Finally, the GoodDollar server relays the signed transaction to remove the account to the network, and an email is sent to the user on success.
+Deleting an identity from the GoodDollar app is fairly straightforward. Within the GoodDollar app's menu bar, the user would simply tap "Delete Account", and confirm the deletion. Finally, the GoodDollar server relays the signed transaction to remove the account to the network, and an email is sent to the user on success.
 
 ### Scenario Flowchart
+
+At any time, the user can remove their own account from the registry.
 
 ![](./docs/img/out/Scenario_Flow_Offboarding_Delete_Identity.png)
 
