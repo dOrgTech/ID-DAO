@@ -55,25 +55,11 @@ Before the first time the user claims GD tokens, they are prompted to prove thei
 
 ![](./docs/img/out/Scenario_Flow_Onboarding_Add_Identity.png)
 
-### Exception Scenarios
-
-Some of the scenarios below may be encountered along the above process and have been briefly fleshed out below. These include a user with a current account already existing on the GoodDollar server attempting to re-register, and a user that has submitted a proposal, but has had it rejected by the DAO.
-
-#### Existing GoodDollar Account
-
-![](./docs/img/out/Scenario_Flow_Exception_Existing_User_Attempting_to_Register.png)
-
-#### Add I.D. Rejected
-
-![](./docs/img/out/Scenario_Flow_Exception_User_with_Rejected_Add_Proposal.png)
-
-#### Add I.D. Rejected
-
 ## Edit I.D.
 
 ### GoodDollar User Profile Update
 
-## Edit I.D.
+![](./docs/img/out/GoodDollar_Wireframe_Update_Identity.png)
 
 ### Alchemy Edit I.D. Verification
 
@@ -86,14 +72,6 @@ On Alchemy, any changes or edits to a pre-existing identity will be reflected by
 Every 2 years, the user is prompted to re-prove their identity.
 
 ![](./docs/img/out/Scenario_Flow_Updating_Edit_Identity.png)
-
-### Exception Scenarios
-
-#### Edit I.D. Rejected
-
-A rejected proposal to edit a user's information by the DAO is treated much like a rejected proposal to add a user, and is reflected in a very similar way user-side.
-
-![](./docs/img/out/Scenario_Flow_Exception_User_with_Rejected_Edit_Proposal.png)
 
 ## Delete I.D.
 
