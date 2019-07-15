@@ -1,102 +1,34 @@
-# IdentityDAO 
+# GoodDollar <> Identity DAO
 
-Below are product-focused high-level specs for the GoodDollar IdentityDAO project. For technical specs, [click here.](docs/IdentityDAO-Technical-Spec-v0-3-Markdown-43382a9c-9015-486e-b4c8-177f6c7250ca.md)
+Welcome to the Identity DAO documentation! Please note that the system described here is tentative and highly subject to change.
 
-## Add I.D.
+## Problem 
 
-### GoodDollar User On-boarding
+A decentralized source of truth for identity is one of the biggest hurdles to any human-centric blockchain use-case, be it voting or UBI.
 
-![](./docs/img/out/GoodDollar_Wireframe_Add_Identity.png)
+The solution posed here is a DAO-curated identity registry. The registry is maintained by a decentralized network of incentivized curators who can profit from diligengtly voting and staking on registry proposals.
 
-After the user goes through GoodDollar's login in / create account flow, they'll be asked to verify their identity. The user will be asked to provide a selfie, video, and social account verifications. These will all be verified by the DAO through a proposal accessible through alchemy.
+Here is a breakdown of the primary user-groups:
 
-*Example Proposal Payload:*
-```json
-{
-  "name" : "Bob Hutchings",
-  "address" : "0x1bc9e52baa93dab1a47c3168fd82ed08856ec83", 
-  "media": {
-    "selfie" : "ipfs://QmSrPmbaUKA3ZodhzPWZnpFgcPMFWF4QsxXbkWfEptTBJd",
-    "video" : "ipfs://WeStGmTvKOZ3ZfdacKASnpFcsCFGGV1WxcCvnLzBmvVCNq",
-  },
-  "social" : {
-    "Twitter" : "https://twitter.com/Hutchin_Bunchin/status/1110270197665951744",
-    "LinkedIn" : "...",
-    "Github" : "...",
-  },
-  "oracles" : [
-    "GoodDollar",
-    "Keybase",
-  ]
-}
-```
+| User Group | Description | Interactions with the registry | How? |
+|-|-|-|-|
+| Portals | Apps and other 3rd parties that help individuals prove they are unique humans | Submit proposals (add, edit or remove) on behalf of users | Directly to the blockchain through their servers via web3 |
+| Apps | Apps that want to check if their users are unique humans | Javascript plug-in that calls isHuman() on registry | 
+| Humans | Individuals who want to prove they are unique humans | |
+| Curators | Maintain the registry |
 
-*Example Oracle Query:*
-```json
-Oracle:
-"GoodDollar" => "https://verify.gooddollar.org/0x1bc9e52baa93dab1a47c3168fd82ed08856ec83"
-returns:
-{
-  "facebook-oauth" : true,
-  "google-oauth" : true,
-  "gov-id-verified" : true
-}
-```
+These groups are not mutually exclusive. A Portal, such as GoodDollar, can also vote and stake on proposals. A ...
 
-### Alchemy Add I.D. Verification
 
-![](./docs/img/out/Alchemy-Add-Identity.png)
+The introduction of an Identity DAO to the GoodDollar project is meant to provide a powerful method in helping determine identity. By having users request identity submission to a DAO, a voting majority of trusted identities must verify and pass them. Since these decisions on managing identities are also public, there is an element of transparency in ensuring the validity of all those accepted. Identites can be added, updated, and removed by group consensus, acting as an active mechanism for keeping the integrity of the registry.
 
-In Alchemy, the proposal payload that was prepared in the GoodDollar app is shown in the UI. Any verifications from GoodDollar's oracle are queried by Alchemy and shown. Two primary use cases for this oracle are government ID verification and external account OAuths. With this information, human voters can check these to determine whether the proposal is real. 
+## Specifications
 
-### Scenario Flowchart
+The documentation is divided into three different sections:
 
-Before the first time the user claims GD tokens, they are prompted to prove their identity.
+1. [Product](docs/product): Mock-ups and userflows for each scenario
+2. [Protocol](docs/protocol): 
+3. [Architecture](docs/architecture): Technical implementation  
 
-![](./docs/img/out/Scenario_Flow_Onboarding_Add_Identity.png)
 
-## Edit I.D.
 
-### GoodDollar User Profile Update
-
-![](./docs/img/out/GoodDollar_Wireframe_Update_Identity.png)
-
-### Alchemy Edit I.D. Verification
-
-![](./docs/img/out/Alchemy-Edit-Identity.png)
-
-On Alchemy, any changes or edits to a pre-existing identity will be reflected by the UI. Anything that has stayed the same will be omitted.
-
-### Scenario Flowchart
-
-Every 2 years, the user is prompted to re-prove their identity.
-
-![](./docs/img/out/Scenario_Flow_Updating_Edit_Identity.png)
-
-## Delete I.D.
-
-### GoodDollar User Off-boarding
-
-![](./docs/img/out/GoodDollar_Wireframe_Delete_Identity.png)
-
-Deleting an identity from the GoodDollar app is fairly straightforward. Within the GoodDollar app's menu bar, the user would simply tap "Delete Account", and confirm the deletion. Finally, the GoodDollar server relays the signed transaction to remove the account to the network, and an email is sent to the user on success.
-
-### Scenario Flowchart
-
-At any time, the user can remove their own account from the registry.
-
-![](./docs/img/out/Scenario_Flow_Offboarding_Delete_Identity.png)
-
-## Miscellaneous Scenarios
-
-### User Forgot PIN
-
-![](./docs/img/out/Scenario_Flow_Exception_User_Forgot_PIN.png)
-
-### Contact Support
-
-![](./docs/img/out/Scenario_Flow_Contact_Support.png)
-
-### DAO Removes GoodDollar User's Identity
-
-![](./docs/img/out/Scenario_Flow_Exception_DAO_Removes_User.png)
