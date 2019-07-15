@@ -1,5 +1,5 @@
 # Architecture
-This is intended to serve as a formal document in describing the final technical implementation of the product. Please note that the **current version of the architecture is tentative**, and is subject to change at any moment.
+Below is a technical specification for the GoodDollar dApp, server, and ID-DAO. Please note that the **current version of the architecture is tentative**, and is subject to change at any moment.
 
 ## Overview
 
@@ -122,5 +122,3 @@ The IdentityRegistry itself stores a mapping of the user's address to a hash of 
 ### Initial User Sign Up
 
 ![](./img/out/Process_Flow_Sign_Up.png)
-
-(TODO: UI —→ Mobile UI, Mobile App (backend) —→ (something not-server-ish))
