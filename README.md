@@ -25,6 +25,6 @@ The introduction of an Identity DAO to the GoodDollar project is meant to provid
 
 The specification is divided into three different sections:
 
-1. [Product](docs/product): UI Mock-ups & User Flows  
-2. [Protocol](docs/protocol): On-Chain Architecture & Economic Modeling  
-3. [Architecture](docs/architecture): Technical Architecture & Process Flows  
+1. [Product](./docs/product.md): UI Mock-ups & User Flows  
+2. [Protocol](./docs/protocol.md): On-Chain Architecture & Economic Modeling  
+3. [Architecture](./docs/architecture.md): Technical Architecture & Process Flows  
