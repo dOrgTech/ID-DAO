@@ -16,15 +16,15 @@ A decentralized source of truth for identity is one of the biggest hurdles to an
 
 The solution posed here is a DAO-curated identity registry. The registry is maintained by a decentralized network of incentivized curators who can profit from diligengtly voting and staking on registry proposals.
 
+In addition to the DAOstack-powered curation system, the Identity DAO utilizes on-boarding portals to help users apply to the registry in a user-friendly manner. The first portal is the GoodDollar UBI dapp. Users will be able to apply to the registry through the dapp and begin claiming UBI once accepted.
+
 Here is a breakdown of the primary user-groups:
 
 | User Group | Description | Interactions with the Registry / DAO | How? |
 |-|-|-|-|
-| Humans | Individuals who want to prove they are unique humans |  
-| Curators | Maintain the registry |  
-| Apps | Apps that want to check if their users are unique humans | Javascript plug-in that calls isHuman() on registry |  
-| Portals | Apps and other 3rd parties that help individuals prove they are unique humans | Submit proposals (add, edit or remove) on behalf of users to the DAO | Directly to the blockchain through their servers via web3 |  
+| Humans | Individuals who need to access dapps that require identity | Apply to the registry | Through on-boarding portals like GoodDollar or directly on Alchemy |
+| Curators | Maintainers of the registry |  Vote and stake | Directly on Alchemy |
+| Portals | Platforms that help individuals apply to the registry | Submit proposals to the DAO on behalf of users | Directly to the blockchain through their servers via web3 |  
+| Apps | Apps that need to authenticate user identity | Read from the registry | Directly from the blockchain with javascript plug-in |
 
-These groups are not mutually exclusive. A Portal, such as GoodDollar, can also act as Curator by voting and staking on proposals. Humans can also be Curators.
-
-The introduction of an Identity DAO to the GoodDollar project is meant to provide a powerful method in helping determine identity. By having users request identity submission to a DAO, a voting majority of trusted identities must verify and pass them. Since these decisions on managing identities are also public, there is an element of transparency in ensuring the validity of all those accepted. Identites can be added, updated, and removed by group consensus, acting as an active mechanism for keeping the integrity of the registry.
+These groups are not mutually exclusive. For instance, GoodDollar is both a portal that lets its users apply to the registry and an app that checks the registry to verify its users identities. GoodDollar could also act as a curator and vote or stake for Identity DAO proposals. An individual could also apply to the registry and then start participating as a curator.
