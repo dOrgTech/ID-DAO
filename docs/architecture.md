@@ -26,55 +26,6 @@ The app server backend will handle all interactions with the Identity DAO, and i
 
 Every send transaction to the Ethereum blockchain requires gas, and managing an internal wallet to handle pushing them to the network. Any requests to add, update, or remove identities from a user is signed by the private key client-side, sent to the backend, and forwarded by paying gas costs.
 
-
-This would be accomplished in the following way. Client-side, the GoodDollar App would run something like:
-```javascript
-const signedTx = await web3.eth.signTransaction({ from: "0xB279182D99E65703F0076E4812653aaB85FCA0f0",
-    gasPrice: "20000000000",
-    gas: "21000",
-    to: "0xdA35deE8EDDeAA556e4c26268463e26FB91ff74f", //IdentityRegistryScheme contract
-    value: "1000000000000000000",
-    data: "0x8be65246
-              0000000000000000000000000000000000000000000000000000000000000123        
-              0000000000000000000000000000000000000000000000000000000000000080
-              3132333435363738393000000000000000000000000000000000000000000000
-              00000000000000000000000000000000000000000000000000000000000000e0
-              0000000000000000000000000000000000000000000000000000000000000002
-              0000000000000000000000000000000000000000000000000000000000000456
-              0000000000000000000000000000000000000000000000000000000000000789
-              000000000000000000000000000000000000000000000000000000000000000d
-              48656c6c6f2c20776f726c642100000000000000000000000000000000000000
-    " //ABI-encoded function input data
-});
-    
-console.log(signedTx);
-    
-/*
-{
-    raw: '0xf86c808504a817c8008252089435dA35deE8EDDeAA556e4c26268463e26FB91ff74f880de0b6b3a76400008025a04f4c17305743700648bc4f6cd3038ec6f6af0df73e31757007b7f59df7bee88da07e1941b264348e80c78c4027afc65a87b0a5e43e86742b8ca0823584c6788fd0',
-    tx: {
-        nonce: '0x0',
-        gasPrice: '0x4a817c800',
-        gas: '0x5208',
-        to: '0xdA35deE8EDDeAA556e4c26268463e26FB91ff74f',
-        value: '0xde0b6b3a7640000',
-        input: '0x',
-        v: '0x25',
-        r: '0x4f4c17305743700648bc4f6cd3038ec6f6af0df73e31757007b7f59df7bee88d',
-        s: '0x7e1941b264348e80c78c4027afc65a87b0a5e43e86742b8ca0823584c6788fd0',
-        hash: '0xda3be87732110de6c1354c83770aae630ede9ac308d9f7b399ecfba23d923384'
-      }
-}
-*/
-```
-This **signedTx** data is then passed onto the GoodDollar server, which sends it from an internal wallet like so:
-
-```javascript
-web3.eth.sendSignedTransaction(signedTx)
-  .on('error', () => { //error-handling code })
-  .on('receipt', () => { //success and clean-up })
-```
-
 **External Interactions**
 
 The GoodDollar server should be able to handle calls to:
@@ -106,9 +57,9 @@ Identity proposals will contain a hash of an Identity Definition payload:
   ]
 }
 ```
-**APIs**
+**Oracle API**
 
-Alongside an API for the front-end to call, the backend should expose an **Oracle API** for returning successful user verification. The API should return a basic JSON to be parsed by Alchemy and outside services. 
+The GoodDollar server should expose an **Oracle API** for returning additional user verification information. This API should return a basic response to be parsed by Alchemy and outside services. 
 
 An example Oracle query might look like:
 ```JSON
@@ -126,7 +77,7 @@ The returned value above confirms that the user with the address `0x1bc9e52baa93
 
 ### IPFS Nodes
 
-**IPFS**, a decentralized storage provider, will be used to host selfies, videos, and any data that is too large to fit on-chain. These nodes should expose an API for uploading, retrieving, and pinning data. These nodes can either be self-managed (e.g. AWS S3) or use third-party node solutions (e.g. Temporal), which offload the resources for running and maintaining nodes internally. 
+**IPFS**, a hash-addressable decentralized storage provider, will be used to host: selfies, videos, and any data that is too large to fit on-chain. These nodes should expose an API for uploading, retrieving, and pinning data. These nodes can either be self-managed (e.g. AWS S3) or use third-party node solutions (e.g. Temporal), which offload the resources for running and maintaining nodes internally. 
 
 ### IdentityDAO
 
