@@ -87,6 +87,12 @@ At any time, the user can remove their own account from the registry.
 
 ![](./img/out/Scenario_Flow_Offboarding_Delete_Identity.png)
 
+## GoodDollar Alchemy User On-boarding
+
+![](./img/out/GoodDollar_User_Onboarding_Alchemy.png)
+
+After having their identity approved, the user can participate in the IdentityDAO as a voter.
+
 ## Miscellaneous Scenarios
 
 ### User Forgot PIN
