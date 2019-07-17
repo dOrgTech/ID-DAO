@@ -33,11 +33,9 @@ The Genesis Protocol achieves holographic consensus by combining a staking game 
 
 ### Reponomics
 
-Successful proposer reputation gain: 1 rep
+Accepted human redeemable reputation: 100 rep
 
-Accepted human redeemable reputation: 99 rep
-
-- Accepted humans will receive 99 *claimable* reputation that can only be redeemed by signing a redeem transaction with the corresponding private key.
+- Accepted humans will receive 100 *claimable* reputation that can only be redeemed by signing a redeem transaction with the corresponding private key.
 
 Incorrect voter reputation loss: 33%
 
