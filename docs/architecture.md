@@ -22,6 +22,8 @@ The app server backend will handle all interactions with the Identity DAO, and i
 
 **Transaction Relaying**
 
+![](./img/out/Transaction_Relay.png)
+
 Every send transaction to the Ethereum blockchain requires gas, and managing an internal wallet to handle pushing them to the network. Any requests to add, update, or remove identities from a user is signed by the private key client-side, sent to the backend, and forwarded by paying gas costs.
 
 
@@ -71,8 +73,6 @@ This **signedTx** data is then passed onto the GoodDollar server, which sends it
     web3.eth.sendSignedTransaction(signedTx)
     	.on('error', () => { //error-handling code })
     	.on('receipt', () => { //success and clean-up code })
-
-[ PROVIDE TRANSACTION RELAY DIAGRAM HERE ]
 
 **External Interactions**
 
