@@ -4,6 +4,8 @@
 
 */
 
+'use strict';
+
 const IdentityRegistry = artifacts.require('./IdentityRegistry.sol');
 
 
