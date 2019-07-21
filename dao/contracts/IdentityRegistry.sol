@@ -2,7 +2,7 @@ pragma solidity ^0.5.0;
 
 import "./IRegistry.sol";
 import "./IVerifyHuman.sol";
-import "openzepplin-eth/contracts/ownership/Ownable.sol";
+import "openzepplin-solidity/contracts/ownership/Ownable.sol";
 
 contract IdentityRegistry is Ownable, IRegistry, IVerifyHuman {
 

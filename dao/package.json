@@ -1,0 +1,26 @@
+{
+  "name": "identitydao",
+  "version": "0.0.1",
+  "description": "",
+  "main": " ",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "openzeppelin-solidity": "^2.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dOrgTech/ID-DAO.git"
+  },
+  "author": "dOrg",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dOrgTech/ID-DAO/issues"
+  },
+  "homepage": "https://github.com/dOrgTech/ID-DAO#readme"
+}
