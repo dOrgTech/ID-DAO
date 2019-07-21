@@ -25,16 +25,28 @@ contract('Testing IdentityRegistry', (accounts) => {
 
   describe('Only owner can...', async () => {
     it('add', async () => {
-      console.log(util.inspect(users[0]))
       await assertSolidityRevert(
         async () => {
-          await instances.IdentityRegistry.add(users[0], '', { from: users[0] });
+          await instances.IdentityRegistry.add(users[0], '0x0', { from: users[0] });
         }
-      );
+      , 'Ownable: caller is not the owner');
     })
   })
 
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // TODO: Move into seperate file: 
@@ -51,6 +63,7 @@ contract('Testing IdentityRegistry', (accounts) => {
     //Ensure we've received an error
     assert.ok(err, 'No error from function call');
     assert.isTrue(err.includes('VM Exception while processing transaction: revert'), 'Error received: ' + err);
+    console.log(err)
     if(expectedErr != null) assert.isTrue(err.includes(expectedErr));
     
     return err;
