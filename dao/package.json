@@ -15,7 +15,8 @@
   },
   "scripts": {
     "test": "truffle test",
-    "chain": "ganache-cli"
+    "chain": "ganache-cli",
+    "compile": "truffle compile"
   },
   "repository": {
     "type": "git",
