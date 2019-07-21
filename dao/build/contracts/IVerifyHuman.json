@@ -1,0 +1,290 @@
+{
+  "contractName": "IVerifyHuman",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "id",
+          "type": "address"
+        }
+      ],
+      "name": "isHuman",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity ^0.5.4;\n\ninterface IVerifyHuman {\n  function isHuman(address id) external view returns (bool);\n}\n",
+  "sourcePath": "/home/luiserebii/github/IdentityDAO/dao/contracts/IVerifyHuman.sol",
+  "ast": {
+    "absolutePath": "/home/luiserebii/github/IdentityDAO/dao/contracts/IVerifyHuman.sol",
+    "exportedSymbols": {
+      "IVerifyHuman": [
+        31
+      ]
+    },
+    "id": 32,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 23,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".4"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:1"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 31,
+        "linearizedBaseContracts": [
+          31
+        ],
+        "name": "IVerifyHuman",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 30,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isHuman",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 26,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 25,
+                  "name": "id",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 30,
+                  "src": "69:10:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 24,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "69:7:1",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "68:12:1"
+            },
+            "returnParameters": {
+              "id": 29,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 28,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 30,
+                  "src": "104:4:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 27,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "104:4:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "103:6:1"
+            },
+            "scope": 31,
+            "src": "52:58:1",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 32,
+        "src": "25:87:1"
+      }
+    ],
+    "src": "0:113:1"
+  },
+  "legacyAST": {
+    "absolutePath": "/home/luiserebii/github/IdentityDAO/dao/contracts/IVerifyHuman.sol",
+    "exportedSymbols": {
+      "IVerifyHuman": [
+        31
+      ]
+    },
+    "id": 32,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 23,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".4"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:1"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 31,
+        "linearizedBaseContracts": [
+          31
+        ],
+        "name": "IVerifyHuman",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 30,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isHuman",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 26,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 25,
+                  "name": "id",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 30,
+                  "src": "69:10:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 24,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "69:7:1",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "68:12:1"
+            },
+            "returnParameters": {
+              "id": 29,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 28,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 30,
+                  "src": "104:4:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 27,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "104:4:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "103:6:1"
+            },
+            "scope": 31,
+            "src": "52:58:1",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 32,
+        "src": "25:87:1"
+      }
+    ],
+    "src": "0:113:1"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.4+commit.9549d8ff.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.0.6",
+  "updatedAt": "2019-07-21T22:05:31.903Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

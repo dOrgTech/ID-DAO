@@ -2,7 +2,7 @@ pragma solidity ^0.5.0;
 
 import "./IRegistry.sol";
 import "./IVerifyHuman.sol";
-import "openzepplin-solidity/contracts/ownership/Ownable.sol";
+import 'openzeppelin-solidity/contracts/ownership/Ownable.sol';
 
 contract IdentityRegistry is Ownable, IRegistry, IVerifyHuman {
 
@@ -24,7 +24,7 @@ contract IdentityRegistry is Ownable, IRegistry, IVerifyHuman {
 
     mapping (address => bytes) registry;
 
-    modifier onlyHuman(bytes id) {
+    modifier onlyHuman(address id) {
         require(isHuman(id), "ID provided is not a human");
         _;
     }
@@ -50,7 +50,7 @@ contract IdentityRegistry is Ownable, IRegistry, IVerifyHuman {
         registry[id] = metadata;
     }
 
-    function isHuman(address id) public view returns(bool) {
-        return registry[identity] != bytes(0);
+    function isHuman(address id) public view returns (bool) {
+        return registry[id].length == 0;
     }
 }

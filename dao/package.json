@@ -14,7 +14,7 @@
     "ganache-cli": "^6.5.0"
   },
   "scripts": {
-    "test": "mocha",
+    "test": "truffle test",
     "chain": "ganache-cli"
   },
   "repository": {
