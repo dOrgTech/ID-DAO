@@ -15,10 +15,6 @@ contract('Testing IdentityRegistry', (accounts) => {
   const owner = accounts[0];
   const users = accounts.slice(1);
 
-  it('Sample test', () => {
-    assert.ok(1==1);
-  })
-
   it('Deploy IdentityRegistry', async () => {
     instances.IdentityRegistry = await common.IdentityRegistry.new({ from: owner });
   })
@@ -28,6 +24,22 @@ contract('Testing IdentityRegistry', (accounts) => {
       await assertSolidityRevert(
         async () => {
           await instances.IdentityRegistry.add(users[0], '0x0', { from: users[0] });
+        }
+      , 'Ownable: caller is not the owner');
+    })
+
+    it('remove', async () => {
+      await assertSolidityRevert(
+        async () => {
+          await instances.IdentityRegistry.remove(users[0], { from: users[0] });
+        }
+      , 'Ownable: caller is not the owner');
+    })
+
+    it('update', async () => {
+      await assertSolidityRevert(
+        async () => {
+          await instances.IdentityRegistry.update(users[0], '0x0', { from: users[0] });
         }
       , 'Ownable: caller is not the owner');
     })
