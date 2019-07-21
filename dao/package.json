@@ -7,11 +7,15 @@
     "test": "test"
   },
   "dependencies": {
-    "openzeppelin-solidity": "^2.3.0"
+    "openzeppelin-solidity": "^2.3.0",
+    "truffle": "^5.0.28"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "ganache-cli": "^6.5.0"
+  },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "chain": "ganache-cli"
   },
   "repository": {
     "type": "git",
