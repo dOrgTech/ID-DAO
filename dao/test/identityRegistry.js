@@ -25,9 +25,10 @@ contract('Testing IdentityRegistry', (accounts) => {
 
   describe('Only owner can...', async () => {
     it('add', async () => {
+      console.log(util.inspect(users[0]))
       await assertSolidityRevert(
         async () => {
-          await instances.IdentityRegistry.add(users[0].address, '', { from: users[0] });
+          await instances.IdentityRegistry.add(users[0], '', { from: users[0] });
         }
       );
     })
