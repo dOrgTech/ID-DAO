@@ -6,9 +6,9 @@
 
 'use strict';
 
-const IdentityRegistry = artifacts.require('./IdentityRegistry.sol');
+const HumanIdentityRegistry = artifacts.require('./HumanIdentityRegistry.sol');
 
 
 module.exports = {
-  'IdentityRegistry': IdentityRegistry
+  'HumanIdentityRegistry': HumanIdentityRegistry
 }

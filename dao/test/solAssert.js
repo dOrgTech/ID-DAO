@@ -19,7 +19,6 @@ class SolAssert {
     //Ensure we've received an error
     assert.ok(err, 'No error from function call');
     assert.isTrue(err.includes('VM Exception while processing transaction: revert'), 'Error received: ' + err);
-    console.log(err)
     if(expectedErr != null) assert.isTrue(err.includes(expectedErr));
     
     return err;
