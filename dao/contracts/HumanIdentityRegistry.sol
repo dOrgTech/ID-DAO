@@ -29,6 +29,11 @@ contract HumanIdentityRegistry is IdentityRegistry, Ownable, IVerifyHuman {
         _update(id, metadata);
     }
 
+
+    function removeSelf(address id) public {
+        _remove(msg.sender);
+    }
+
     function isHuman(address id) public view returns (bool) {
         return registry[id].length != 0;
     }
