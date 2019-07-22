@@ -37,33 +37,62 @@ contract('Testing Registry', (accounts) => {
 
   describe('Functions', async () => {
 
+    beforeEach(async () => {
+      instances.Registry = await contracts.Registry.new({ from: deployer });
+    })
+
     it('add', async () => {
+      //Add an ID to the Registry
+      let res = await instances.Registry.add(users[0].address, users[0].metadata, { from: users[0].address })
+      assert.ok(res);
+
+      //Check if added
+      let metadata = await instances.Registry.registry.call(users[0].address);
+      assert.ok(metadata, 'error, metadata is: ' + metadata);
+      assert.equal(metadata, users[0].metadata, 'metadata returned not expected');
+
+    })
+
+    it('remove', async () => {
+
       //Add an ID to the Registry
       let res = await instances.Registry.add(users[0].address, users[0].metadata, { from: users[0].address })
       assert.ok(res);
 
       //Check if existing
       let metadata = await instances.Registry.registry.call(users[0].address);
-      assert.ok(metadata, 'no bytes attached to identity');
-      assert.equal(metadata, users[0].metadata, 'metadata returned not expected');
+      assert.ok(metadata, 'error, metadata is: ' + metadata);
+ 
+      //Remove
+      res = await instances.Registry.remove(users[0].address, { from: users[0].address })
+      assert.ok(res);
 
-    })
-/*
-    it('remove', async () => {
-      await solAssert.revert(
-        async () => {
-          await instances.Registry.remove(users[0], { from: users[0] });
-        }
-      , 'Ownable: caller is not the owner');
+      //Check if not existing
+      metadata = await instances.Registry.registry.call(users[0].address);
+      assert.equal(metadata, null);
+
     })
 
     it('update', async () => {
-      await solAssert.revert(
-        async () => {
-          await instances.IdentityRegistry.update(users[0], '0x0', { from: users[0] });
-        }
-      , 'Ownable: caller is not the owner');
-    })*/
+
+      //Add an ID to the Registry
+      let res = await instances.Registry.add(users[0].address, users[0].metadata, { from: users[0].address })
+      assert.ok(res);
+
+      //Check if existing
+      let metadata = await instances.Registry.registry.call(users[0].address);
+      assert.ok(metadata, 'error, metadata is: ' + metadata);
+ 
+      //Update
+      res = await instances.Registry.update(users[0].address, users[1].metadata, { from: users[0].address })
+      assert.ok(res);
+
+      //Check if updated
+      metadata = await instances.Registry.registry.call(users[0].address);
+      assert.equal(metadata, users[1].metadata);
+
+    })
+
   })
 
 })
