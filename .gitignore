@@ -3,3 +3,4 @@
 *.swo
 *.odt#
 node_modules/
+build/

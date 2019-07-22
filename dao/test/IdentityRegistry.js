@@ -5,7 +5,7 @@
 */
 'use strict';
 
-const common = require('./common');
+const contracts = require('./contracts');
 const solAssert = require('./solAssert');
 const util = require('util');
 
@@ -17,7 +17,7 @@ contract('Testing IdentityRegistry', (accounts) => {
   const users = accounts.slice(1);
 
   it('Deploy IdentityRegistry', async () => {
-    instances.IdentityRegistry = await common.IdentityRegistry.new({ from: owner });
+    instances.IdentityRegistry = await contracts.IdentityRegistry.new({ from: owner });
   })
 
   describe('Only owner can...', async () => {
