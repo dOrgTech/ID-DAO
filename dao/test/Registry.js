@@ -18,15 +18,15 @@ contract('Testing Registry', (accounts) => {
   const users = [
     {
        address: accounts[1],
-       metadata: '0xB5689B817F4D6DC4D28676EA1A0AF6BDEAC27CEAF5381CFE'
+       metadata: '0xb5689b817f4d6dc4d28676ea1a0af6bdeac27ceaf5381cfe'
     },
     {   
        address: accounts[2],
-       metadata: '0x0589A7EDA839A6D2E0AF0D7A4AF3C3E69B2B2473B69DAF77'
+       metadata: '0x0589a7eda839a6d2e0af0d7a4af3c3e69b2b2473b69daf77'
     },
     { 
        address: accounts[3],
-       metadata: '0x2964D850F3C1249264908CF530B787A5BD83229A57948233'
+       metadata: '0x2964d850f3c1249264908cf530b787a5bd83229a57948233'
     }
   ];
 
@@ -45,7 +45,7 @@ contract('Testing Registry', (accounts) => {
       //Check if existing
       let metadata = await instances.Registry.registry.call(users[0].address);
       assert.ok(metadata, 'no bytes attached to identity');
-      assert.equal(metadata, users[0].metadata, 'metadata not expected, expecting: ' + users[0].metadata + '\nreturned: ' + metadata);
+      assert.equal(metadata, users[0].metadata, 'metadata returned not expected');
 
     })
 /*
