@@ -14,18 +14,18 @@ contract IdentityRegistry is Registry, Ownable, IVerifyHuman {
     function add(
         address id,
         bytes memory metadata
-    ) public onlyOwner onlyHuman(id) {
+    ) public onlyOwner {
         _add(id, metadata);
     }
 
-    function remove(address id) public onlyOwner onlyHuman(id) {
+    function remove(address id) public onlyOwner {
         _remove(id);
     }
 
     function update(
         address id,
         bytes memory metadata
-    ) public onlyOwner onlyHuman(id) {
+    ) public onlyOwner {
         _update(id, metadata);
     }
 

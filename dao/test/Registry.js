@@ -13,23 +13,46 @@ let instances = {};
 
 contract('Testing Registry', (accounts) => {
 
+  const deployer = accounts[0];
+
+  const users = [
+    {
+       address: accounts[1],
+       metadata: '0xB5689B817F4D6DC4D28676EA1A0AF6BDEAC27CEAF5381CFE'
+    },
+    {   
+       address: accounts[2],
+       metadata: '0x0589A7EDA839A6D2E0AF0D7A4AF3C3E69B2B2473B69DAF77'
+    },
+    { 
+       address: accounts[3];
+       metadata: '0x2964D850F3C1249264908CF530B787A5BD83229A57948233'
+    }
+  ];
+
+
   it('Deploy Registry', async () => {
-    instances.Registry = await contracts.Registry.new({ from: accounts[0] });
+    instances.Registry = await contracts.Registry.new({ from: deployer });
   })
-/*
-  describe('Only owner can...', async () => {
+
+  describe('Functions', async () => {
+
     it('add', async () => {
-      await solAssert.revert(
-        async () => {
-          await instances.IdentityRegistry.add(users[0], '0x0', { from: users[0] });
-        }
-      , 'Ownable: caller is not the owner');
+      //Add an ID to the Registry
+      let res = await instances.Registry.add(accounts[1], bytes[0], { from: users[0].address })
+      assert.ok(res);
+
+      //Check if existing
+      let bytesID = await instances.Registry.registry.call(accounts[1]);
+      assert.ok(bytesID, 'no bytes attached to identity');
+      assert.equal(bytesID, bytes[0]);
+
     })
 
     it('remove', async () => {
       await solAssert.revert(
         async () => {
-          await instances.IdentityRegistry.remove(users[0], { from: users[0] });
+          await instances.Registry.remove(users[0], { from: users[0] });
         }
       , 'Ownable: caller is not the owner');
     })
@@ -42,7 +65,7 @@ contract('Testing Registry', (accounts) => {
       , 'Ownable: caller is not the owner');
     })
   })
-*/
+
 })
 
 
