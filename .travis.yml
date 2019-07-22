@@ -1,0 +1,15 @@
+language: node_js
+
+sudo: required
+
+node_js:
+  - "10.15.3"
+
+install:
+  - cd dao
+  - npm install
+
+script: 
+
+  - npm run chain &
+  - npm test
