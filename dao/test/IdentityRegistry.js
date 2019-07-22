@@ -11,20 +11,20 @@ const util = require('util');
 
 let instances = {};
 
-contract('Testing HumanIdentityRegistry', (accounts) => {
+contract('Testing IdentityRegistry', (accounts) => {
 
   const owner = accounts[0];
   const users = accounts.slice(1);
 
-  it('Deploy HumanIdentityRegistry', async () => {
-    instances.HumanIdentityRegistry = await common.HumanIdentityRegistry.new({ from: owner });
+  it('Deploy IdentityRegistry', async () => {
+    instances.IdentityRegistry = await common.IdentityRegistry.new({ from: owner });
   })
 
   describe('Only owner can...', async () => {
     it('add', async () => {
       await solAssert.revert(
         async () => {
-          await instances.HumanIdentityRegistry.add(users[0], '0x0', { from: users[0] });
+          await instances.IdentityRegistry.add(users[0], '0x0', { from: users[0] });
         }
       , 'Ownable: caller is not the owner');
     })
@@ -32,7 +32,7 @@ contract('Testing HumanIdentityRegistry', (accounts) => {
     it('remove', async () => {
       await solAssert.revert(
         async () => {
-          await instances.HumanIdentityRegistry.remove(users[0], { from: users[0] });
+          await instances.IdentityRegistry.remove(users[0], { from: users[0] });
         }
       , 'Ownable: caller is not the owner');
     })
@@ -40,7 +40,7 @@ contract('Testing HumanIdentityRegistry', (accounts) => {
     it('update', async () => {
       await solAssert.revert(
         async () => {
-          await instances.HumanIdentityRegistry.update(users[0], '0x0', { from: users[0] });
+          await instances.IdentityRegistry.update(users[0], '0x0', { from: users[0] });
         }
       , 'Ownable: caller is not the owner');
     })

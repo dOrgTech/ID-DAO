@@ -1,46 +1,40 @@
 pragma solidity ^0.5.0;
 
-import "./IRegistry.sol";
+import "./Registry.sol";
+import "./IVerifyHuman.sol";
+import 'openzeppelin-solidity/contracts/ownership/Ownable.sol';
 
-contract IdentityRegistry is IRegistry {
+contract IdentityRegistry is Registry, Ownable, IVerifyHuman {
 
-    event Add(
-        address indexed _id,
-        bytes indexed _metadata
-    );
+    modifier onlyHuman(address id) {
+        require(isHuman(id), "ID provided is not a human");
+        _;
+    }
 
-    event Remove(
-        address indexed _id,
-        bytes indexed _metadata
-    );
-
-    event Update(
-        address indexed _id,
-        bytes indexed _oldMetadata,
-        bytes indexed _newMetadata
-    );
-
-    mapping (address => bytes) registry;
-
-    function _add(
+    function add(
         address id,
         bytes memory metadata
-    ) internal {
-        emit Add(id, metadata);
-        registry[id] = metadata;
+    ) public onlyOwner onlyHuman(id) {
+        _add(id, metadata);
     }
 
-    function _remove(address id) internal {
-        emit Remove(id, registry[id]);
-        delete registry[id];
+    function remove(address id) public onlyOwner onlyHuman(id) {
+        _remove(id);
     }
 
-    function _update(
+    function update(
         address id,
         bytes memory metadata
-    ) internal {
-        emit Update(id, registry[id], metadata);
-        registry[id] = metadata;
+    ) public onlyOwner onlyHuman(id) {
+        _update(id, metadata);
     }
 
+
+    function removeSelf() public {
+        _remove(msg.sender);
+    }
+
+    function isHuman(address id) public view returns (bool) {
+        return registry[id].length != 0;
+    }
 }
