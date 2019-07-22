@@ -20,7 +20,7 @@ contract Registry is IRegistry {
         bytes indexed _newMetadata
     );
 
-    mapping (address => bytes) registry;
+    mapping (address => bytes) public registry;
 
 
     /**

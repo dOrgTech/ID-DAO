@@ -25,7 +25,7 @@ contract('Testing Registry', (accounts) => {
        metadata: '0x0589A7EDA839A6D2E0AF0D7A4AF3C3E69B2B2473B69DAF77'
     },
     { 
-       address: accounts[3];
+       address: accounts[3],
        metadata: '0x2964D850F3C1249264908CF530B787A5BD83229A57948233'
     }
   ];
@@ -39,16 +39,16 @@ contract('Testing Registry', (accounts) => {
 
     it('add', async () => {
       //Add an ID to the Registry
-      let res = await instances.Registry.add(accounts[1], bytes[0], { from: users[0].address })
+      let res = await instances.Registry.add(users[0].address, users[0].metadata, { from: users[0].address })
       assert.ok(res);
 
       //Check if existing
-      let bytesID = await instances.Registry.registry.call(accounts[1]);
-      assert.ok(bytesID, 'no bytes attached to identity');
-      assert.equal(bytesID, bytes[0]);
+      let metadata = await instances.Registry.registry.call(users[0].address);
+      assert.ok(metadata, 'no bytes attached to identity');
+      assert.equal(metadata, users[0].metadata, 'metadata not expected, expecting: ' + users[0].metadata + '\nreturned: ' + metadata);
 
     })
-
+/*
     it('remove', async () => {
       await solAssert.revert(
         async () => {
@@ -63,7 +63,7 @@ contract('Testing Registry', (accounts) => {
           await instances.IdentityRegistry.update(users[0], '0x0', { from: users[0] });
         }
       , 'Ownable: caller is not the owner');
-    })
+    })*/
   })
 
 })
