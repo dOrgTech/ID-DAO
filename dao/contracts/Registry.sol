@@ -22,6 +22,33 @@ contract Registry is IRegistry {
 
     mapping (address => bytes) registry;
 
+
+    /**
+      Functions of Registry, exposing functionality of internals
+    */
+
+    function add(
+        address id,
+        bytes memory metadata
+    ) public {
+        _add(id, metadata);
+    }
+
+    function remove(address id) public {
+        _remove(id);
+    }
+
+    function update(
+        address id,
+        bytes memory metadata
+    ) public {
+        _update(id, metadata);
+    }
+
+    /**
+      Internal functions
+    */   
+
     function _add(
         address id,
         bytes memory metadata
