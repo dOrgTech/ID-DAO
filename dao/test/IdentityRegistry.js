@@ -64,17 +64,17 @@ contract('Testing IdentityRegistry', (accounts) => {
   describe('isHuman()', async () => {
 
     it('user is not human before registration', async () => {
-      let res = await instances.Registry.isHuman.call(users[0].address);
+      let res = await instances.IdentityRegistry.isHuman.call(users[0].address);
       assert.isFalse(res);
     })
     
     it('add ID to registry', async () => {
       //Add an ID to the Registry
-      let res = await instances.Registry.add(users[0].address, users[0].metadata, { from: owner });
+      let res = await instances.IdentityRegistry.add(users[0].address, users[0].metadata, { from: owner });
       assert.ok(res);
 
       //Check if added
-      let metadata = await instances.Registry.registry.call(users[0].address);
+      let metadata = await instances.IdentityRegistry.registry.call(users[0].address);
       assert.ok(metadata, 'error, metadata is: ' + metadata);
       assert.equal(metadata, users[0].metadata, 'metadata returned not expected'); 
     })
