@@ -1,0 +1,31 @@
+{
+  "name": "identitydao",
+  "version": "0.0.1",
+  "description": "",
+  "main": " ",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "openzeppelin-solidity": "^2.3.0",
+    "truffle": "^5.0.28"
+  },
+  "devDependencies": {
+    "ganache-cli": "^6.5.0"
+  },
+  "scripts": {
+    "test": "truffle test",
+    "chain": "ganache-cli",
+    "compile": "truffle compile"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dOrgTech/ID-DAO.git"
+  },
+  "author": "dOrg",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dOrgTech/ID-DAO/issues"
+  },
+  "homepage": "https://github.com/dOrgTech/ID-DAO#readme"
+}
