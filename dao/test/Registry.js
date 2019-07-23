@@ -11,7 +11,7 @@ const util = require('util');
 
 let instances = {};
 
-contract('Testing Registry', (accounts) => {
+contract('Registry', (accounts) => {
 
   const deployer = accounts[0];
 

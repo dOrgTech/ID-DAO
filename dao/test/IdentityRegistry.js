@@ -11,7 +11,7 @@ const util = require('util');
 
 let instances = {};
 
-contract('Testing IdentityRegistry', (accounts) => {
+contract('IdentityRegistry', (accounts) => {
 
   const owner = accounts[0];
   const users = [
@@ -61,9 +61,13 @@ contract('Testing IdentityRegistry', (accounts) => {
     })
   })
 
-  describe('isHuman()', async () => {
+  describe('removeSelf', async () => {
 
-    it('user is not human before registration', async () => {
+    before(async () => {
+      instances.IdentityRegistry = await contracts.IdentityRegistry.new({ from: owner });
+    })
+
+    it('user is not initially registered', async () => {
       let res = await instances.IdentityRegistry.isHuman.call(users[0].address);
       assert.isFalse(res);
     })
@@ -77,12 +81,46 @@ contract('Testing IdentityRegistry', (accounts) => {
       let metadata = await instances.IdentityRegistry.registry.call(users[0].address);
       assert.ok(metadata, 'error, metadata is: ' + metadata);
       assert.equal(metadata, users[0].metadata, 'metadata returned not expected'); 
+
+
     })
 
-    it('', async () => {
-      
-      
+    it('user attempts to remove self', async () => { 
+      //User calls removeSelf()
+      let res = await instances.IdentityRegistry.removeSelf({ from: users[0].address });
+      assert.ok(res);
 
+      //
+
+    })
+
+  })
+
+  describe('isHuman', async () => {
+
+    before(async () => {
+      instances.IdentityRegistry = await contracts.IdentityRegistry.new({ from: owner });
+    })
+
+    it('user is not human before registration', async () => {
+      let res = await instances.IdentityRegistry.isHuman.call(users[0].address);
+      assert.isFalse(res);
+    })
+
+    it('add ID to registry', async () => {
+      //Add an ID to the Registry
+      let res = await instances.IdentityRegistry.add(users[0].address, users[0].metadata, { from: owner });
+      assert.ok(res);
+
+      //Check if added
+      let metadata = await instances.IdentityRegistry.registry.call(users[0].address);
+      assert.ok(metadata, 'error, metadata is: ' + metadata);
+      assert.equal(metadata, users[0].metadata, 'metadata returned not expected'); 
+    })
+
+    it('isHuman passing post-registry', async () => { 
+      let res = await instances.IdentityRegistry.isHuman.call(users[0].address);
+      assert.isTrue(res);
     })
 
   })
