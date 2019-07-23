@@ -82,7 +82,6 @@ contract('IdentityRegistry', (accounts) => {
       assert.ok(metadata, 'error, metadata is: ' + metadata);
       assert.equal(metadata, users[0].metadata, 'metadata returned not expected'); 
 
-
     })
 
     it('user attempts to remove self', async () => { 
@@ -90,7 +89,9 @@ contract('IdentityRegistry', (accounts) => {
       let res = await instances.IdentityRegistry.removeSelf({ from: users[0].address });
       assert.ok(res);
 
-      //
+      //Ensure removed
+      let metadata = await instances.IdentityRegistry.registry.call(users[0].address);
+      assert.equal(metadata, null);
 
     })
 
