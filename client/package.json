@@ -15,5 +15,13 @@
   "bugs": {
     "url": "https://github.com/dOrgTech/ID-DAO/issues"
   },
-  "homepage": "https://github.com/dOrgTech/ID-DAO#readme"
+  "homepage": "https://github.com/dOrgTech/ID-DAO#readme",
+  "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.6.8",
+    "chai": "^4.2.0",
+    "mocha": "^6.2.0",
+    "typescript": "^3.5.3"
+  }
 }
