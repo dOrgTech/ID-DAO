@@ -4,3 +4,4 @@
 *.odt#
 node_modules/
 build/
+dist/
