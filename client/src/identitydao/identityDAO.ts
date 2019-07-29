@@ -1,6 +1,6 @@
 import web3 = require('web3');
 
-class IdentityRegistry {
+class IdentityDAO {
 
   web3: web3;
 
