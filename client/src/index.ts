@@ -10,7 +10,7 @@ class Module {
   web3: Web3;
   config: Config;
 
-  constructor(web3: Web3, config: Config=this.config){
+  constructor(web3: Web3, config: Config){
     this.web3 = web3;
     //TODO: This is a repeated assignment in the case of nothing passed; consider fixing
     this.config = Object.assign(defaultConfig, config);
