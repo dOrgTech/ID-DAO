@@ -8,4 +8,6 @@ class IdentityRegistry {
     this.web3 = web3
   }
 
+  
+
 }
