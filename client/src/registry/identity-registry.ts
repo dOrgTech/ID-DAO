@@ -22,6 +22,14 @@ class IdentityRegistry {
     return await this.contract.method.remove(id).send({ from: web3.eth.defaultAccount });    
   }
   
+  async update(id: string, metadata: string): object {
+    return await this.contract.method.update(id, metadata).send({ from: web3.eth.defaultAccount });
+  }
+
+  async removeSelf(sender: string=web3.eth.defaultAccount): object {
+    return await this.contract.method.removeSelf().send({ from: sender})
+
+  }
 
   async isHuman(id: string): boolean {
     return await this.contract.methods.isHuman(id).call();
