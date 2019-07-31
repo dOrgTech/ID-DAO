@@ -15,7 +15,7 @@
   },
   "scripts": {
     "test": "truffle test",
-    "chain": "ganache-cli",
+    "chain": "ganache-cli -m 'manual glass van agent able hedgehog moment oyster uniform arrange art charge'",
     "compile": "truffle compile"
   },
   "repository": {
