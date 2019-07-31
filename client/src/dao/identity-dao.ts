@@ -1,10 +1,10 @@
-import web3 = require('web3');
+import Web3 = require('web3');
 
 class IdentityDAO {
 
-  web3: web3;
+  web3: Web3;
 
-  constructor(web3: web3){
+  constructor(web3: Web3){
     this.web3 = web3
   }
 
