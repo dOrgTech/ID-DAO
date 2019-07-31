@@ -10,10 +10,18 @@ class Module {
   web3: Web3;
   config: Config;
 
+  //Classes we're exporting
+  dao: object; //IdentityDAO;
+  registry: object; //IdentityRegistry;
+
   constructor(web3: Web3, config: Config){
     this.web3 = web3;
     //TODO: This is a repeated assignment in the case of nothing passed; consider fixing
     this.config = Object.assign(defaultConfig, config);
+ 
+    //Exporting classes
+    this.dao = IdentityDAO;
+    this.registry = IdentityRegistry;
   }
 
   createIdentityRegistry(web3: Web3=this.web3, config: Config=this.config){
@@ -24,5 +32,3 @@ class Module {
 
 export = Module;
 
-export { IdentityDAO as dao }; 
-export { IdentityRegistry as registry };
