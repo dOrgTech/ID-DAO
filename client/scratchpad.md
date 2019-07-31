@@ -10,7 +10,14 @@ For client-side library tests, we will need to deploy an instance of our contrac
 1. Run chain (`cd ../dao && npm run chain`)
 2. Truffle deploy locally (`truffle migrate --network `)
   (We will have to set up in config here)
-3. Initialize web3 to ganache-cli (`const web3 = new Web3('http://localhost:8545')`)
+3. Initialize web3 to ganache-cli (
+    ```
+      import HDWalletProvider = require('truffle-hdwallet-provider');
+      const config = JSON.parse(fs.readFileSync(path.resolve('../dao/config.json')));
+      const provider = new HDWalletProvider(config.seed, 'http://localhost:8545', 0, 10);
+      const web3 = new Web3(provider);
+    ```*
+)
 4. Interact with chain as we want! (But, what about ABI...?)
   (ahhh, ok, build/contracts/IdentityRegistry.json yields us our ABI!!! :D)
   (so, something like: 
@@ -18,7 +25,20 @@ For client-side library tests, we will need to deploy an instance of our contrac
       const idRegBuild = fs.readFileSync(path.resolve('../dao/build/contracts/IdentityRegistry.json'));
       const IdentityRegistry = web3.eth.Contract(idRegBuild.abi, address);
       //Wait, darn, where to get address?
+      //Oh, consistent seed phrase? Like: `manual glass van agent able hedgehog moment oyster uniform arrange art charge`
     ``` 
   )
 
 This should be pretty straightforward... ok
+
+NOTE: ../dao/options.json:
+
+```javascript
+{
+  seed: 'manual glass van agent able hedgehog moment oyster uniform arrange art charge`'
+}
+
+Make sure to load this into `ganache-cli` at `npm run chain`
+
+```
+
