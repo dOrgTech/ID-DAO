@@ -5,36 +5,53 @@ const assert = chai.assert;
 
 import fs = require('fs');
 import path = require('path');
+// @ts-ignore
+import IDDAO = require('../../dist/index');
+// @ts-ignore
+import IdentityRegsitry = require('../../dist/registry/identity-registry');
 import Web3 = require('web3');
 // @ts-ignore
 import HDWalletProvider = require('truffle-hdwallet-provider');
-const config = JSON.parse(fs.readFileSync(path.resolve('../dao/config.json'), 'utf8'));
-
-
+const config = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../../../dao/config.json'), 'utf8'));
 const provider = new HDWalletProvider(config.seed, 'http://localhost:8545', 0, 10);
 const web3 = new Web3(provider);
 
-describe('IdentityDAO', () => {
+describe('IDDAO', () => {
 
   let accounts: string[];
   let master: string;
   
+  let idDAO: IDDAO;
+  let IdentityRegistry: any; //TODO: Type this correctly
+  let IdentityRegistryWeb3: any;
+ 
   before(async () => {
     accounts = await web3.eth.getAccounts();
     master = accounts[0];
   })
 
-  it('test thing', async () => {
+  it('create IdentityRegistry instance (web3)', async () => {
     const idRegBuild: any = JSON.parse(fs.readFileSync(path.resolve('../dao/build/contracts/IdentityRegistry.json'), 'utf8'));
 
-    //How to get address...? Hmmm... we know that our first account (master) will have deployed it, so web3 to look for the thing
-    //Check out: https://web3js.readthedocs.io/en/v1.2.0/web3-eth.html#getpastlogs
     const idRegCreateTx: any = (await web3.eth.getBlock(2)).transactions[0];
     const idRegReceipt: any = await web3.eth.getTransactionReceipt(idRegCreateTx);
  
-    const IdentityRegistry: any = new web3.eth.Contract(idRegBuild.abi, idRegReceipt.contractAddress);
-    const res = await IdentityRegistry.methods.isHuman(master).send({ from: master });
-    assert.ok(res);
+    IdentityRegistryWeb3 = new web3.eth.Contract(idRegBuild.abi, idRegReceipt.contractAddress);
+    const res = await IdentityRegistryWeb3.methods.isHuman(master).call();
+    assert.ok(res === false);
+  })
+
+  it('instantiate IdentityRegistry', async () => {
+    let config = {
+      IdentityRegistry: {
+        address: IdentityRegistryWeb3.options.address,
+        abi: IdentityRegistryWeb3.options.jsonInterface
+      }
+    };
+
+    idDAO = new IDDAO(web3, config);
+    IdentityRegistry = idDAO.createIdentityRegistry();
+
   })
   
   after(async () => {
