@@ -15,7 +15,7 @@ class Module {
   dao: object; //IdentityDAO;
   registry: object; //IdentityRegistry;
 
-  constructor(web3: Web3, config: Config){
+  constructor(web3: Web3, config: object = {}){
     this.web3 = web3;
     //TODO: This is a repeated assignment in the case of nothing passed; consider fixing
     this.config = Object.assign(defaultConfig, config);

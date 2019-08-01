@@ -22,35 +22,43 @@ describe('IDDAO', () => {
   let master: string;
   
   let idDAO: IDDAO;
-  let IdentityRegistry: any; //TODO: Type this correctly
-  let IdentityRegistryWeb3: any;
  
   before(async () => {
     accounts = await web3.eth.getAccounts();
     master = accounts[0];
   })
 
-  it('create IdentityRegistry instance (web3)', async () => {
-    const idRegBuild: any = JSON.parse(fs.readFileSync(path.resolve('../dao/build/contracts/IdentityRegistry.json'), 'utf8'));
-
-    const idRegCreateTx: any = (await web3.eth.getBlock(2)).transactions[0];
-    const idRegReceipt: any = await web3.eth.getTransactionReceipt(idRegCreateTx);
- 
-    IdentityRegistryWeb3 = new web3.eth.Contract(idRegBuild.abi, idRegReceipt.contractAddress);
-    const res = await IdentityRegistryWeb3.methods.isHuman(master).call();
-    assert.ok(res === false);
+  it('initialize IDDAO', async () => {
+    idDAO = new IDDAO(web3);
   })
 
-  it('instantiate IdentityRegistry', async () => {
-    let config = {
-      IdentityRegistry: {
-        address: IdentityRegistryWeb3.options.address,
-        abi: IdentityRegistryWeb3.options.jsonInterface
-      }
-    };
+  describe('IdentityRegistry', async () => {
 
-    idDAO = new IDDAO(web3, config);
-    IdentityRegistry = idDAO.createIdentityRegistry();
+    let IdentityRegistry: any; //TODO: Type this correctly
+    let IdentityRegistryWeb3: any;
+
+    it('create IdentityRegistry instance (web3)', async () => {
+      const idRegBuild: any = JSON.parse(fs.readFileSync(path.resolve('../dao/build/contracts/IdentityRegistry.json'), 'utf8'));
+
+      const idRegCreateTx: any = (await web3.eth.getBlock(2)).transactions[0];
+      const idRegReceipt: any = await web3.eth.getTransactionReceipt(idRegCreateTx);
+ 
+      IdentityRegistryWeb3 = new web3.eth.Contract(idRegBuild.abi, idRegReceipt.contractAddress);
+      const res = await IdentityRegistryWeb3.methods.isHuman(master).call();
+      assert.ok(res === false);
+    })
+
+    it('instantiate IdentityRegistry', async () => {
+      let config = {
+        IdentityRegistry: {
+          address: IdentityRegistryWeb3.options.address,
+          abi: IdentityRegistryWeb3.options.jsonInterface
+        }
+      };
+
+      idDAO = new IDDAO(web3, config);
+      IdentityRegistry = idDAO.createIdentityRegistry();
+    })
 
   })
   
