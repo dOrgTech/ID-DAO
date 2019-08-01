@@ -7,7 +7,7 @@
     "build": "tsc --project ./tsconfig.json",
     "chain": "(cd ../dao && npm run chain)",
     "migrate": "(cd ../dao && truffle migrate --network development)",
-    "test": "npm run build && tsc --project ./test/tsconfig.json && npm run migrate && mocha ./test/bin --recursive"
+    "test": "npm run build && tsc --project ./test/tsconfig.json && mocha ./test/bin --recursive"
   },
   "repository": {
     "type": "git",
