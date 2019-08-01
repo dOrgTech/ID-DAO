@@ -12,7 +12,7 @@ class IdentityRegistry {
   constructor(web3: Web3, config: Config) {
     this.web3 = web3;
     this.config = config;
-    this.contract = new web3.eth.Contract(config.IdentityRegistry.address);
+    this.contract = new web3.eth.Contract(config.IdentityRegistry.abi, config.IdentityRegistry.address);
   }
 
   async add(id: string, metadata: string): Promise<object> {
