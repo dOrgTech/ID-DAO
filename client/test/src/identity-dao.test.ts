@@ -29,12 +29,12 @@ describe('IdentityDAO', () => {
 
     //How to get address...? Hmmm... we know that our first account (master) will have deployed it, so web3 to look for the thing
     //Check out: https://web3js.readthedocs.io/en/v1.2.0/web3-eth.html#getpastlogs
-    const idRegLog: any = await web3.eth.getTransactionFromBlock(2, 0);
-    console.log(idRegLog);
+    const idRegCreateTx: any = (await web3.eth.getBlock(2)).transactions[0];
+    const idRegReceipt: any = await web3.eth.getTransactionReceipt(idRegCreateTx);
  
-    const IdentityRegistry: any = new web3.eth.Contract(idRegBuild.abi, '0x39aeEe8C35e3BDF394D01e7a9Dab7406C385C61D');
-    console.log(await IdentityRegistry.methods.isHuman(master).send({ from: master }));
-    assert.ok(1==1);
+    const IdentityRegistry: any = new web3.eth.Contract(idRegBuild.abi, idRegReceipt.contractAddress);
+    const res = await IdentityRegistry.methods.isHuman(master).send({ from: master });
+    assert.ok(res);
   })
   
   after(async () => {
