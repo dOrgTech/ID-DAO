@@ -3,6 +3,7 @@ import Web3 = require('web3');
 import IdentityDAO = require('./dao/identity-dao');
 import IdentityRegistry = require('./registry/identity-registry');
 
+// @ts-ignore
 import Config = require('./config/config');
 import defaultConfig = require('./config/default-config')
 

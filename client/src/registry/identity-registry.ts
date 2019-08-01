@@ -1,10 +1,12 @@
 import Web3 = require('web3');
+// @ts-ignore
 import Config = require('../config/config');
 
 class IdentityRegistry {
 
   web3: Web3;
   config: Config;
+  // @ts-ignore
   contract: Contract;
 
   constructor(web3: Web3, config: Config) {
