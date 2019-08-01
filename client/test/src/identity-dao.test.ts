@@ -14,7 +14,10 @@ import Web3 = require('web3');
 import HDWalletProvider = require('truffle-hdwallet-provider');
 const config = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../../../dao/config.json'), 'utf8'));
 const provider = new HDWalletProvider(config.seed, 'http://localhost:8545', 0, 10);
+
+//Initialize web3
 const web3 = new Web3(provider);
+
 
 describe('IDDAO', () => {
 
@@ -43,6 +46,8 @@ describe('IDDAO', () => {
     ];
 
 
+    //Set defaultAccount
+    web3.eth.defaultAccount = master;
   })
 
   it('initialize IDDAO', async () => {
@@ -79,19 +84,19 @@ describe('IDDAO', () => {
    
     it('add', async () => {
       //Ensure user is not human (i.e. not added yet)
-      let isUnregistered = async IdentityRegistry.isHuman(users[0].address);
-      let isUnregisteredWeb3 = async IdentityRegistryWeb3.methods.isHuman(users[0].address).send({ from: master });
+      let isUnregistered = await IdentityRegistry.isHuman(users[0].address);
+      let isUnregisteredWeb3 = await IdentityRegistryWeb3.methods.isHuman(users[0].address).send({ from: master });
       assert.isNotTrue(isUnregistered && isUnregisteredWeb3);
 
       //Add
-      let add = async IdentityRegistry.add(users[0].address, users[0].metadata);
+      let add = await IdentityRegistry.add(users[0].address, users[0].metadata);
       assert.ok(add);
   
       //Ensure existing
-      let isHuman = async IdentityRegistry.isHuman(users[0].address);
-      let isHumanWeb3 = async IdentityRegistryWeb3.methods.isHuman(users[0].address).send({ from: master });
-
+      let isHuman = await IdentityRegistry.isHuman(users[0].address);
+      let isHumanWeb3 = await IdentityRegistryWeb3.methods.isHuman(users[0].address).send({ from: master });
       assert.isTrue(isHuman && isHumanWeb3);
+
     })
 
     it('remove', async () => {
