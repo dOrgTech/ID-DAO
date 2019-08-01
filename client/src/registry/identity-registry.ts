@@ -15,9 +15,13 @@ class IdentityRegistry {
     this.contract = new web3.eth.Contract(config.IdentityRegistry.abi, config.IdentityRegistry.address);
   }
 
-  async add(id: string, metadata: string, sender: string=""): Promise<object> {
+  async add(id: string, metadata: string, sender: string=""): Promise<any> {
     //NOTE: Assumption is defaultAccount for now
-    return await this.contract.methods.add(id, metadata).send({ from: sender || this.web3.eth.defaultAccount });
+    let meme: string = sender || this.web3.eth.defaultAccount; 
+    let zoot: any = await this.contract.methods.add(id, metadata).send({ from: meme /*sender || this.web3.eth.defaultAccount*/ });
+    
+    console.log("GGGGGGGGG" + meme);
+    return zoot;
   }
 
   async remove(id: string, sender: string=""): Promise<object> {
