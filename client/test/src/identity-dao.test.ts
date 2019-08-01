@@ -20,12 +20,29 @@ describe('IDDAO', () => {
 
   let accounts: string[];
   let master: string;
+  let users: any[];
   
   let idDAO: IDDAO;
  
   before(async () => {
     accounts = await web3.eth.getAccounts();
     master = accounts[0];
+    users = [
+      {
+        address: accounts[1],
+        metadata: '0xb5689b817f4d6dc4d28676ea1a0af6bdeac27ceaf5381cfe'
+      },
+      {
+        address: accounts[2],
+        metadata: '0x0589a7eda839a6d2e0af0d7a4af3c3e69b2b2473b69daf77'
+      },
+      {
+        address: accounts[3],
+        metadata: '0x2964d850f3c1249264908cf530b787a5bd83229a57948233'
+      }
+    ];
+
+
   })
 
   it('initialize IDDAO', async () => {
@@ -59,6 +76,45 @@ describe('IDDAO', () => {
       idDAO = new IDDAO(web3, config);
       IdentityRegistry = idDAO.createIdentityRegistry();
     })
+   
+    it('add', async () => {
+      //Ensure user is not human (i.e. not added yet)
+      let isUnregistered = async IdentityRegistry.isHuman(users[0].address);
+      let isUnregisteredWeb3 = async IdentityRegistryWeb3.methods.isHuman(users[0].address).send({ from: master });
+      assert.isNotTrue(isUnregistered && isUnregisteredWeb3);
+
+      //Add
+      let add = async IdentityRegistry.add(users[0].address, users[0].metadata);
+      assert.ok(add);
+  
+      //Ensure existing
+      let isHuman = async IdentityRegistry.isHuman(users[0].address);
+      let isHumanWeb3 = async IdentityRegistryWeb3.methods.isHuman(users[0].address).send({ from: master });
+
+      assert.isTrue(isHuman && isHumanWeb3);
+    })
+
+    it('remove', async () => {
+
+
+    })
+
+    it('update', async () => {
+
+
+    })
+
+    it('removeSelf', async () => {
+
+
+    })
+
+    it('isHuman', async () => {
+
+
+    })
+
+
 
   })
   
