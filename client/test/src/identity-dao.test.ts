@@ -25,7 +25,7 @@ describe('IdentityDAO', () => {
   })
 
   it('test thing', async () => {
-/*    const idRegBuild: any = JSON.parse(fs.readFileSync(path.resolve('../dao/build/contracts/IdentityRegistry.json'), 'utf8'));
+    const idRegBuild: any = JSON.parse(fs.readFileSync(path.resolve('../dao/build/contracts/IdentityRegistry.json'), 'utf8'));
 
     //How to get address...? Hmmm... we know that our first account (master) will have deployed it, so web3 to look for the thing
     //Check out: https://web3js.readthedocs.io/en/v1.2.0/web3-eth.html#getpastlogs
@@ -33,11 +33,11 @@ describe('IdentityDAO', () => {
     console.log(idRegLog);
  
     const IdentityRegistry: any = new web3.eth.Contract(idRegBuild.abi, '0x39aeEe8C35e3BDF394D01e7a9Dab7406C385C61D');
-    console.log(await IdentityRegistry.methods.removeSelf().send({ from: master }));
-    assert.ok(1==1);*/
+    console.log(await IdentityRegistry.methods.isHuman(master).send({ from: master }));
+    assert.ok(1==1);
   })
   
-  after(() => {
+  after(async () => {
     //Close connection
     provider.engine.stop();
   })
