@@ -62,6 +62,7 @@ describe('IDDAO', () => {
     it('create IdentityRegistry instance (web3)', async () => {
       const idRegBuild: any = JSON.parse(fs.readFileSync(path.resolve('../dao/build/contracts/IdentityRegistry.json'), 'utf8'));
 
+      //TODO: Switch this to different, less hacky solution (export address on migration, or...)
       const idRegCreateTx: any = (await web3.eth.getBlock(2)).transactions[0];
       const idRegReceipt: any = await web3.eth.getTransactionReceipt(idRegCreateTx);
  
@@ -84,13 +85,23 @@ describe('IDDAO', () => {
    
     it('add', async () => {
       //Ensure user is not human (i.e. not added yet)
-      let isUnregistered = await IdentityRegistry.isHuman(users[0].address);
-      let isUnregisteredWeb3 = await IdentityRegistryWeb3.methods.isHuman(users[0].address).send({ from: master });
-      assert.isNotTrue(isUnregistered && isUnregisteredWeb3);
+      let isRegistered = await IdentityRegistry.isHuman(users[0].address);
+      let isRegisteredWeb3 = await IdentityRegistryWeb3.methods.isHuman(users[0].address).call({ from: master });
+      assert.isNotTrue(isRegistered && isRegisteredWeb3, `isReg: ${isRegistered}, isRegWeb3: ${isRegisteredWeb3}`);
 
       //Add
-      let add = await (await IdentityRegistry.add(users[0].address, users[0].metadata));
-      assert.ok(add);
+      //let add = await IdentityRegistry.add(users[0].address, users[0].metadata);
+
+      let add = IdentityRegistryWeb3.methods.add(users[0].address, users[0].metadata);
+      console.log('fdsfa');
+      console.log(add);
+
+      let sen = add.send({ from: master });
+      console.log('send');
+      console.log(sen);
+
+      //assert.ok(add);
+      //console.log(add);
   
       //Ensure existing
       //let isHuman = await IdentityRegistry.isHuman(users[0].address);

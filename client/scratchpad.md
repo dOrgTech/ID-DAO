@@ -51,3 +51,30 @@ Run chain as command within local package.json `"scripts" { "chain": "cd ../dao 
 
 
 
+## Review
+
+
+In the end:
+
+Have `client` depend on the `dao` library, use Lerna.
+
+Also:
+
+- Move deployments into client tests, so re-migrating is less of a hassle
+- View other TypeScript libraries; `Module` class is kind of strange
+- `export = ` is also very strange; look at other Typescript libraries
+
+
+
+
+```javascript
+import { IdentityRegistry } from "@dorgtech/id-dao"
+
+IdentityRegistry.isHuman('0x23234234234');
+
+import { IdentityDao } from "@dorgtech/id-dao"
+
+const dao = new IdentityDao();
+IdentityDao.isHuman('0x234234');
+IdentityDao.propose('234234234');
+```
