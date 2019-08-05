@@ -67,8 +67,7 @@ describe('IDDAO', () => {
       const idRegReceipt: any = await web3.eth.getTransactionReceipt(idRegCreateTx);
  
       IdentityRegistryWeb3 = new web3.eth.Contract(idRegBuild.abi, idRegReceipt.contractAddress);
-      const res = await IdentityRegistryWeb3.methods.isHuman(master).call();
-      assert.ok(res === false);
+      assert.ok(IdentityRegistryWeb3);
     })
 
     it('instantiate IdentityRegistry', async () => {
@@ -85,34 +84,28 @@ describe('IDDAO', () => {
    
     it('add', async () => {
       //Ensure user is not human (i.e. not added yet)
-      let isRegistered = await IdentityRegistry.isHuman(users[0].address);
-      let isRegisteredWeb3 = await IdentityRegistryWeb3.methods.isHuman(users[0].address).call({ from: master });
-      assert.isNotTrue(isRegistered && isRegisteredWeb3, `isReg: ${isRegistered}, isRegWeb3: ${isRegisteredWeb3}`);
+      let isReg = await IdentityRegistryWeb3.methods.isHuman(users[0].address).call({ from: master });
+      assert.isNotTrue(isReg, `isReg: ${isReg}`);
 
       //Add
-      //let add = await IdentityRegistry.add(users[0].address, users[0].metadata);
-
-      let add = IdentityRegistryWeb3.methods.add(users[0].address, users[0].metadata);
-      console.log('fdsfa');
-      console.log(add);
-
-      let sen = add.send({ from: master });
-      console.log('send');
-      console.log(sen);
-
-      //assert.ok(add);
-      //console.log(add);
+      let add = await IdentityRegistry.add(users[0].address, users[0].metadata);
+      assert.ok(add);
   
       //Ensure existing
-      //let isHuman = await IdentityRegistry.isHuman(users[0].address);
-      //let isHumanWeb3 = await IdentityRegistryWeb3.methods.isHuman(users[0].address).send({ from: master });
-      //assert.isTrue(isHuman && isHumanWeb3);
+      let isHuman = await IdentityRegistryWeb3.methods.isHuman(users[0].address).send({ from: master });
+      assert.isTrue(isHuman);
 
     })
 
     it('remove', async () => {
+      //Ensure user exists
+      assert.isTrue(await IdentityRegistryWeb3.methods.isHuman(users[0].address).call({ from: master }));
+      
+      //Remove
+      let remove = await IdentityRegistry.remove(users[0].address);
 
-
+      //Ensure removed
+      assert
     })
 
     it('update', async () => {
@@ -126,7 +119,7 @@ describe('IDDAO', () => {
     })
 
     it('isHuman', async () => {
-
+      
 
     })
 

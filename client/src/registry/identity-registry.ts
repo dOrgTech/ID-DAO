@@ -17,11 +17,7 @@ class IdentityRegistry {
 
   async add(id: string, metadata: string, sender: string=""): Promise<any> {
     //NOTE: Assumption is defaultAccount for now
-    let meme: string = sender || this.web3.eth.defaultAccount; 
-    let zoot: any = await this.contract.methods.add(id, metadata).send({ from: meme /*sender || this.web3.eth.defaultAccount*/ });
-    
-    console.log("GGGGGGGGG" + meme);
-    return zoot;
+    return await this.contract.methods.add(id, metadata).send({ from: sender || this.web3.eth.defaultAccount });
   }
 
   async remove(id: string, sender: string=""): Promise<object> {
