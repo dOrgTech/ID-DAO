@@ -15,6 +15,8 @@ class IdentityRegistry {
     this.contract = new web3.eth.Contract(config.IdentityRegistry.abi, config.IdentityRegistry.address);
   }
 
+  //TODO: Add function to read Identities as well
+
   async add(id: string, metadata: string, sender: string=""): Promise<any> {
     //NOTE: Assumption is defaultAccount for now
     return await this.contract.methods.add(id, metadata).send({ from: sender || this.web3.eth.defaultAccount });
