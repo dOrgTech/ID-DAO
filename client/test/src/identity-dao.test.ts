@@ -66,7 +66,7 @@ describe('IDDAO', () => {
 
       //TODO: Switch this to different, less hacky solution (export address on migration, or...)
       const createTx: any = (await web3.eth.getBlock(2)).transactions[0];
-      const receipt: any = await web3.eth.getTransactionReceipt(idRegCreateTx);
+      const receipt: any = await web3.eth.getTransactionReceipt(createTx);
 
       //Create a config object with this info
       let config: any = {
@@ -77,7 +77,7 @@ describe('IDDAO', () => {
       };
 
       //Create web3 Contract instance (our "control" in our tests) 
-      IdentityRegistryWeb3 = new web3.eth.Contract(idRegBuild.abi, idRegReceipt.contractAddress);
+      IdentityRegistryWeb3 = new web3.eth.Contract(build.abi, receipt.contractAddress);
       assert.ok(IdentityRegistryWeb3);
 
       //Finally, create our instance of IDDAO TODO: Switch to IdentityDAO
