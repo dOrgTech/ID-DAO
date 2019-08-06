@@ -88,18 +88,19 @@ describe('IDDAO', () => {
    
     it('add', async () => {
       //Ensure user is not human (i.e. not added yet)
-      let isReg = await IdentityRegistryWeb3.methods.isHuman(users[0].address).call();
+      let isReg = await IdentityRegistryWeb3.methods.isHuman(users[0].address).call({from: master});
       assert.isNotTrue(isReg, `isReg: ${isReg}`);
-
+      console.log('vvvvvvvvvvvvvv')
       //Add
       let add = await IdentityRegistry.add(users[0].address, users[0].metadata);
       assert.ok(add);
-  
+      console.log('ddddddddddddddd'); 
       //Ensure existing
       assert.isTrue(await IdentityRegistryWeb3.methods.isHuman(users[0].address).call());
+      console.log('aaaaaaaa');
     })
 
-    it('remove', async () => {
+    it.skip('remove', async () => {
       //Ensure user is not human (i.e. not added yet)
       let isReg = await IdentityRegistryWeb3.methods.isHuman(users[0].address).call();
       assert.isNotTrue(isReg, `isReg: ${isReg}`);
@@ -119,7 +120,7 @@ describe('IDDAO', () => {
       assert.isFalse(await IdentityRegistryWeb3.methods.isHuman(users[0].address).call({ from: master }));
     })
 
-    it('update', async () => {
+    it.skip('update', async () => {
 
       //Ensure user is not human (i.e. not added yet)
       let isReg = await IdentityRegistryWeb3.methods.isHuman(users[0].address).call();
@@ -142,7 +143,7 @@ describe('IDDAO', () => {
 
     })
 
-    it('removeSelf', async () => {
+    it.skip('removeSelf', async () => {
 
       //Ensure user is not human (i.e. not added yet)
       let isReg = await IdentityRegistryWeb3.methods.isHuman(users[0].address).call();
@@ -166,7 +167,7 @@ describe('IDDAO', () => {
 
     })
 
-    it('isHuman', async () => {
+    it.skip('isHuman', async () => {
       
       //Ensure user is not human (i.e. not added yet), as expected by isHuman() call
       let isReg = await IdentityRegistry.isHuman(users[0].address);

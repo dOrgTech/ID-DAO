@@ -19,7 +19,17 @@ class IdentityRegistry {
 
   async add(id: string, metadata: string, sender: string=""): Promise<any> {
     //NOTE: Assumption is defaultAccount for now
-    return await this.contract.methods.add(id, metadata).send({ from: sender || this.web3.eth.defaultAccount });
+    //return await this.contract.methods.add(id, metadata).send({ from: sender || this.web3.eth.defaultAccount });
+    let meme = this.contract.methods.add(id, metadata);
+    console.log('mmm');
+    console.log(meme);
+    let memeSend = meme.send({ from: sender || this.web3.eth.defaultAccount });
+    console.log(`1, from: ${sender || this.web3.eth.defaultAccount}`);
+    console.log(memeSend);
+    let memeVov = await memeSend;
+    console.log('2');
+    console.log(memeSend);
+    return memeVov;
   }
 
   async remove(id: string, sender: string=""): Promise<object> {
