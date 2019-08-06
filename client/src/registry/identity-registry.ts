@@ -9,7 +9,7 @@ class IdentityRegistry {
   // @ts-ignore
   contract: Contract;
 
-  constructor(web3: Web3, config: Config) {
+  constructor(web3: Web3, config: any /*Config*/) {
     this.web3 = web3;
     this.config = config;
     this.contract = new web3.eth.Contract(config.IdentityRegistry.abi, config.IdentityRegistry.address);

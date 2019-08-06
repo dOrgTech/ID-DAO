@@ -12,7 +12,7 @@ class Module {
   config: Config;
 
   //Classes we're exporting
-  dao: IdentityDAO;
+  dao: object; //IdentityDAO;
   registry: object; //IdentityRegistry;
 
   constructor(web3: Web3, config: object = {}){

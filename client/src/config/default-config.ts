@@ -4,7 +4,8 @@ import Config = require('./config');
 const defaultConfig: Config = {
   
   IdentityRegistry: {
-    address: ''
+    address: '',
+    abi: {}
   }
 };
 
