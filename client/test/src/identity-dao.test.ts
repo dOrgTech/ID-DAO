@@ -156,7 +156,7 @@ describe('IDDAO', () => {
       assert.isTrue(await IdentityRegistryWeb3.methods.isHuman(users[0].address).call());
 
       //Remove
-      let remove = await IdentityRegistry.remove(users[0].address);
+      let remove = await IdentityRegistry.removeSelf(users[0].address);
       assert.ok(remove);
 
       //Ensure removed
