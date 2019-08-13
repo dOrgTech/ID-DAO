@@ -8,5 +8,5 @@ pragma solidity ^0.5.0;
  */
 
 interface IVerifyHuman {
-  function isHuman(address id) external view returns (bool);
+    function isHuman(address id) external view returns (bool);
 }

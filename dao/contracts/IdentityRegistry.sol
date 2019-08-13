@@ -2,7 +2,7 @@ pragma solidity ^0.5.0;
 
 import "./registry/Registry.sol";
 import "./human/HumanContract.sol";
-import 'openzeppelin-solidity/contracts/ownership/Ownable.sol';
+import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
 
 /**
  * @title IdentityRegistry
