@@ -1,7 +1,7 @@
 pragma solidity ^0.5.0;
 
 import "./Registry.sol";
-import "./IVerifyHuman.sol";
+import "./HumanContract.sol";
 import 'openzeppelin-solidity/contracts/ownership/Ownable.sol';
 
 contract IdentityRegistry is Registry, Ownable, IVerifyHuman {
