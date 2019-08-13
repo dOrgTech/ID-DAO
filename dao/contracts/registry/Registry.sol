@@ -3,8 +3,9 @@ pragma solidity ^0.5.0;
 import "./IRegistry.sol";
 
 /**
- * @title Generic Registry Contract
- * @author Luis Dominguez <ld@luis.sh>
+ * @title Registry
+ * @author Luis Dominguez <ld@luis.sh>, Jordan Ellis <jelli@dorg.tech>
+ *
  * @dev This is a very basic contract which acts as a simple store for addresses, with CRUD.
  * Public-facing functions are seperated from internal functions, one dedicated
  * to logic in exposing functionality, the other for the actual logic.

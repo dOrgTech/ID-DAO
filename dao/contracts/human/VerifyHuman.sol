@@ -2,6 +2,14 @@ pragma solidity ^0.5.0;
 
 import "./IVerifyHuman.sol";
 
+/**
+ * @title HumanContract
+ * @author Luis Dominguez <ld@luis.sh>, Jordan Ellis <jelli@dorg.tech>
+ *
+ * @dev An abstract contract which can be extended by any contract
+ * which wishes to inherit human-related functionality.
+ * 
+ */
 contract HumanContract is IVerifyHuman {
 
     /**
