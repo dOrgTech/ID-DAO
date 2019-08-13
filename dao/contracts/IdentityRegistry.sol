@@ -1,15 +1,18 @@
 pragma solidity ^0.5.0;
 
-import "./Registry.sol";
-import "./HumanContract.sol";
+import "./registry/Registry.sol";
+import "./human/HumanContract.sol";
 import 'openzeppelin-solidity/contracts/ownership/Ownable.sol';
 
-contract IdentityRegistry is Registry, Ownable, IVerifyHuman {
-
-    modifier onlyHuman(address id) {
-        require(isHuman(id), "ID provided is not a human");
-        _;
-    }
+/**
+ * @title IdentityRegistry
+ * @author Luis Dominguez <ld@luis.sh>, Jordan Ellis <jelli@dorg.tech>
+ * 
+ * @dev An Identity Registry contract built off of Registry. Re-exposes functionality
+ * in restricting it to the owner. Additional removeSelf() function added, allowing for
+ * any registered identity to remove themselves as they wish.
+ */
+contract IdentityRegistry is Registry, Ownable, HumanContract {
 
     function add(
         address id,
