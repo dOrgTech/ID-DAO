@@ -1,7 +1,10 @@
-pragma solidity ^0.5.4;
+pragma solidity ^0.5.0;
 
 /**
- * Required interface for any contract looking to be compliant with checking for human status of an address.
+ * @title IVerifyHuman
+ * @author Jordan Ellis <jelli@dorg.tech>, Luis Dominguez <ld@luis.sh>
+ * 
+ * @dev Required interface for any contract looking to be compliant with checking for human status of an address.
  */
 
 interface IVerifyHuman {
