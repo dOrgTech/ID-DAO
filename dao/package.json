@@ -12,7 +12,11 @@
     "web3": "^1.0.0-beta.36"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.0.0",
+    "@typescript-eslint/parser": "^2.0.0",
     "dotenv": "^8.0.0",
+    "eslint": "^6.1.0",
+    "eslint-config-google": "^0.13.0",
     "ganache-cli": "^6.5.0",
     "solhint": "^2.2.0",
     "solidity-coverage": "^0.6.4",
