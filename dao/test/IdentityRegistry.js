@@ -7,7 +7,7 @@
 
 const contracts = require('./contracts');
 const solAssert = require('./solAssert');
-const util = require('util');
+// const util = require('util');
 
 const instances = {};
 

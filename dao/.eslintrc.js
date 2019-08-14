@@ -17,5 +17,6 @@ module.exports = {
     'ecmaVersion': 2018,
   },
   'rules': {
+    "max-len": ["error", 120, 2]
   },
 };
