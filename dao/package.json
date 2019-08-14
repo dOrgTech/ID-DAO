@@ -28,6 +28,8 @@
     "compile": "truffle compile",
     "coverage": "npx solidity-coverage",
     "lint": "npm run lint:sol",
+    "lint:js": "eslint --max-warnings 0 \"test/**/*.js\"",
+    "lint:js:fix": "eslint --max-warnings 0 \"test/**/*.js\" --fix",
     "lint:sol": "solhint --max-warnings 0 \"contracts/**/*.sol\"",
     "rinkeby-deploy": "truffle migrate --network rinkeby"
   },
