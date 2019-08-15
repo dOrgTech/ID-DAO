@@ -15,7 +15,8 @@ aliases:
   - &npm_install_if_necessary
     run:
       name: Install npm dependencies
-      command: |
+      command: | 
+        cd dao
         # If no node_modules directory
         if [ ! -d node_modules ]; then 
           # Perform a clean npm install
@@ -25,57 +26,49 @@ aliases:
       # template for an environment variable,
       # see circleci.com/docs/2.0/caching/
   - &cache_key_node_modules
-    key: v1-node_modules-{{ checksum "package-lock.json" }}
+    key: v1-node_modules-{{ checksum "dao/package-lock.json" }}
 
 jobs:
   dependencies:
     <<: *defaults # << is used to inject an alias
     steps:
       - checkout
-      - run: 
-          command: cd dao
       - restore_cache: # special step to restore the dependency cache
           <<: *cache_key_node_modules
       - *npm_install_if_necessary
       - save_cache: # special step to save the dependency cache
           paths:
-            - node_modules
+            - dao/node_modules
           <<: *cache_key_node_modules # Insert our alias to specify cache key to save to
 
   lint:
     <<: *defaults
     steps:
       - checkout
-      - run:
-          command: cd dao
       - restore_cache:
           <<: *cache_key_node_modules
       - *npm_install_if_necessary
       - run:
           name: Linter
-          command: npm run lint
+          command: cd dao && npm run lint
   test:
     <<: *defaults
     steps:
       - checkout
-      - run:
-          command: cd dao
       - restore_cache:
           <<: *cache_key_node_modules
       - *npm_install_if_necessary
       - run: 
           name: Run development blockchain
-          command: npm run chain
+          command: cd dao && npm run chain
           background: true
       - run:
           name: Unit tests
-          command: npm test
+          command: cd dao && npm test
   coverage:
     <<: *defaults
     steps:
       - checkout
-      - run:
-          command: cd dao
       - restore_cache:
           <<: *cache_key_node_modules
       - *npm_install_if_necessary
@@ -84,10 +77,10 @@ jobs:
           command: sudo npm install -g codecov
       - run:
           name: Unit tests with coverage report
-          command: npm run coverage
+          command: cd dao && npm run coverage
       - run: 
           name: Run Codecov
-          command: codecov
+          command: cd dao && codecov
 
 workflows:
   version: 2
