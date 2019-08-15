@@ -21,7 +21,7 @@ class SolAssert {
    * @param {function} run - Function to test for Solidity revert errors
    * @param {string} [expectedErr=null] - Any revert string to expect; throw if not found
    */
-  static async revert(run: any, expectedErr: string | null = null): string {
+  static async revert(run: any, expectedErr: string | null = null): Promise<string> {
     let err: string = '';
     try {
       await run();
