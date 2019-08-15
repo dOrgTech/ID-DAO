@@ -5,6 +5,8 @@
 */
 
 import contracts = require('./contracts');
+import chai = require('chai');
+const assert = chai.assert;
 // const solAssert = require('./solAssert');
 // const util = require('util');
 

@@ -4,6 +4,9 @@
 
 */
 
+import chai = require('chai');
+const assert = chai.assert;
+
 /**
  * SolAssert static util class
  */
@@ -18,8 +21,8 @@ class SolAssert {
    * @param {function} run - Function to test for Solidity revert errors
    * @param {string} [expectedErr=null] - Any revert string to expect; throw if not found
    */
-  static async revert(run: any, expectedErr: string = null): string {
-    let err: string;
+  static async revert(run: any, expectedErr: string | null = null): string {
+    let err: string = '';
     try {
       await run();
     } catch (_e) {
