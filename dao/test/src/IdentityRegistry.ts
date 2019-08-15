@@ -3,7 +3,6 @@
   Testing IdentityRegistry.sol
 
 */
-'use strict';
 
 const contracts = require('./contracts');
 const solAssert = require('./solAssert');

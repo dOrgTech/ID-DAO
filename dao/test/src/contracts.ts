@@ -4,12 +4,10 @@
 
 */
 
-'use strict';
-
 const Registry = artifacts.require('./Registry.sol');
 const IdentityRegistry = artifacts.require('./IdentityRegistry.sol');
 
-module.exports = {
+export = {
   'Registry': Registry,
   'IdentityRegistry': IdentityRegistry,
 };
