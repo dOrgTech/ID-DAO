@@ -4,15 +4,15 @@
 
 */
 
-const contracts = require('./contracts');
-const solAssert = require('./solAssert');
+import contracts = require('./contracts');
+import solAssert = require('./solAssert');
 // const util = require('util');
 
-const instances = {};
+const instances: any = {};
 
 contract('IdentityRegistry', (accounts) => {
-  const owner = accounts[0];
-  const users = [
+  const owner: string = accounts[0];
+  const users: object = [
     {
       address: accounts[1],
       metadata: '0xb5689b817f4d6dc4d28676ea1a0af6bdeac27ceaf5381cfe',
@@ -64,28 +64,28 @@ contract('IdentityRegistry', (accounts) => {
     });
 
     it('user is not initially registered', async () => {
-      const res = await instances.IdentityRegistry.isHuman.call(users[0].address);
+      const res: boolean = await instances.IdentityRegistry.isHuman.call(users[0].address);
       assert.isFalse(res);
     });
 
     it('add ID to registry', async () => {
       // Add an ID to the Registry
-      const res = await instances.IdentityRegistry.add(users[0].address, users[0].metadata, {from: owner});
+      const res: object = await instances.IdentityRegistry.add(users[0].address, users[0].metadata, {from: owner});
       assert.ok(res);
 
       // Check if added
-      const metadata = await instances.IdentityRegistry.registry.call(users[0].address);
+      const metadata: string = await instances.IdentityRegistry.registry.call(users[0].address);
       assert.ok(metadata, 'error, metadata is: ' + metadata);
       assert.equal(metadata, users[0].metadata, 'metadata returned not expected');
     });
 
     it('user attempts to remove self', async () => {
       // User calls removeSelf()
-      const res = await instances.IdentityRegistry.removeSelf({from: users[0].address});
+      const res: object = await instances.IdentityRegistry.removeSelf({from: users[0].address});
       assert.ok(res);
 
       // Ensure removed
-      const metadata = await instances.IdentityRegistry.registry.call(users[0].address);
+      const metadata: string | null = await instances.IdentityRegistry.registry.call(users[0].address);
       assert.equal(metadata, null);
     });
   });
@@ -96,23 +96,23 @@ contract('IdentityRegistry', (accounts) => {
     });
 
     it('user is not human before registration', async () => {
-      const res = await instances.IdentityRegistry.isHuman.call(users[0].address);
+      const res: boolean = await instances.IdentityRegistry.isHuman.call(users[0].address);
       assert.isFalse(res);
     });
 
     it('add ID to registry', async () => {
       // Add an ID to the Registry
-      const res = await instances.IdentityRegistry.add(users[0].address, users[0].metadata, {from: owner});
+      const res: object = await instances.IdentityRegistry.add(users[0].address, users[0].metadata, {from: owner});
       assert.ok(res);
 
       // Check if added
-      const metadata = await instances.IdentityRegistry.registry.call(users[0].address);
+      const metadata: string = await instances.IdentityRegistry.registry.call(users[0].address);
       assert.ok(metadata, 'error, metadata is: ' + metadata);
       assert.equal(metadata, users[0].metadata, 'metadata returned not expected');
     });
 
     it('isHuman passing post-registry', async () => {
-      const res = await instances.IdentityRegistry.isHuman.call(users[0].address);
+      const res: boolean = await instances.IdentityRegistry.isHuman.call(users[0].address);
       assert.isTrue(res);
     });
   });
