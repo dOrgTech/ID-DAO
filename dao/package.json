@@ -33,14 +33,15 @@
     "typescript": "^3.5.3"
   },
   "scripts": {
-    "test": "truffle test",
-    "chain": "ganache-cli -m 'manual glass van agent able hedgehog moment oyster uniform arrange art charge'",
-    "compile": "truffle compile",
+    "test": "rm -rf ./test/bin/ && tsc --project ./test/tsconfig.json && truffle test ./test/bin/*",
+    "compile": "npx truffle compile",
+    "chain": "ganache-cli",
     "coverage": "npx solidity-coverage",
     "lint": "npm run lint:sol && npm run lint:js",
-    "lint:js": "eslint --max-warnings 0 \"test/**/*.js\"",
-    "lint:js:fix": "eslint --max-warnings 0 \"test/**/*.js\" --fix",
+    "lint:fix": "npm run lint:js:fix",
     "lint:sol": "solhint --max-warnings 0 \"contracts/**/*.sol\"",
+    "lint:js": "eslint ./test/src/**/*.ts",
+    "lint:js:fix": "eslint --fix ./test/src/**/*.ts",
     "rinkeby-deploy": "truffle migrate --network rinkeby"
   },
   "repository": {
