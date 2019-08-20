@@ -1,4 +1,6 @@
-# Photo/Video-Reliant Verification
+# UI Brainstorm
+
+## Photo/Video-Reliant Verification
 
 Within Dashboard, we eventually run into need to verify identity, which brings up this modal:
 
@@ -66,7 +68,7 @@ Go back
 
 
 
-
+## Social Media Verification
 
 => On click Github verify:
 
