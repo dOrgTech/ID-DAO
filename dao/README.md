@@ -1,5 +1,5 @@
 # DAO - Ethereum
-
+![GitHub package.json version](https://img.shields.io/badge/version-v1.0.0-g)
 [![CircleCI](https://circleci.com/gh/dOrgTech/ID-DAO/tree/dev.svg?style=svg)](https://circleci.com/gh/dOrgTech/ID-DAO/tree/dev)
 [![codecov](https://codecov.io/gh/dOrgTech/ID-DAO/branch/dev/graph/badge.svg)](https://codecov.io/gh/dOrgTech/ID-DAO)
 
@@ -21,3 +21,14 @@ Linting scripts are also included, and are briefly described below:
 Code coverage is provided thanks to [solidity-coverage](https://github.com/sc-forks/solidity-coverage):
   * `coverage` - Run code coverage of all smart contracts
 
+### Deployment
+
+All that is needed to set up deployment configuration with Infura is a .env file, with the following:
+
+```
+INFURA_KEY="INSERT_INFURA_KEY_HERE"
+MNEMONIC="INSERT_MNEMONIC_HERE"
+
+```
+
+Only deployment to the Rinkeby test network is currently set up.
