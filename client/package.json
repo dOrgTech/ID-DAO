@@ -1,0 +1,33 @@
+{
+  "name": "@dorg/IDDAO",
+  "version": "0.0.1",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc --project ./tsconfig.json",
+    "chain": "(cd ../dao && npm run chain)",
+    "migrate": "(cd ../dao && truffle migrate --network development)",
+    "test": "npm run build && tsc --project ./test/tsconfig.json && mocha ./test/bin --recursive --timeout 5000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dOrgTech/ID-DAO.git"
+  },
+  "author": "dOrg",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dOrgTech/ID-DAO/issues"
+  },
+  "homepage": "https://github.com/dOrgTech/ID-DAO#readme",
+  "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.6.8",
+    "@types/web3": "^1.0.19",
+    "chai": "^4.2.0",
+    "mocha": "^6.2.0",
+    "truffle-hdwallet-provider": "^1.0.15",
+    "typescript": "^3.5.3",
+    "web3": "^1.0.0-beta.36"
+  }
+}

@@ -1,6 +1,6 @@
 {
   "name": "identitydao",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "",
   "main": " ",
   "directories": {
@@ -8,15 +8,42 @@
   },
   "dependencies": {
     "openzeppelin-solidity": "^2.3.0",
-    "truffle": "^5.0.28"
+    "web3": "^1.0.0-beta.36"
   },
   "devDependencies": {
-    "ganache-cli": "^6.5.0"
+    "@machinomy/types-truffle": "^0.2.0",
+    "@machinomy/types-truffle-contract": "^0.2.0",
+    "@machinomy/types-truffle-resolver": "^0.2.0",
+    "@types/chai": "^4.2.0",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.7.2",
+    "@typescript-eslint/eslint-plugin": "^2.0.0",
+    "@typescript-eslint/parser": "^2.0.0",
+    "chai": "^4.2.0",
+    "dotenv": "^8.0.0",
+    "eslint": "^6.1.0",
+    "eslint-config-google": "^0.13.0",
+    "ganache-cli": "^6.6.0",
+    "solhint": "^2.2.0",
+    "solidity-coverage": "^0.6.4",
+    "solidity-docgen": "^0.3.0-beta.4",
+    "truffle": "^5.0.31",
+    "truffle-contract": "^4.0.28",
+    "truffle-hdwallet-provider": "^1.0.16",
+    "truffle-resolver": "^5.0.15",
+    "typescript": "^3.5.3"
   },
   "scripts": {
-    "test": "truffle test",
+    "test": "rm -rf ./test/bin/ && tsc --project ./test/tsconfig.json && truffle test ./test/bin/*",
+    "compile": "npx truffle compile",
     "chain": "ganache-cli",
-    "compile": "truffle compile"
+    "coverage": "npx solidity-coverage",
+    "lint": "npm run lint:sol && npm run lint:js",
+    "lint:fix": "npm run lint:js:fix",
+    "lint:sol": "solhint --max-warnings 0 \"contracts/**/*.sol\"",
+    "lint:js": "eslint ./test/src/**/*.ts",
+    "lint:js:fix": "eslint --fix ./test/src/**/*.ts",
+    "rinkeby-deploy": "truffle migrate --network rinkeby"
   },
   "repository": {
     "type": "git",
