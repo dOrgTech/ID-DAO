@@ -90,14 +90,11 @@ describe('IDDAO', () => {
       //Ensure user is not human (i.e. not added yet)
       let isReg = await IdentityRegistryWeb3.methods.isHuman(users[0].address).call({from: master});
       assert.isNotTrue(isReg, `isReg: ${isReg}`);
-      console.log('vvvvvvvvvvvvvv')
       //Add
       let add = await IdentityRegistry.add(users[0].address, users[0].metadata);
       assert.ok(add);
-      console.log('ddddddddddddddd'); 
       //Ensure existing
       assert.isTrue(await IdentityRegistryWeb3.methods.isHuman(users[0].address).call());
-      console.log('aaaaaaaa');
     })
 
     it.skip('remove', async () => {

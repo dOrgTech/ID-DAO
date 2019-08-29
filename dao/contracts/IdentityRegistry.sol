@@ -7,7 +7,7 @@ import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
 /**
  * @title IdentityRegistry
  * @author Luis Dominguez <ld@luis.sh>, Jordan Ellis <jelli@dorg.tech>
- * 
+ *
  * @dev An Identity Registry contract built off of Registry. Re-exposes functionality
  * in restricting it to the owner. Additional removeSelf() function added, allowing for
  * any registered identity to remove themselves as they wish.
@@ -18,7 +18,7 @@ contract IdentityRegistry is Registry, Ownable, HumanContract {
     /**
      * @dev Simple add function, adds an address along with metadata associated with the identity.
      * Restricted to owner.
-     *  
+     *
      * @param id address Address to add
      * @param metadata bytes Metadata to link to the address
      */
@@ -32,7 +32,7 @@ contract IdentityRegistry is Registry, Ownable, HumanContract {
     /**
      * @dev Simple remove function, removes an address along with metadata associated with the identity.
      * Restricted to owner.
-     * 
+     *
      * @param id address Address to delete
      */
     function remove(address id) public onlyOwner {
@@ -42,7 +42,7 @@ contract IdentityRegistry is Registry, Ownable, HumanContract {
     /**
      * @dev Simple update function, updates an address along with metadata associated with the identity.
      * Restricted to owner.
-     * 
+     *
      * @param id address Address to update
      * @param metadata bytes Metadata to link to the address
      */
@@ -56,7 +56,7 @@ contract IdentityRegistry is Registry, Ownable, HumanContract {
 
     /**
      * @dev Allows a registeredidentity to remove themselves from the registry.
-     * Restricted to registered identity. 
+     * Restricted to registered identity.
      */
     function removeSelf() public onlyHuman {
         _remove(msg.sender);
@@ -64,7 +64,7 @@ contract IdentityRegistry is Registry, Ownable, HumanContract {
 
     /**
      * @dev Determines whether a passed address is human or not. Checks existence in registry to determine this.
-     * 
+     *
      * @param id address Address to check
      * @return bool Human status of address
      */

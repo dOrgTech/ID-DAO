@@ -5,7 +5,7 @@
 
 ## IdentityRegistry Contracts
 
-The **IdentityRegistry** smart contracts are responsible keeping a record of users validated by the DAO as human. Functions dealing with adding, updating, and removing users are thus restricted to the DAO Avatar. Within these contracts, `onlyOwner` is the equivalent and more generic modifier used.
+The **IdentityRegistry** is responsible for keeping a record of humans the DAO has verified. Functions dealing with adding, updating, and removing users are thus restricted to the DAO's Avatar, which acts as the contract's "owner".
 
 ### Usage
 
