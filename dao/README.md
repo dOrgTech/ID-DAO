@@ -28,7 +28,7 @@ All that is needed to set up deployment configuration with Infura is a .env file
 ```
 INFURA_KEY="INSERT_INFURA_KEY_HERE"
 MNEMONIC="INSERT_MNEMONIC_HERE"
-
 ```
 
-Only deployment to the Rinkeby test network is currently set up.
+Only deployment to the Rinkeby test network is currently set up, which can be accomplished through the following command:
+  * `truffle migrate --network rinkeby`
