@@ -8,10 +8,8 @@ import "./IVerifyHuman.sol";
  *
  * @dev An abstract contract which can be extended by any contract
  * which wishes to inherit human-related functionality.
- * 
  */
 contract HumanContract is IVerifyHuman {
-
     /**
      * @dev Throws if not called by a human.
      */
@@ -23,7 +21,7 @@ contract HumanContract is IVerifyHuman {
     /**
      * @dev An abstract function which must be implemented, which determines
      * whether a passed address is human or not.
-     * 
+     *
      * @param id address Address to check
      * @return bool Human status of address
      */
