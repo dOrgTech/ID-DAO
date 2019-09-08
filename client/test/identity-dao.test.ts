@@ -1,30 +1,23 @@
 // TODO: Complete tests
 
-import chai = require('chai');
-const assert = chai.assert;
+import chai from 'chai';
+import fs from 'fs';
+import path from 'path';
+import IDDAO from '../src';
+import Web3 from 'web3';
+import * as config from '../../dao/config.json';
 
-import fs = require('fs');
-import path = require('path');
-// @ts-ignore
-import IDDAO = require('../../dist/index');
-// @ts-ignore
-import IdentityRegsitry = require('../../dist/registry/identity-registry');
-import Web3 = require('web3');
-// @ts-ignore
-import HDWalletProvider = require('truffle-hdwallet-provider');
-const config = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../../../dao/config.json'), 'utf8'));
+const HDWalletProvider = require('truffle-hdwallet-provider');
+const assert = chai.assert;
 const provider = new HDWalletProvider(config.seed, 'http://localhost:8545', 0, 10);
 
 //Initialize web3
 const web3 = new Web3(provider);
 
-
 describe('IDDAO', () => {
-
   let accounts: string[];
   let master: string;
   let users: any[];
-  
   let idDAO: IDDAO;
  
   before(async () => {
@@ -55,12 +48,10 @@ describe('IDDAO', () => {
   })
 
   describe('IdentityRegistry', async () => {
-
     let IdentityRegistry: any; //TODO: Type this correctly
     let IdentityRegistryWeb3: any;
 
     beforeEach(async () => {
-
       //Read info on IdentityRegistry build, including ABI
       const build: any = JSON.parse(fs.readFileSync(path.resolve('../dao/build/contracts/IdentityRegistry.json'), 'utf8'));
 
@@ -83,9 +74,8 @@ describe('IDDAO', () => {
       //Finally, create our instance of IDDAO TODO: Switch to IdentityDAO
       idDAO = new IDDAO(web3, config);
       IdentityRegistry = idDAO.createIdentityRegistry();
-
     })
-   
+
     it('add', async () => {
       //Ensure user is not human (i.e. not added yet)
       let isReg = await IdentityRegistryWeb3.methods.isHuman(users[0].address).call({from: master});
@@ -118,7 +108,6 @@ describe('IDDAO', () => {
     })
 
     it.skip('update', async () => {
-
       //Ensure user is not human (i.e. not added yet)
       let isReg = await IdentityRegistryWeb3.methods.isHuman(users[0].address).call();
       assert.isNotTrue(isReg, `isReg: ${isReg}`);
@@ -137,11 +126,9 @@ describe('IDDAO', () => {
       //Ensure updated
       let currentMetadata = await IdentityRegistryWeb3.methods.registry(users[0].address).call();
       assert.equal(currentMetadata, users[1].metadata);
-
     })
 
     it.skip('removeSelf', async () => {
-
       //Ensure user is not human (i.e. not added yet)
       let isReg = await IdentityRegistryWeb3.methods.isHuman(users[0].address).call();
       assert.isNotTrue(isReg, `isReg: ${isReg}`);
@@ -160,12 +147,9 @@ describe('IDDAO', () => {
       //Ensure removed
       assert.isFalse(await IdentityRegistryWeb3.methods.isHuman(users[0].address).call()); 
       //TODO: Add check testing for 0 metadata on call as well
-
-
     })
 
     it.skip('isHuman', async () => {
-      
       //Ensure user is not human (i.e. not added yet), as expected by isHuman() call
       let isReg = await IdentityRegistry.isHuman(users[0].address);
       assert.isNotTrue(isReg, `isReg: ${isReg}`);
@@ -173,21 +157,14 @@ describe('IDDAO', () => {
       //Add
       let add = await IdentityRegistryWeb3.methods.add(users[0].address, users[0].metadata).send({ from: master });
       assert.ok(add);
-  
+      IDDAO
       //Ensure isHuman now returns existing
       assert.isTrue(await IdentityRegistry.isHuman(users[0].address));
-
-
-
     })
-
-
-
   })
-  
+
   after(async () => {
     //Close connection
     provider.engine.stop();
   })
-
 })

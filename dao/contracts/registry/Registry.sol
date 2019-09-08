@@ -12,7 +12,6 @@ import "./IRegistry.sol";
  *
  * Any extra data can be passed as bytes, which allows for complete flexibility.
  */
-
 contract Registry is IRegistry {
 
     event Add(
@@ -33,15 +32,10 @@ contract Registry is IRegistry {
 
     mapping (address => bytes) public registry;
 
-
-    /**
-      Functions of Registry, exposing functionality of internals
-    */
-
     /**
      * @dev Simple add function, adds an address along with metadata associated with the identity.
      * Public interface for _add().
-     *  
+     *
      * @param id address Address to add
      * @param metadata bytes Metadata to link to the address
      */
@@ -55,7 +49,7 @@ contract Registry is IRegistry {
     /**
      * @dev Simple remove function, removes an address along with metadata associated with the identity.
      * Public interface for _remove().
-     * 
+     *
      * @param id address Address to delete
      */
     function remove(address id) public {
@@ -65,7 +59,7 @@ contract Registry is IRegistry {
     /**
      * @dev Simple update function, updates an address along with metadata associated with the identity.
      * Public interface for _update().
-     * 
+     *
      * @param id address Address to update
      * @param metadata bytes Metadata to link to the address
      */
@@ -78,12 +72,12 @@ contract Registry is IRegistry {
 
     /**
       Internal functions
-    */   
+    */
 
     /**
      * @dev Adds an address along with metadata associated with the identity.
      * Internal logic for adding.
-     *  
+     *
      * @param id address Address to add
      * @param metadata bytes Metadata to link to the address
      */
@@ -98,7 +92,7 @@ contract Registry is IRegistry {
     /**
      * @dev Removes an address along with metadata associated with the identity.
      * Internal logic for deleting.
-     * 
+     *
      * @param id address Address to delete
      */
     function _remove(address id) internal {
@@ -109,7 +103,7 @@ contract Registry is IRegistry {
     /**
      * @dev Updates an address along with metadata associated with the identity.
      * Internal logic for updating.
-     *  
+     *
      * @param id address Address to update
      * @param metadata bytes Metadata to link to the address
      */
@@ -120,5 +114,4 @@ contract Registry is IRegistry {
         emit Update(id, registry[id], metadata);
         registry[id] = metadata;
     }
-
 }

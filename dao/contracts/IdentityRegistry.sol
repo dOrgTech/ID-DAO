@@ -14,6 +14,7 @@ import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
  */
 contract IdentityRegistry is Registry, Ownable, HumanContract {
 
+// TODO: check signature over the metadata hash in the functions, ensuring "id" is infact proposing this
 
     /**
      * @dev Simple add function, adds an address along with metadata associated with the identity.
