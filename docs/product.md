@@ -10,38 +10,8 @@ Below are product-focused high-level mock-ups and userflows for each scenario.
 
 After the user goes through GoodDollar's login in / create account flow, they'll be asked to verify their identity. The user will be asked to provide a selfie, video, and social account verifications. These will all be verified by the DAO through a proposal accessible through alchemy.
 
-*Example Proposal Payload:*
-```json
-{
-  "name" : "Bob Hutchings",
-  "address" : "0x1bc9e52baa93dab1a47c3168fd82ed08856ec83", 
-  "media": {
-    "selfie" : "ipfs://QmSrPmbaUKA3ZodhzPWZnpFgcPMFWF4QsxXbkWfEptTBJd",
-    "video" : "ipfs://WeStGmTvKOZ3ZfdacKASnpFcsCFGGV1WxcCvnLzBmvVCNq",
-  },
-  "social" : {
-    "Twitter" : "https://twitter.com/Hutchin_Bunchin/status/1110270197665951744",
-    "LinkedIn" : "...",
-    "Github" : "...",
-  },
-  "oracles" : [
-    "GoodDollar",
-    "Keybase",
-  ]
-}
-```
-
-*Example Oracle Query:*
-```json
-Oracle:
-"GoodDollar" => "https://verify.gooddollar.org/0x1bc9e52baa93dab1a47c3168fd82ed08856ec83"
-returns:
-{
-  "facebook-oauth" : true,
-  "google-oauth" : true,
-  "gov-id-verified" : true
-}
-```
+[*Example Proposal Payload*](./architecture.md#Identity-Definition-Schema)  
+[*Example Oracle Query*](./architecture.md#Oracle)  
 
 ### Alchemy Add I.D. Verification
 
