@@ -9,12 +9,12 @@ contract('SignedRegistry', (accounts) => {
   const user = {
     address: accounts[1],
     metadata: web3.utils.asciiToHex('QmV51fPiTNn2ZcgV5hNVUV7AjhgdVRJ6DXim9zaALpWFYK'),
-    rawMetadata: 'QmV51fPiTNn2ZcgV5hNVUV7AjhgdVRJ6DXim9zaALpWFYK'
+    rawMetadata: 'QmV51fPiTNn2ZcgV5hNVUV7AjhgdVRJ6DXim9zaALpWFYK',
   };
 
   const updated = {
     metadata: web3.utils.asciiToHex('QmNUXzJHtjSbqN59jH3TusBHry1FqeegJLYUtfnaY3AXFJ'),
-    rawMetadata: 'QmNUXzJHtjSbqN59jH3TusBHry1FqeegJLYUtfnaY3AXFJ'
+    rawMetadata: 'QmNUXzJHtjSbqN59jH3TusBHry1FqeegJLYUtfnaY3AXFJ',
   };
 
   const invalidAddress = accounts[3];
@@ -29,13 +29,13 @@ contract('SignedRegistry', (accounts) => {
       user.rawMetadata,
       user.address
     );
-  
+
     validSignature1 = await signMessage(
       web3,
       updated.rawMetadata,
       user.address
     );
-  
+
     invalidSignature = await signMessage(
       web3,
       user.rawMetadata,
@@ -119,6 +119,16 @@ contract('SignedRegistry', (accounts) => {
           await instance.update(user.address, user.metadata, invalidSignature, {from: user.address}),
         'Signature does not match'
       );
+    });
+
+    describe('Only real addresses...', async () => {
+      it('0 address', async () => {
+        await SolAssert.revert(
+          async () =>
+            await instance.add("0x0000000000000000000000000000000000000000", user.metadata, validSignature0, {from: user.address}),
+            'user must not be zero address'
+        );
+      });
     });
   });
 });

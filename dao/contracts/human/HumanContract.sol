@@ -27,4 +27,3 @@ contract HumanContract is IVerifyHuman {
      */
     function isHuman(address id) public view returns (bool);
 }
-

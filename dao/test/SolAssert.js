@@ -1,6 +1,9 @@
 const chai = require('chai');
 const assert = chai.assert;
 
+/**
+ * Utility class for verifying solidity assertions.
+ */
 class SolAssert {
   /**
    * Simply function to test for Solidity revert errors; optionally takes an "expectedErr"
@@ -29,5 +32,5 @@ class SolAssert {
 }
 
 module.exports = {
-  SolAssert
+  SolAssert,
 };
