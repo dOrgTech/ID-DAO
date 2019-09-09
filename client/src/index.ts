@@ -1,35 +1,23 @@
-import Web3 = require('web3');
+// TODO:
+// - Identity Definition Form
+// - Registry.removeSelf
+// - Registry.isHuman
+// - Generic Actions (add, remove, update)
+// - DAO.proposeAdd (use action templates)
+// - DAO.proposeRemove
+// - DAO.proposeUpdate
 
-import IdentityDAO = require('./dao/identity-dao');
-import IdentityRegistry = require('./registry/identity-registry');
+/*
+import { IdentityDefinitionForm } from "@dorgtech/id-dao-client";
 
-// @ts-ignore
-import Config = require('./config/config');
-import defaultConfig = require('./config/default-config')
+const form = new IdentityDefinitionForm();
 
-class Module {
-  web3: Web3;
-  config: Config;
+form.$.name.value = "Bob";
+form.validate();
+form.data;
+*/
 
-  //Classes we're exporting
-  dao: object; //IdentityDAO;
-  registry: object; //IdentityRegistry;
-
-  constructor(web3: Web3, config: object = {}){
-    this.web3 = web3;
-    //TODO: This is a repeated assignment in the case of nothing passed; consider fixing
-    this.config = Object.assign(defaultConfig, config);
- 
-    //Exporting classes
-    this.dao = IdentityDAO;
-    this.registry = IdentityRegistry;
-  }
-
-  createIdentityRegistry(web3: Web3=this.web3, config: Config=this.config){
-    return new IdentityRegistry(web3, config);
-  }
-
-}
-
-export = Module;
-
+export {
+  IdentityDefinition,
+  IdentityDefinitionForm
+} from "./IdentityDefinition";
