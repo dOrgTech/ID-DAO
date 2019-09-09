@@ -194,9 +194,12 @@ export class SocialPostsForm extends Form<
 > {
   constructor(form?: SocialPostsForm) {
     super({
-      twitter: new SocialPostForm(form ? form.$.twitter : undefined),
-      github: new SocialPostForm(form ? form.$.github : undefined),
+      twitter: new SocialPostForm(form ? form.$.twitter : undefined)
+        .validators(TODO),
+      github: new SocialPostForm(form ? form.$.github : undefined)
+        .validators(TODO),
       facebook: new SocialPostForm(form ? form.$.facebook : undefined)
+        .validators(TODO)
     });
   }
 
