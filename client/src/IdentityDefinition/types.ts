@@ -1,3 +1,5 @@
+export type Address = string;
+
 export enum ContentHost {
   Unknown = "unknown",
   IPFS = "ipfs",
@@ -14,12 +16,7 @@ export interface Uploads {
   video: ContentSource;
 }
 
-export interface SocialPost {
-  url: string;
-}
-
 export interface SocialPosts {
-  twitter?: SocialPost;
-  github?: SocialPost;
-  facebook?: SocialPost;
+  twitter?: string;
+  github?: string;
 }

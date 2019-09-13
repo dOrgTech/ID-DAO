@@ -6,10 +6,18 @@ import {
 import {
   ContentSource,
   Uploads,
-  SocialPost,
   SocialPosts,
   ContentHost
 } from "./types";
+import {
+  requiredText,
+  validUrl,
+  validHash,
+  validContentHost,
+  validTwitterSIVP,
+  validGitHubSIVP,
+  validFacebookSIVP
+} from "./validators";
 
 abstract class Field<
   ValueType,
@@ -129,14 +137,12 @@ export class UploadsForm extends Form<
   constructor(form?: UploadsForm) {
     super({
       selfie: new ContentSourceForm(form ? form.$.selfie : undefined)
-        .validators(requiredForm)
         .setDisplayName("Selfie")
         .setDescription(
           "Take a selfie holding a piece of paper with your public key written on it."
         ),
 
       video: new ContentSourceForm(form ? form.$.video : undefined)
-        .validators(requiredForm)
         .setDisplayName("Video")
         .setDescription(
           "Take a selfie video of yourself holding a piece of paper with your public key written on it."
@@ -157,63 +163,40 @@ export class UploadsForm extends Form<
   }
 }
 
-export class SocialPostForm extends Form<
-  SocialPost,
-  {
-    url: StringField;
-  }
-> {
-  constructor(form?: SocialPostForm) {
-    super({
-      url: new StringField(form ? form.$.url.value : "")
-        .validators(optionalText, validUrl)
-        .setDisplayName("Post URL")
-        .setDescription("The URL of your social post.")
-    });
-  }
-
-  public get data(): SocialPost {
-    return {
-      url: this.$.url.value
-    };
-  }
-
-  public set data(value: SocialPost) {
-    this.$.url.value = value.url;
-  }
-}
-
 export class SocialPostsForm extends Form<
   SocialPosts,
   {
     // TODO: make all these optional
-    twitter: SocialPostForm;
-    github: SocialPostForm;
-    facebook: SocialPostForm;
+    twitter: StringField;
+    github: StringField;
   }
 > {
-  constructor(form?: SocialPostsForm) {
+  constructor(getAddress: ()=>string, form?: SocialPostsForm) {
     super({
-      twitter: new SocialPostForm(form ? form.$.twitter : undefined)
-        .validators(TODO),
-      github: new SocialPostForm(form ? form.$.github : undefined)
-        .validators(TODO),
-      facebook: new SocialPostForm(form ? form.$.facebook : undefined)
-        .validators(TODO)
+      twitter: new StringField(form ? form.$.twitter.value : "")
+        .validators(
+          async value => await validTwitterSIVP(value, getAddress),
+          validUrl
+        ),
+      github: new StringField(form ? form.$.github.value : "")
+        .validators(
+          async value => await validGitHubSIVP(value, getAddress),
+          validUrl
+        )
     });
   }
 
   public get data(): SocialPosts {
+    const { twitter, github } = this.$;
+
     return {
-      twitter: this.$.twitter.data,
-      github: this.$.github.data,
-      facebook: this.$.facebook.data
+      twitter: twitter.value === "" ? undefined : twitter.value,
+      github: github.value === "" ? undefined : github.value
     };
   }
 
   public set data(data: SocialPosts) {
-    this.$.twitter.data = data.twitter ? data.twitter : {url: ""};
-    this.$.github.data = data.github ? data.github : {url: ""};
-    this.$.facebook.data = data.facebook ? data.facebook : {url: ""};
+    this.$.twitter.value = data.twitter ? data.twitter : "";
+    this.$.github.value = data.github ? data.github : "";
   }
 }

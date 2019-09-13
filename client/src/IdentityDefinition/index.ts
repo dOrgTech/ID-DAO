@@ -1,4 +1,5 @@
 import {
+  Address,
   Uploads,
   SocialPosts
 } from "./types";
@@ -9,9 +10,14 @@ import {
   SocialPostsForm
 } from "./forms";
 
+import {
+  requiredText,
+  validAddress
+} from "./validators";
+
 export interface IdentityDefinition {
   name: string;
-  address: string;
+  address: Address;
   uploads: Uploads;
   socialPosts: SocialPosts;
   // oracles
@@ -29,12 +35,12 @@ export class IdentityDefinitionForm extends Form<
 > {
   constructor(form?: IdentityDefinitionForm) {
     super({
-      name: new StringField(form ? form.$.name : "")
+      name: new StringField(form ? form.$.name.value : "")
         .validators(requiredText)
         .setDisplayName("Human Name")
         .setDescription("Your human readable name."),
 
-      address: new StringField(form ? form.$.address : "")
+      address: new StringField(form ? form.$.address.value : "")
         .validators(requiredText, validAddress)
         .setDisplayName("Ethereum Address")
         .setDescription("Your public Ethereum address."),
@@ -44,7 +50,7 @@ export class IdentityDefinitionForm extends Form<
         .setDisplayName("Uploaded Proof")
         .setDescription("Upload something to prove you're human."),
 
-      socialPosts: new SocialPostsForm(form ? form.$.socialPosts : undefined)
+      socialPosts: new SocialPostsForm(() => this.$.address.value, form ? form.$.socialPosts : undefined)
         .validators(atleastOnePost)
         .setDisplayName("Identity Verification Posts")
         .setDescription("Post your Ethereum address publicly from one of your social accounts.")

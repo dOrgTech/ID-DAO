@@ -32,8 +32,7 @@ An Identity is defined by a metadata JSON object that's stored in IPFS. The hash
   },
   "socialPosts": {
     "twitter": "https://twitter.com/Hutchin_Bunchin/status/1110270197665951744",
-    "github": "https://gist.github.com/Hutchin_Bunchin/883534836ed2f0e0ffc700b96bd092cd",
-    "facebook": "https://www.facebook.com/bob.hutchings.21/posts/3165931083449513?__tn__=-R"
+    "github": "https://gist.github.com/Hutchin_Bunchin/883534836ed2f0e0ffc700b96bd092cd"
   },
   "oracles": [
     "GoodDollar",
@@ -113,14 +112,15 @@ For development convenience, all of the above will be exposed through a JavaScri
 
 ```javascript
 const IdentityDAO = require(‘identity-dao’);
-const identityDAO = new IdentityDAO(web3);
-    
+
+IdentityDAO.init(web3);
+
 // Returns a boolean
-IdentityDAO.isHuman(‘0xc1B1b64c33e0578DBa9E2CEacf0F8763128ddF63’);
-    
+await IdentityDAO.isHuman(‘0xc1B1b64c33e0578DBa9E2CEacf0F8763128ddF63’);
+
 // Sends an addProposal, using the defaultAccount from web3.
 // Alternate constructor inputs can be used to modify this.
-IdentityDAO.proposeAdd(
+await IdentityDAO.proposeAdd(
   ‘Vitalik Buterin’,
   ‘0x5E0318D57c2F0d1262df93478A92EeDAd246A374’,
   ‘QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG’

@@ -6,6 +6,7 @@
 // - DAO.proposeAdd (use action templates)
 // - DAO.proposeRemove
 // - DAO.proposeUpdate
+// - Subgraph Querying
 
 /*
 import { IdentityDefinitionForm } from "@dorgtech/id-dao-client";
