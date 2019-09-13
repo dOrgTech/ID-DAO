@@ -1,14 +1,8 @@
-/**
-
-   SolAssert.js
-
-*/
-
-import chai = require('chai');
+const chai = require('chai');
 const assert = chai.assert;
 
 /**
- * SolAssert static util class
+ * Utility class for verifying solidity assertions.
  */
 class SolAssert {
   /**
@@ -21,8 +15,8 @@ class SolAssert {
    * @param {function} run - Function to test for Solidity revert errors
    * @param {string} [expectedErr=null] - Any revert string to expect; throw if not found
    */
-  static async revert(run: any, expectedErr: string | null = null): Promise<string> {
-    let err: string = '';
+  static async revert(run, expectedErr = null) {
+    let err = '';
     try {
       await run();
     } catch (_e) {
@@ -37,4 +31,6 @@ class SolAssert {
   }
 }
 
-export = SolAssert;
+module.exports = {
+  SolAssert,
+};
