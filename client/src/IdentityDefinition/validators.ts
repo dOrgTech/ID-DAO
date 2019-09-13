@@ -1,10 +1,9 @@
-// TODO: validTwitterSIVP, validGitHubSIVP, validFacebookSIVP,
-//       atleastOneUpload, atleastOnePost
-
+require("dotenv").config();
 import { Validator } from "formstate";
 import * as Web3Utils from "web3-utils";
-import * as Multihashes from "multihashes";
-import https from "https";
+import * as IsIPFS from "is-ipfs";
+import * as Twitter from "twitter";
+import * as https from "https";
 import { IncomingMessage } from "http";
 import {
   Address,
@@ -32,7 +31,7 @@ export const validAddress: Validator<string> = value => {
   const error = "Please enter a valid address.";
   value = value.trim();
 
-  if (isAddress(value)) {
+  if (!isAddress(value)) {
     return error;
   }
 
@@ -58,13 +57,12 @@ export const validUrl: Validator<string> = value => {
 }
 
 export const validHash: Validator<string> = value => {
-  const error = "Invalid hash.";
+  const error = "Invalid mutihash.";
   value = value.trim();
 
-  try {
-    Multihashes.validate(value);
+  if (IsIPFS.multihash(value)) {
     return null;
-  } catch (e) {
+  } else {
     return error;
   }
 }
@@ -72,7 +70,7 @@ export const validHash: Validator<string> = value => {
 export const validContentHost: Validator<string> = value => {
   const error = "Invalid content host.";
 
-  if (!(value in ContentHost) || value === ContentHost.Unknown) {
+  if (!Object.values(ContentHost).includes(value as ContentHost) || value === ContentHost.Unknown) {
     return error;
   }
 
@@ -82,9 +80,6 @@ export const validContentHost: Validator<string> = value => {
 export const validTwitterSIVP = async (value: string, getAddress: ()=>string) => {
   // Example Twitter SIVP
   // https://twitter.com/user_name/status/1171073473527250944
-
-  // The API to fetch the body of a tweet
-  const api = "https://api.twitter.com/1.1/statuses/show.json?tweet_mode=extended&id=";
 
   // Errors
   const invalidStatusError = "Invalid Tweet URL, please use the 'twitter.com/user/status/#' format.";
@@ -104,28 +99,49 @@ export const validTwitterSIVP = async (value: string, getAddress: ()=>string) =>
   // get the status ID
   const status = value.substr(index);
 
+  // application auth keys
+  const {
+    TWITTER_CONSUMER_KEY,
+    TWITTER_CONSUMER_SECRET,
+    TWITTER_BEARER_TOKEN
+  } = process.env;
+
+  // early out if we're missing our API keys
+  if (!TWITTER_BEARER_TOKEN || !TWITTER_CONSUMER_KEY || !TWITTER_CONSUMER_SECRET) {
+    return null;
+  }
+
+  const client = new Twitter({
+    consumer_key: TWITTER_CONSUMER_KEY,
+    consumer_secret: TWITTER_CONSUMER_SECRET,
+    bearer_token: TWITTER_BEARER_TOKEN
+  });
+
+  const params = {
+    tweet_mode: "extended",
+    id: status
+  };
+
   return await new Promise<StringOrNull>(resolve => {
-    https.get(api + status, (resp: IncomingMessage) => {
-      let data = "";
+    client.get("statuses/show.json", params, (error: any, tweet: any, response: any) => {
+      if (error) {
+        resolve(invalidStatusError);
+      }
 
-      resp.on("data", (chunk) => {
-        data += chunk;
-      });
+      const post = tweet.full_text;
 
-      resp.on("end", () => {
-        const post = JSON.parse(data).full_text;
+      if (post === undefined) {
+        resolve(invalidStatusError);
+        return;
+      }
 
-        // Check for the presence of the address
-        if (post.indexOf(getAddress()) === -1) {
-          resolve(missingAddrError);
-          return;
-        }
+      // Check for the presence of the address
+      if (post.indexOf(getAddress()) === -1) {
+        resolve(missingAddrError);
+        return;
+      }
 
-        resolve(null);
-      });
-
-    }).on("error", (err) => {
-      resolve(invalidStatusError);
+      resolve(null);
     });
   });
 }
@@ -167,8 +183,14 @@ export const validGitHubSIVP = async (value: string, getAddress: ()=>string) => 
     });
   }
 
+  const options: https.RequestOptions = {
+    headers: {
+      "User-Agent": "request"
+    }
+  }
+
   return await new Promise<StringOrNull>(resolve => {
-    https.get(api + gist, (resp: IncomingMessage) => {
+    https.get(api + gist, options, (resp: IncomingMessage) => {
       let data = "";
 
       resp.on("data", (chunk) => {
@@ -177,6 +199,11 @@ export const validGitHubSIVP = async (value: string, getAddress: ()=>string) => 
 
       resp.on("end", async () => {
         const files = JSON.parse(data).files;
+
+        if (files === undefined) {
+          resolve(invalidGistError);
+          return;
+        }
 
         for (const fileName of Object.keys(files)) {
           const file = files[fileName];

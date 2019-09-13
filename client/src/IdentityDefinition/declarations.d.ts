@@ -1,2 +1,3 @@
 declare module "web3-utils";
-declare module "multihashes";
+declare module "is-ipfs";
+declare module "twitter";

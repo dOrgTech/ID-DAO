@@ -15,8 +15,7 @@ import {
   validHash,
   validContentHost,
   validTwitterSIVP,
-  validGitHubSIVP,
-  validFacebookSIVP
+  validGitHubSIVP
 } from "./validators";
 
 abstract class Field<
@@ -109,10 +108,10 @@ export class ContentSourceForm extends Form<
     const hostValue = this.$.host.value;
     let type: ContentHost;
 
-    if (!(hostValue in ContentHost)) {
-      type = ContentHost.Unknown;
+    if (validContentHost(hostValue) == null) {
+      type = hostValue as ContentHost;
     } else {
-      type = (<any>ContentHost)[hostValue];
+      type = ContentHost.Unknown;
     }
 
     return {

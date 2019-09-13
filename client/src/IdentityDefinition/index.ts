@@ -1,7 +1,8 @@
 import {
   Address,
   Uploads,
-  SocialPosts
+  SocialPosts,
+  ContentHost
 } from "./types";
 import {
   Form,
@@ -9,10 +10,10 @@ import {
   UploadsForm,
   SocialPostsForm
 } from "./forms";
-
 import {
   requiredText,
-  validAddress
+  validAddress,
+  validContentHost
 } from "./validators";
 
 export interface IdentityDefinition {
@@ -46,12 +47,10 @@ export class IdentityDefinitionForm extends Form<
         .setDescription("Your public Ethereum address."),
 
       uploads: new UploadsForm(form ? form.$.uploads : undefined)
-        .validators(atleastOneUpload)
         .setDisplayName("Uploaded Proof")
         .setDescription("Upload something to prove you're human."),
 
       socialPosts: new SocialPostsForm(() => this.$.address.value, form ? form.$.socialPosts : undefined)
-        .validators(atleastOnePost)
         .setDisplayName("Identity Verification Posts")
         .setDescription("Post your Ethereum address publicly from one of your social accounts.")
     });
@@ -74,3 +73,21 @@ export class IdentityDefinitionForm extends Form<
     this.$.socialPosts.data = data.socialPosts;
   }
 }
+
+export const serialize = (data: IdentityDefinition): string => {
+  return JSON.stringify(data, null, 2);
+};
+
+export const deserialize = (json: string): IdentityDefinition => {
+  return JSON.parse(json, (key: string, value: any) => {
+    if (key === "host") {
+      if (validContentHost(value) == null) {
+        return value;
+      } else {
+        return ContentHost.Unknown;
+      }
+    }
+
+    return value;
+  }) as IdentityDefinition;
+};

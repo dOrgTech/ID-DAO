@@ -1,5 +1,5 @@
 // TODO:
-// - Identity Definition Form
+// x Identity Definition Form
 // - Registry.removeSelf
 // - Registry.isHuman
 // - Generic Actions (add, remove, update)
@@ -18,7 +18,4 @@ form.validate();
 form.data;
 */
 
-export {
-  IdentityDefinition,
-  IdentityDefinitionForm
-} from "./IdentityDefinition";
+export * from "./IdentityDefinition";
