@@ -108,21 +108,4 @@ The returned value above confirms that the user with the address `0x1bc9e52baa93
 The App Server can cover the user's gas costs to avoid onboarding friction. This can be done using Meta Transactions or a by proposing on the user's behalf.
 
 ## JavaScript Library
-For development convenience, all of the above will be exposed through a JavaScript library. Example of what using this library may look like:
-
-```javascript
-const IdentityDAO = require(‘identity-dao’);
-
-IdentityDAO.init(web3);
-
-// Returns a boolean
-await IdentityDAO.isHuman(‘0xc1B1b64c33e0578DBa9E2CEacf0F8763128ddF63’);
-
-// Sends an addProposal, using the defaultAccount from web3.
-// Alternate constructor inputs can be used to modify this.
-await IdentityDAO.proposeAdd(
-  ‘Vitalik Buterin’,
-  ‘0x5E0318D57c2F0d1262df93478A92EeDAd246A374’,
-  ‘QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG’
-);
-```
+For development convenience, all of the above will be exposed through a JavaScript library. Read more [here](../client/README.md).
