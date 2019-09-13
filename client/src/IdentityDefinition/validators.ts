@@ -146,6 +146,8 @@ export const validTwitterSIVP = async (value: string, getAddress: ()=>string) =>
   });
 }
 
+// TODO: test with github app token, and fallback to basic URL validation
+// if one isn't present & we've been rate limited.
 export const validGitHubSIVP = async (value: string, getAddress: ()=>string) => {
   // Example GitHub Gist
   // https://gist.github.com/user_name/883534236ed2f0e0ffc700b96bd092cd
@@ -187,20 +189,28 @@ export const validGitHubSIVP = async (value: string, getAddress: ()=>string) => 
     headers: {
       "User-Agent": "request"
     }
-  }
+  };
 
   return await new Promise<StringOrNull>(resolve => {
     https.get(api + gist, options, (resp: IncomingMessage) => {
-      let data = "";
+      let json = "";
 
       resp.on("data", (chunk) => {
-        data += chunk;
+        json += chunk;
       });
 
       resp.on("end", async () => {
-        const files = JSON.parse(data).files;
+        const data = JSON.parse(json);
+        const files = data.files;
 
         if (files === undefined) {
+          // the application token wasn't provided,
+          // and we're being reate limited, so succeed.
+          if (data.message.indexOf("API rate limit") !== -1) {
+            resolve(null);
+            return;
+          }
+
           resolve(invalidGistError);
           return;
         }
@@ -218,6 +228,8 @@ export const validGitHubSIVP = async (value: string, getAddress: ()=>string) => 
         resolve(missingAddrError);
       });
     }).on("error", (err) => {
+      console.log("HERE")
+      console.log(err)
       resolve(invalidGistError);
     });
   });
