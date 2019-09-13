@@ -29,9 +29,6 @@ const validForm =
 }`;
 
 describe("IdentityDefinition(Form)", () => {
-  // TODO: only photo or only video
-  // TODO: no social posts
-  // TODO: single social post
   describe("JSON", () => {
     it("JSON -> IdentityDefinition -> JSON", () => {
       const data = deserialize(validForm);
