@@ -20,7 +20,7 @@ An Identity is defined by a metadata JSON object that's stored in IPFS. The hash
 {
   "name": "Bob Hutchings",
   "address": "0x1bc9e52baa93dab1a47c3168fd82ed08856ec83",
-  "content": {
+  "uploads": {
     "selfie": {
       "host": "ipfs",
       "hash": "QmSrPmbaUKA3ZodhzPWZnpFgcPMFWF4QsxXbkWfEptTBJd"
@@ -30,10 +30,9 @@ An Identity is defined by a metadata JSON object that's stored in IPFS. The hash
       "hash": "WeStGmTvKOZ3ZfdacKASnpFcsCFGGV1WxcCvnLzBmvVCNq"
     }
   },
-  "socials": {
-    "Twitter": "https://twitter.com/Hutchin_Bunchin/status/1110270197665951744",
-    "Github": "https://gist.github.com/Hutchin_Bunchin/883534836ed2f0e0ffc700b96bd092cd",
-    "Facebook": "https://www.facebook.com/bob.hutchings.21/posts/3165931083449513?__tn__=-R"
+  "socialPosts": {
+    "twitter": "https://twitter.com/Hutchin_Bunchin/status/1110270197665951744",
+    "github": "https://gist.github.com/Hutchin_Bunchin/883534836ed2f0e0ffc700b96bd092cd"
   },
   "oracles": [
     "GoodDollar",
@@ -46,17 +45,17 @@ An Identity is defined by a metadata JSON object that's stored in IPFS. The hash
 ### Field Descriptions
 * **name**: name of the human.  
 * **address**: public Ethereum address.  
-* **content**: uploaded proof.  
+* **uploads**: uploaded proof.  
   * **selfie**: a selfie of this human, preferably with **address** written on a piece of paper.  
     * **host**: location of the content's host service (ipfs, gundb, https://..., etc).  
     * **hash**: hash of the content, used as a key when fetching from the host.  
   * **video**: a selfie video of this human, preferably with **address** written on a piece of paper.  
     * **host**: ...  
     * **hash**: ...  
-* **socials**: social identity verification posts.  
-  * **Twitter**: a public Twitter post with **address** written in it.  
-  * **GitHub**: a public GitHub gist with **address** written in it.  
-  * **Facebook**: a public Facebook post with **address** written in it.  
+* **socialPosts**: social identity verification posts.  
+  * **twitter**: a public Twitter post with **address** written in it.  
+  * **github**: a public GitHub gist with **address** written in it.  
+  * **facebook**: a public Facebook post with **address** written in it.  
 * **oracles**: oracle service providers this **address** has registered with. For security purposes, it's up to the voter's application to understand how to contact these named oracles.  
 * **version**: version of the Identity Definition schema.  
 
@@ -109,20 +108,4 @@ The returned value above confirms that the user with the address `0x1bc9e52baa93
 The App Server can cover the user's gas costs to avoid onboarding friction. This can be done using Meta Transactions or a by proposing on the user's behalf.
 
 ## JavaScript Library
-For development convenience, all of the above will be exposed through a JavaScript library. Example of what using this library may look like:
-
-```javascript
-const IdentityDAO = require(‘identity-dao’);
-const identityDAO = new IdentityDAO(web3);
-    
-// Returns a boolean
-IdentityDAO.isHuman(‘0xc1B1b64c33e0578DBa9E2CEacf0F8763128ddF63’);
-    
-// Sends an addProposal, using the defaultAccount from web3.
-// Alternate constructor inputs can be used to modify this.
-IdentityDAO.proposeAdd(
-  ‘Vitalik Buterin’,
-  ‘0x5E0318D57c2F0d1262df93478A92EeDAd246A374’,
-  ‘QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG’
-);
-```
+For development convenience, all of the above will be exposed through a JavaScript library. Read more [here](../client/README.md).
