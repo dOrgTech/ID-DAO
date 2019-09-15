@@ -21,7 +21,8 @@
     "lint:sol": "solhint --max-warnings 0 \"contracts/**/*.sol\"",
     "lint:js": "eslint ./test/**/*.js",
     "lint:js:fix": "eslint --fix ./test/**/*.js",
-    "rinkeby-deploy": "truffle migrate --network rinkeby"
+    "deploy:development": "truffle migrate --network development",
+    "deploy:rinkeby": "truffle migrate --network rinkeby"
   },
   "dependencies": {
     "openzeppelin-solidity": "^2.3.0"
