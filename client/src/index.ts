@@ -1,5 +1,11 @@
 export * from "./IdentityDefinition";
 
+export {
+  setProvider
+} from "./web3Utils";
+
+export * from "./registry";
+
 /*
 
 // Optionally define what provider to use

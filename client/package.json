@@ -15,9 +15,8 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "chain": "(cd ../dao && npm run chain)",
-    "migrate": "(cd ../dao && truffle migrate --network development)",
-    "test": "npm run build && mocha -r ts-node/register ./test/*.test.ts --timeout 5000"
+    "test": "npm run build && mocha -r ts-node/register ./test/*.test.ts --timeout 5000",
+    "test:env": "npm explore @dorgtech/id-dao-contracts -- npm run test:env"
   },
   "dependencies": {
     "@dorgtech/id-dao-contracts": "1.0.0",

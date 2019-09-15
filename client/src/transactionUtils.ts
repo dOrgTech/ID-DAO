@@ -1,6 +1,6 @@
 import { Observable, Observer } from 'rxjs';
 import { take } from 'rxjs/operators';
-import { getEnabledWeb3 } from 'web3';
+import { getEnabledWeb3 } from './web3Utils';
 const BN = require("bn.js");
 
 export type Web3Receipt = any;

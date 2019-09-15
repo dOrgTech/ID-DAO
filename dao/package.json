@@ -12,8 +12,9 @@
   },
   "homepage": "https://github.com/dOrgTech/ID-DAO#readme",
   "scripts": {
-    "test": "truffle test",
     "compile": "truffle compile --all",
+    "test": "truffle test",
+    "test:env": "concurrently \"npm:chain\" \"npm:deploy:development\"",
     "chain": "ganache-cli",
     "coverage": "npx solidity-coverage",
     "lint": "npm run lint:sol && npm run lint:js",
@@ -29,6 +30,7 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
+    "concurrently": "^4.1.2",
     "dotenv": "^8.0.0",
     "eslint": "^6.1.0",
     "eslint-config-google": "^0.13.0",
