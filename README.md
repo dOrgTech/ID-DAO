@@ -6,11 +6,11 @@ Welcome to the Identity DAO documentation! Please note that the system described
 
 The specification is divided into three different sections:
 
+1. [Architecture](./docs/architecture.md): Technical Architecture & Process Flows  
 1. [Product](./docs/product.md): UI Mock-ups & User Flows  
-2. [Protocol](./docs/protocol.md): On-Chain Architecture & Economic Modeling  
-3. [Architecture](./docs/architecture.md): Technical Architecture & Process Flows  
+1. [Protocol](./docs/protocol.md): Consensus & Economic Protocol  
 
-## Background 
+## Background
 
 A decentralized source of truth for identity is one of the biggest hurdles to any human-centric blockchain use-case, be it voting or UBI.
 
