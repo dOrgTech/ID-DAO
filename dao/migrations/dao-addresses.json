@@ -1,3 +1,14 @@
 {
-  "mainnet": "0xdd3afee87b0b5b6ec89ee7287f7f0f0d5470f9db"
+  "mainnet": {
+    "avatar": "0xdd3afee87b0b5b6ec89ee7287f7f0f0d5470f9db",
+    "genericScheme": "0xdd3afee87b0b5b6ec89ee7287f7f0f0d5470f9db"
+  },
+  "rinkeby": {
+    "avatar": "0xdd3afee87b0b5b6ec89ee7287f7f0f0d5470f9db",
+    "genericScheme": "0xdd3afee87b0b5b6ec89ee7287f7f0f0d5470f9db"
+  },
+  "development": {
+    "avatar": "0xdd3afee87b0b5b6ec89ee7287f7f0f0d5470f9db",
+    "genericScheme": "0xdd3afee87b0b5b6ec89ee7287f7f0f0d5470f9db"
+  }
 }

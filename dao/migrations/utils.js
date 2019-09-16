@@ -15,7 +15,7 @@ function registryDeployed(network, address) {
 }
 
 function daoAddress(network) {
-  return daos[network] ? daos[network] : undefined;
+  return daos[network] ? daos[network].avatar : undefined;
 }
 
 module.exports = {

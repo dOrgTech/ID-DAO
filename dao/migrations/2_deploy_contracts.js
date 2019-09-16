@@ -6,9 +6,10 @@ module.exports = function(deployer, network) {
   deployer.deploy(IdentityRegistry)
     .then((registry) => {
       const dao = Utils.daoAddress(network);
-      if (dao) {
+      // TODO: uncomment me when DAO deployment is added
+      /*if (dao) {
         return registry.setOwner(dao);
-      }
+      }*/
     })
     .then(() => {
       Utils.registryDeployed(

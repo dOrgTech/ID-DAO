@@ -15,6 +15,8 @@ import {
   validAddress,
   validContentHost
 } from "./validators";
+import { getIPFS } from "../utils/ipfsUtils";
+import { signPayload } from "../utils/web3Utils";
 
 export interface IdentityDefinition {
   name: string;
@@ -91,3 +93,23 @@ export const deserialize = (json: string): IdentityDefinition => {
     return value;
   }) as IdentityDefinition;
 };
+
+export const signAndUploadIdentity = async (id: IdentityDefinition): Promise<{
+  hash: string;
+  sig: string;
+}> => {
+  const ipfs = getIPFS();
+  const resp = await ipfs.add(Buffer.from(serialize(id)));
+
+  if (resp.length === 0) {
+    throw Error("Error Uploading Identity: No response.");
+  }
+
+  const hash = resp[0].path;
+  const sig = await signPayload(id.address, hash);
+
+  return {
+    hash,
+    sig
+  };
+}

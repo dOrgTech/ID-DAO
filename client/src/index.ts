@@ -35,17 +35,17 @@ await removeSelf();
 // Fetch the Identity from IPFS and return an IdentityDefinition instance
 await getIdentity("0x2134124124124");
 
+// generic actions to be used within Alchemy
+genericActions;
+
+const { hash, signature } = signAndUploadIdentity(id: IdentityDefinition);
+
 TODO:
-// TODO: comment above all functions
+// TODO: document all functions
+await proposeAdd(address, hash, signature);
+await proposeRemove("0x2134124124124");
+await proposeUpdate(address, hash, signature);
 
-await addHuman(id: IdentityDefinition);
-await removeHuman("0x2134124124124");
-await updateHuman(id: IdentityDefinition);
-
-await signIdentity(IdentityDefinition);
-
-const humans = getHumans();
+const humans = getIdentities();
 humans.pipe(...);
-
-uploadIdentity(...);
 */

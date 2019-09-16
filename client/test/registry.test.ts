@@ -6,7 +6,8 @@ import {
   deserialize,
   serialize,
   IdentityDefinition,
-  getIdentity
+  getIdentity,
+  signAndUploadIdentity
 } from "../dist";
 import {
   getAccount,
@@ -41,23 +42,19 @@ describe("Registry", async () => {
   });
 
   it("Adds Identity", async () => {
-    // Upload identity to IPFS
-    const ipfsRes = await ipfs.add(Buffer.from(serialize(identity)));
-    const hash = ipfsRes[0].path;
-
-    // Sign IPFS hash
-    const signature = await signPayload(address, hash);
+    // Upload identity to IPFS and get the signature
+    const { hash, sig } = await signAndUploadIdentity(identity);
 
     // Add the identity to the registry
     const tx = await registry.methods.add(
       address,
       web3.utils.asciiToHex(hash),
-      signature
+      sig
     ).send({ gas: 1000000, from: address });
 
     const addEvent = tx.events.Add;
     expect(addEvent).to.not.be.undefined;
-    expect(addEvent.returnValues._sig).to.be.equal(signature);
+    expect(addEvent.returnValues._sig).to.be.equal(sig);
   });
 
   it("isHuman", async () => {

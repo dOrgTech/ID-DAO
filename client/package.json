@@ -19,6 +19,7 @@
     "test:env": "concurrently \"docker-compose up\" \"npm explore @dorgtech/id-dao-contracts -- npm run deploy:development\""
   },
   "dependencies": {
+    "@daostack/client": "^0.2.8",
     "@dorgtech/id-dao-contracts": "1.0.0",
     "dotenv": "^8.1.0",
     "formstate": "^1.3.0",
