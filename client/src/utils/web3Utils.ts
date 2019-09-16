@@ -3,7 +3,7 @@ import { Observable } from "rxjs";
 import { first } from "rxjs/operators";
 import {
   Address
-} from "./IdentityDefinition/types";
+} from "../IdentityDefinition/types";
 
 const Web3 = require("web3");
 
@@ -19,7 +19,7 @@ export const getWeb3 = (): any => {
   if (!web3) {
     if (provider) {
       web3 = new Web3(provider); 
-    } else {
+    } else if (window) {
       web3 = (window as any).web3;
 
       if (!web3) {
@@ -29,6 +29,8 @@ export const getWeb3 = (): any => {
       if (!web3) {
         throw Error("ID-DAO: No Web3 Provider Found");
       }
+    } else {
+      throw Error("ID-DAO: Please set a web3 provider.")
     }
   }
 

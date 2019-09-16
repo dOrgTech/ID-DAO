@@ -2,9 +2,14 @@ export * from "./IdentityDefinition";
 
 export {
   setWeb3Provider
-} from "./web3Utils";
+} from "./utils/web3Utils";
+
+export {
+  setIpfsEndpoint
+} from "./utils/ipfsUtils";
 
 export * from "./registry";
+export * from "./genericActions";
 
 /*
 // Optionally define what provider to use

@@ -1,19 +1,18 @@
 import {
   getIPFS
-} from "./ipfsUtils";
+} from "./utils/ipfsUtils";
 import {
   getWeb3,
   getEnabledWeb3,
   getNetworkName,
-} from "./web3Utils";
+} from "./utils/web3Utils";
 import {
   sendTransaction,
   toIOperationObservable,
   Web3Receipt
-} from "./transactionUtils";
+} from "./utils/transactionUtils";
 import {
   IdentityDefinition,
-  serialize,
   deserialize
 } from "./IdentityDefinition";
 import {
@@ -70,5 +69,5 @@ export const getIdentity = async (address: Address): Promise<IdentityDefinition>
     throw Error(`Error Getting Identity: IPFS index not found ${hash}`);
   }
 
-  return deserialize(resp.content.toString());
+  return deserialize(resp[0].content.toString());
 }

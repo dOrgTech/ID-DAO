@@ -12,10 +12,10 @@ import {
   getAccount,
   getWeb3,
   signPayload
-} from "../dist/web3Utils";
+} from "../dist/utils/web3Utils";
 import {
   getIPFS
-} from "../dist/ipfsUtils";
+} from "../dist/utils/ipfsUtils";
 import { expect } from "chai";
 
 const json = JSON.stringify(require("./valid-identity.json"));
