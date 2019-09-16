@@ -11,7 +11,7 @@ let web3: any;
 let provider: string;
 let enabled = false;
 
-export const setProvider = (web3Provider: string) => {
+export const setWeb3Provider = (web3Provider: string) => {
   provider = web3Provider;
 }
 

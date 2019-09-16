@@ -1,43 +1,46 @@
 import {
-  setProvider,
+  setWeb3Provider,
   getRegistry,
   isHuman,
   removeSelf,
   deserialize,
-  serialize
+  serialize,
+  IdentityDefinition,
+  getIdentity
 } from "../dist";
 import {
-  getEnabledWeb3,
   getAccount,
   getWeb3,
   signPayload
 } from "../dist/web3Utils";
+import {
+  getIPFS
+} from "../dist/ipfsUtils";
 import { expect } from "chai";
-
-const IPFSClient = require("ipfs-http-client");
-const ipfs = IPFSClient("127.0.0.1");
 
 const json = JSON.stringify(require("./valid-identity.json"));
 
-setProvider("http://127.0.0.1:8545");
+setWeb3Provider("http://127.0.0.1:8545");
 
 describe("Registry", async () => {
   let web3: any;
+  let ipfs: any;
   let address: string;
   let registry: any;
+  let identity: IdentityDefinition;
   
   before(async () => {
     web3 = await getWeb3();
+    ipfs = getIPFS();
     address = await getAccount();
     registry = await getRegistry();
+    identity = deserialize(json);
+
+    // switch the identity's address to the test account's
+    identity.address = address;
   });
 
   it("Adds Identity", async () => {
-    // switch the identity's address to the test account's
-    const identity = deserialize(json);
-
-    identity.address = address;
-
     // Upload identity to IPFS
     const ipfsRes = await ipfs.add(Buffer.from(serialize(identity)));
     const hash = ipfsRes[0].path;
@@ -59,6 +62,11 @@ describe("Registry", async () => {
 
   it("isHuman", async () => {
     expect(await isHuman(address)).to.be.true;
+  });
+
+  it("getIdentity", async () => {
+    const fetched = await getIdentity(address);
+    expect(fetched).to.eql(identity);
   });
 
   it("removeSelf", async () => {

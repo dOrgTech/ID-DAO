@@ -1,8 +1,10 @@
-import { Observable } from "rxjs";
 import {
+  getIPFS
+} from "./ipfsUtils";
+import {
+  getWeb3,
   getEnabledWeb3,
   getNetworkName,
-  signPayload
 } from "./web3Utils";
 import {
   sendTransaction,
@@ -11,7 +13,8 @@ import {
 } from "./transactionUtils";
 import {
   IdentityDefinition,
-  serialize
+  serialize,
+  deserialize
 } from "./IdentityDefinition";
 import {
   Address
@@ -38,7 +41,7 @@ export const isHuman = async (address: Address): Promise<boolean> => {
   return await registry.methods.isHuman(address).call();
 }
 
-export const removeSelf = async (): Promise<boolean | Error> => {
+export const removeSelf = async (): Promise<boolean> => {
   await getRegistry();
   const map = (receipt: Web3Receipt) => {
     const event = receipt.events.Remove;
@@ -54,15 +57,18 @@ export const removeSelf = async (): Promise<boolean | Error> => {
   return (await toIOperationObservable(observable).send()).result;
 }
 
-/*export const getIdentity = async (address: Address): Promise<IdentityDefinition> => {
-  // TODO:
-  // - get hash from registry
-  // - get payload from IPFS
-  // - get deserialize payload
-}
+export const getIdentity = async (address: Address): Promise<IdentityDefinition> => {
+  const web3 = getWeb3();
+  const registry = await getRegistry();
+  const ipfs = getIPFS();
+  const hash = web3.utils.hexToAscii(
+    await registry.methods.registry(address).call()
+  );
+  const resp = await ipfs.get(hash);
 
-export const getIdentities = (): Observable<IdentityDefinition[]> => {
-  // TODO:
-  // pull events, then call verifySignature & getIdentity for each
+  if (resp.length === 0) {
+    throw Error(`Error Getting Identity: IPFS index not found ${hash}`);
+  }
+
+  return deserialize(resp.content.toString());
 }
-*/
