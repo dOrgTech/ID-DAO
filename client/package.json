@@ -15,8 +15,8 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "test": "npm run build && mocha -r ts-node/register ./test/*.test.ts --timeout 5000",
-    "test:env": "npm explore @dorgtech/id-dao-contracts -- npm run test:env"
+    "test": "npm run build && mocha -r ts-node/register ./test/registry.test.ts --timeout 5000",
+    "test:env": "concurrently \"docker-compose up\" \"npm explore @dorgtech/id-dao-contracts -- npm run deploy:development\""
   },
   "dependencies": {
     "@dorgtech/id-dao-contracts": "1.0.0",
@@ -26,14 +26,16 @@
     "mobx": "^5.13.0",
     "rxjs": "^6.5.3",
     "twitter": "^1.7.1",
-    "web3": "1.2.0"
+    "web3": "1.0.0-beta.37"
   },
   "devDependencies": {
     "@types/chai": "^4.1.7",
     "@types/mocha": "^5.2.7",
     "@types/node": "^12.6.8",
-    "@types/web3": "^1.0.19",
+    "@types/web3": "1.0.12",
     "chai": "^4.2.0",
+    "concurrently": "^4.1.2",
+    "ipfs-http-client": "^36.0.0",
     "mocha": "^6.2.0",
     "truffle-hdwallet-provider": "^1.0.15",
     "ts-node": "^8.3.0",

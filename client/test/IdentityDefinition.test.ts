@@ -4,45 +4,25 @@ import {
   serialize,
   deserialize
 } from "../dist";
-
 import { expect } from "chai";
 
-const validForm =
-`{
-  "name": "Bob Hutchings",
-  "address": "0xfD0174784EbCe943bdb8832Ecdea9Fea30e7C7A9",
-  "uploads": {
-    "selfie": {
-      "host": "ipfs",
-      "hash": "QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o"
-    },
-    "video": {
-      "host": "gun",
-      "hash": "QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o"
-    }
-  },
-  "socialPosts": {
-    "twitter": "https://twitter.com/dOrgJelli/status/1172340539376599046",
-    "github": "https://gist.github.com/dOrgJelli/5088cddf1c58d417b9654500b49d4aa2"
-  },
-  "version": "1"
-}`;
+const identity = require("./valid-identity.json");
 
 describe("IdentityDefinition(Form)", () => {
   describe("JSON", () => {
     it("JSON -> IdentityDefinition -> JSON", () => {
-      const data = deserialize(validForm);
+      const data = deserialize(identity);
       const json = serialize(data);
 
-      expect(json).to.be.equal(validForm);
+      expect(json).to.be.equal(identity);
     });
 
     it("JSON -> IdentityDefinitionForm -> JSON", () => {
       const form = new IdentityDefinitionForm();
-      form.data = deserialize(validForm);
+      form.data = deserialize(identity);
       const json = serialize(form.data);
 
-      expect(json).to.be.equal(validForm);
+      expect(json).to.be.equal(identity);
     });
   });
 
@@ -51,7 +31,7 @@ describe("IdentityDefinition(Form)", () => {
 
     beforeEach(() => {
       form = new IdentityDefinitionForm();
-      form.data = deserialize(validForm);
+      form.data = deserialize(identity);
     });
 
     it("Valid Form", async () => {

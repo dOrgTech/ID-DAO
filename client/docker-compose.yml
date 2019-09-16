@@ -1,0 +1,15 @@
+# A composition of services that are needed to run the tests of the client
+# This is for DEVELOPMENT, not production
+
+version: "3"
+services:
+  ipfs:
+    image: ipfs/go-ipfs
+    ports:
+      - 5001:5001
+
+  ganache:
+    image: trufflesuite/ganache-cli
+    ports:
+      - 8545:8545
+    command: --gasLimit 10000000
