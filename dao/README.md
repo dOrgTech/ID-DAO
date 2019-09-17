@@ -1,9 +1,7 @@
-# DAO - Ethereum
+# IdentityRegistry Contracts
 ![GitHub package.json version](https://img.shields.io/badge/version-v1.0.0-g)
 [![CircleCI](https://circleci.com/gh/dOrgTech/ID-DAO/tree/dev.svg?style=svg)](https://circleci.com/gh/dOrgTech/ID-DAO/tree/dev)
 [![codecov](https://codecov.io/gh/dOrgTech/ID-DAO/branch/dev/graph/badge.svg)](https://codecov.io/gh/dOrgTech/ID-DAO)
-
-## IdentityRegistry Contracts
 
 The **IdentityRegistry** is responsible for keeping a record of humans the DAO has verified. Functions dealing with adding, updating, and removing users are thus restricted to the DAO's Avatar, which acts as the contract's "owner".
 
