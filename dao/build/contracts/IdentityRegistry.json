@@ -2424,10 +2424,16 @@
       "links": {},
       "address": "0x7EC7336739D268a16A1E231399F09f83F435dB37",
       "transactionHash": "0x125318e8f5bc80e07afe189fd6aa8e4104f2f17f0be19093f11785b32d5c00d7"
+    },
+    "1568906452102": {
+      "events": {},
+      "links": {},
+      "address": "0x4b66308dd4e0246347c5f2491151a7B1627ae9Cd",
+      "transactionHash": "0x34af3e8aeefb0e4201171c5374098d1eb32cbb121079033dec1a92a4f62fba85"
     }
   },
   "schemaVersion": "3.0.11",
-  "updatedAt": "2019-09-16T04:06:25.084Z",
+  "updatedAt": "2019-09-19T15:20:55.020Z",
   "devdoc": {
     "author": "Luis Dominguez <ld@luis.sh>, Jordan Ellis <jelli@dorg.tech>",
     "details": "An Identity Registry contract built off of Registry. Re-exposes functionality in restricting it to the owner. Additional removeSelf() function added, allowing for any registered identity to remove themselves as they wish.",

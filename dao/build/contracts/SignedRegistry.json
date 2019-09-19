@@ -4936,7 +4936,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.11",
-  "updatedAt": "2019-09-15T17:44:11.197Z",
+  "updatedAt": "2019-09-19T15:19:50.724Z",
   "devdoc": {
     "author": "Luis Dominguez <ld@luis.sh>, Jordan Ellis <jelli@dorg.tech>",
     "details": "This is a very basic contract which acts as a simple store for addresses, with CRUD. Public-facing functions are seperated from internal functions, one dedicated to logic in exposing functionality, the other for the actual logic. * Any extra data can be passed as bytes, which allows for complete flexibility.",

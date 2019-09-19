@@ -660,7 +660,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.11",
-  "updatedAt": "2019-09-15T17:44:11.196Z",
+  "updatedAt": "2019-09-19T15:19:50.722Z",
   "devdoc": {
     "author": "Luis Dominguez <ld@luis.sh>, Jordan Ellis <jelli@dorg.tech>",
     "details": "An abstract contract which can be extended by any contract which wishes to inherit human-related functionality.",

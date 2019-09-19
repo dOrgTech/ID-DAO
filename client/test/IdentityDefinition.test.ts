@@ -6,7 +6,7 @@ import {
 } from "../dist";
 import { expect } from "chai";
 
-const identity = require("./valid-identity.json");
+const identity = JSON.stringify(require("./valid-identity.json"), null, 2);
 
 // TODO: test missing fields + empty json
 
