@@ -8,6 +8,8 @@ import { expect } from "chai";
 
 const identity = require("./valid-identity.json");
 
+// TODO: test missing fields + empty json
+
 describe("IdentityDefinition(Form)", () => {
   describe("JSON", () => {
     it("JSON -> IdentityDefinition -> JSON", () => {
