@@ -1,6 +1,8 @@
 # ID-DAO Client Library
 
 ## Identity Definition Form
+An Identity is defined by a metadata JSON object that's stored in IPFS. The IdentityDefinition & IdentityDefinitionForm classes aim to make it easier to create and validate this metadata JSON object. Below is an example of (1) deserializing an existing JSON definition (2) validating it and resolving any errors (3) serializing it back to JSON.
+
 `Note: IdentityDefinitionForm is a "formstate" form. The below example should suffice, but for more information about using the formstate library, see: https://formstate.github.io/#/?id=quick-example`
 ```TypeScript
 import {

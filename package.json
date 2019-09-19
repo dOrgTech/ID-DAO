@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "postinstall": "npx lerna bootstrap"
+  },
+  "devDependencies": {
+    "lerna": "^3.16.4"
+  },
+  "name": "ID-DAO"
+}

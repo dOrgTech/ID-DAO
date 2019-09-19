@@ -12,8 +12,9 @@
   },
   "homepage": "https://github.com/dOrgTech/ID-DAO#readme",
   "scripts": {
-    "test": "truffle test",
     "compile": "truffle compile --all",
+    "test": "truffle test",
+    "test:env": "concurrently \"npm:chain\"",
     "chain": "ganache-cli",
     "coverage": "npx solidity-coverage",
     "lint": "npm run lint:sol && npm run lint:js",
@@ -21,13 +22,15 @@
     "lint:sol": "solhint --max-warnings 0 \"contracts/**/*.sol\"",
     "lint:js": "eslint ./test/**/*.js",
     "lint:js:fix": "eslint --fix ./test/**/*.js",
-    "rinkeby-deploy": "truffle migrate --network rinkeby"
+    "deploy:development": "wait-on tcp:8545 && truffle migrate --network development",
+    "deploy:rinkeby": "truffle migrate --network rinkeby"
   },
   "dependencies": {
     "openzeppelin-solidity": "^2.3.0"
   },
   "devDependencies": {
     "chai": "^4.2.0",
+    "concurrently": "^4.1.2",
     "dotenv": "^8.0.0",
     "eslint": "^6.1.0",
     "eslint-config-google": "^0.13.0",
@@ -39,6 +42,7 @@
     "truffle-contract": "^4.0.28",
     "truffle-hdwallet-provider": "^1.0.16",
     "truffle-resolver": "^5.0.15",
+    "wait-on": "^3.3.0",
     "web3": "^1.0.0-beta.36"
   }
 }
