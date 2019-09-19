@@ -19,7 +19,8 @@ contract SignedRegistry is ISignedRegistry {
 
     event Add(
         address indexed _id,
-        bytes indexed _metadata
+        bytes indexed _metadata,
+        bytes _sig
     );
 
     event Remove(
@@ -30,7 +31,8 @@ contract SignedRegistry is ISignedRegistry {
     event Update(
         address indexed _id,
         bytes indexed _oldMetadata,
-        bytes indexed _newMetadata
+        bytes indexed _newMetadata,
+        bytes _sig
     );
 
     mapping (address => bytes) public registry;
@@ -114,7 +116,7 @@ contract SignedRegistry is ISignedRegistry {
         bytes memory metadata,
         bytes memory sig
     ) internal signed(id, metadata, sig) {
-        emit Add(id, metadata);
+        emit Add(id, metadata, sig);
         registry[id] = metadata;
     }
 
@@ -142,7 +144,7 @@ contract SignedRegistry is ISignedRegistry {
         bytes memory metadata,
         bytes memory sig
     ) internal signed(id, metadata, sig) {
-        emit Update(id, registry[id], metadata);
+        emit Update(id, registry[id], metadata, sig);
         registry[id] = metadata;
     }
 }
