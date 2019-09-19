@@ -1,35 +1,51 @@
-import Web3 = require('web3');
+export * from "./IdentityDefinition";
 
-import IdentityDAO = require('./dao/identity-dao');
-import IdentityRegistry = require('./registry/identity-registry');
+export {
+  setWeb3Provider
+} from "./utils/web3Utils";
 
-// @ts-ignore
-import Config = require('./config/config');
-import defaultConfig = require('./config/default-config')
+export {
+  setIpfsEndpoint
+} from "./utils/ipfsUtils";
 
-class Module {
-  web3: Web3;
-  config: Config;
+export * from "./registry";
+export * from "./genericActions";
 
-  //Classes we're exporting
-  dao: object; //IdentityDAO;
-  registry: object; //IdentityRegistry;
+/*
+// Optionally define what provider to use
+setWeb3Provider("web3_provider");
 
-  constructor(web3: Web3, config: object = {}){
-    this.web3 = web3;
-    //TODO: This is a repeated assignment in the case of nothing passed; consider fixing
-    this.config = Object.assign(defaultConfig, config);
- 
-    //Exporting classes
-    this.dao = IdentityDAO;
-    this.registry = IdentityRegistry;
-  }
+// Fetch the web3 instance
+// uses the set provider above, if set
+// uses window context by default
+let web3 = getWeb3();
 
-  createIdentityRegistry(web3: Web3=this.web3, config: Config=this.config){
-    return new IdentityRegistry(web3, config);
-  }
+// Same as above, but it enables web3 for you.
+web3 = await getEnabledWeb3();
 
-}
+// Get the Registry contract instance
+await getRegistry();
 
-export = Module;
+// Check if the address is human (in the registry)
+await isHuman("0x2342342342342");
 
+// Remove yourself from the registry
+await removeSelf();
+
+// Fetch the Identity from IPFS and return an IdentityDefinition instance
+await getIdentity("0x2134124124124");
+
+// generic actions to be used within Alchemy
+genericActions;
+
+const { hash, signature } = signAndUploadIdentity(id: IdentityDefinition);
+
+TODO:
+// TODO: document all functions
+await proposeAdd(address, hash, signature);
+await proposeRemove("0x2134124124124");
+await proposeUpdate(address, hash, signature);
+
+const humans = getIdentities();
+humans.pipe(...);
+*/
