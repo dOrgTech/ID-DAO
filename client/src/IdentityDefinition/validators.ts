@@ -3,8 +3,7 @@ import { Validator } from "formstate";
 import * as Web3Utils from "web3-utils";
 import * as IsIPFS from "is-ipfs";
 import * as Twitter from "twitter";
-import * as https from "https";
-import { IncomingMessage } from "http";
+import * as request from "request";
 import {
   Address,
   ContentHost
@@ -122,7 +121,7 @@ export const validTwitterSIVP = async (value: string, getAddress: ()=>string) =>
     id: status
   };
 
-  return await new Promise<StringOrNull>(resolve => {
+  return new Promise<StringOrNull>(resolve => {
     client.get("statuses/show.json", params, (error: any, tweet: any, response: any) => {
       if (error) {
         resolve(invalidStatusError);
@@ -168,39 +167,27 @@ export const validGitHubSIVP = async (value: string, getAddress: ()=>string) => 
   const gist = value.substr(value.lastIndexOf("/") + 1);
 
   const fetchText = async (rawUrl: string) => {
-    return await new Promise<string>(resolve => {
-      https.get(rawUrl, (resp: IncomingMessage) => {
-        let data = "";
-  
-        resp.on("data", (chunk) => {
-          data += chunk;
-        });
-  
-        resp.on("end", async () => {
-          resolve(data);
-        });
-      }).on("error", (err) => {
-        resolve("");
+    return new Promise<string>(resolve => {
+      request.get({ url: rawUrl }, (error, response, body) => {
+        if (error) {
+          resolve("")
+        } else {
+          resolve(body);
+        }
       });
     });
   }
 
-  const options: https.RequestOptions = {
-    headers: {
-      "User-Agent": "request"
-    }
+  const headers = {
+    "User-Agent": "request"
   };
 
-  return await new Promise<StringOrNull>(resolve => {
-    https.get(api + gist, options, (resp: IncomingMessage) => {
-      let json = "";
-
-      resp.on("data", (chunk) => {
-        json += chunk;
-      });
-
-      resp.on("end", async () => {
-        const data = JSON.parse(json);
+  return new Promise<StringOrNull>(resolve => {
+    request.get({ url: api + gist, headers }, async (error, response, body) => {
+      if (error) {
+        resolve(invalidGistError + ` ${error}`);
+      } else {
+        const data = JSON.parse(body);
         const files = data.files;
 
         if (files === undefined) {
@@ -226,11 +213,7 @@ export const validGitHubSIVP = async (value: string, getAddress: ()=>string) => 
         }
 
         resolve(missingAddrError);
-      });
-    }).on("error", (err) => {
-      console.log("HERE")
-      console.log(err)
-      resolve(invalidGistError);
+      }
     });
   });
 }
