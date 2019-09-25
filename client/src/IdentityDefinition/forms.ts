@@ -10,6 +10,7 @@ import {
   ContentHost
 } from "./types";
 import {
+  optionalText,
   requiredText,
   validUrl,
   validHash,
@@ -174,13 +175,17 @@ export class SocialPostsForm extends Form<
     super({
       twitter: new StringField(form ? form.$.twitter.value : "")
         .validators(
-          async value => await validTwitterSIVP(value, getAddress),
-          validUrl
+          optionalText(
+            async value => await validTwitterSIVP(value, getAddress),
+            validUrl
+          )
         ),
       github: new StringField(form ? form.$.github.value : "")
         .validators(
-          async value => await validGitHubSIVP(value, getAddress),
-          validUrl
+          optionalText(
+            async value => await validGitHubSIVP(value, getAddress),
+            validUrl
+          )
         )
     });
   }

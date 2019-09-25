@@ -11,12 +11,8 @@ import {
 } from "../dist";
 import {
   getAccount,
-  getWeb3,
-  signPayload
+  getWeb3
 } from "../dist/utils/web3Utils";
-import {
-  getIPFS
-} from "../dist/utils/ipfsUtils";
 import { expect } from "chai";
 
 const json = JSON.stringify(require("./valid-identity.json"));
@@ -25,14 +21,12 @@ setWeb3Provider("http://127.0.0.1:8545");
 
 describe("Registry", async () => {
   let web3: any;
-  let ipfs: any;
   let address: string;
   let registry: any;
   let identity: IdentityDefinition;
-  
+
   before(async () => {
     web3 = await getWeb3();
-    ipfs = getIPFS();
     address = await getAccount();
     registry = await getRegistry();
     identity = deserialize(json);
