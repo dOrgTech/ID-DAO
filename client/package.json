@@ -26,22 +26,22 @@
     "ipfs-http-client": "^36.0.0",
     "is-ipfs": "^0.6.1",
     "mobx": "^5.13.0",
-    "request": "^2.88.0",
+    "node-fetch": "^2.6.0",
     "rxjs": "^6.5.3",
-    "twitter": "^1.7.1",
     "web3": "1.0.0-beta.37"
   },
   "devDependencies": {
     "@types/chai": "^4.1.7",
     "@types/mocha": "^5.2.7",
     "@types/node": "^12.6.8",
-    "@types/request": "^2.48.3",
+    "@types/node-fetch": "^2.5.2",
     "@types/web3": "1.0.12",
     "chai": "^4.2.0",
     "concurrently": "^4.1.2",
     "mocha": "^6.2.0",
     "truffle-hdwallet-provider": "^1.0.15",
     "ts-node": "^8.3.0",
-    "typescript": "^3.5.3"
+    "typescript": "^3.5.3",
+    "wait-on": "^3.3.0"
   }
 }

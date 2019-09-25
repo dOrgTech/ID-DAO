@@ -2,8 +2,9 @@ require("dotenv").config();
 import { Validator } from "formstate";
 import * as Web3Utils from "web3-utils";
 import * as IsIPFS from "is-ipfs";
-import * as Twitter from "twitter";
-import * as request from "request";
+import fetch, {
+  Response
+} from "node-fetch";
 import {
   Address,
   ContentHost
@@ -99,136 +100,84 @@ export const validTwitterSIVP = async (value: string, getAddress: ()=>string) =>
   const invalidStatusError = "Invalid Tweet URL, please use the 'twitter.com/user/status/#' format.";
   const missingAddrError = "Tweet is missing the public address.";
 
-  // Extract the status ID from the URL we're being given
-  const terminator = "status/";
-  let index = value.indexOf(terminator);
-
-  if (index === -1) {
+  // Validate the URL is formed correctly
+  if (value.indexOf("https://twitter.com/") === -1) {
     return invalidStatusError;
   }
 
-  // Adjust the index
-  index += terminator.length;
-
-  // get the status ID
-  const status = value.substr(index);
-
-  // application auth keys
-  const {
-    TWITTER_CONSUMER_KEY,
-    TWITTER_CONSUMER_SECRET,
-    TWITTER_BEARER_TOKEN
-  } = process.env;
-
-  // early out if we're missing our API keys
-  if (!TWITTER_BEARER_TOKEN || !TWITTER_CONSUMER_KEY || !TWITTER_CONSUMER_SECRET) {
-    return null;
+  if (value.indexOf("/status/") === -1) {
+    return invalidStatusError;
   }
 
-  const client = new Twitter({
-    consumer_key: TWITTER_CONSUMER_KEY,
-    consumer_secret: TWITTER_CONSUMER_SECRET,
-    bearer_token: TWITTER_BEARER_TOKEN
-  });
-
-  const params = {
-    tweet_mode: "extended",
-    id: status
-  };
-
   return new Promise<StringOrNull>(resolve => {
-    client.get("statuses/show.json", params, (error: any, tweet: any, response: any) => {
-      if (error) {
+    fetch(value)
+      .then(async (res: Response) => {
+        if (!res.ok) {
+          resolve(invalidStatusError);
+          return;
+        }
+
+        const body = await res.text();
+        if (body.indexOf(getAddress()) === -1) {
+          resolve(missingAddrError);
+          return;
+        }
+
+        resolve(null);
+      })
+      .catch((err: Error) => {
+        console.log(err);
         resolve(invalidStatusError);
-      }
-
-      const post = tweet.full_text;
-
-      if (post === undefined) {
-        resolve(invalidStatusError);
-        return;
-      }
-
-      // Check for the presence of the address
-      if (post.indexOf(getAddress()) === -1) {
-        resolve(missingAddrError);
-        return;
-      }
-
-      resolve(null);
-    });
+      });
   });
 }
 
-// TODO: test with github app token, and fallback to basic URL validation
-// if one isn't present & we've been rate limited.
 export const validGitHubSIVP = async (value: string, getAddress: ()=>string) => {
   // Example GitHub Gist
   // https://gist.github.com/user_name/883534236ed2f0e0ffc700b96bd092cd
-
-  // API for fetching the gist
-  const api = "https://api.github.com/gists/";
 
   // Errors
   const invalidGistError = "Invalid Gist URL, please use the 'gist.github.com/user/#' format.";
   const missingAddrError = "Gist is missing the public address.";
 
-  // remove trailing '/'s
-  if (value[value.length - 1] === '/') {
-    value = value.substring(0, value.length - 1);
+  // Ensure the URL contains the correct domain
+  const beginning = "https://gist.github.com/";
+
+  if (value.indexOf(beginning) === -1) {
+    return invalidGistError;
   }
 
-  // Extract the gist ID from the URL we're being given
-  const gist = value.substr(value.lastIndexOf("/") + 1);
-
-  const fetchText = async (rawUrl: string) => {
-    return new Promise<string>(resolve => {
-      request.get({ url: rawUrl }, (error, response, body) => {
-        if (error) {
-          resolve("")
-        } else {
-          resolve(body);
-        }
-      });
-    });
+  // Trim trailing "/"
+  if (value.endsWith("/")) {
+    value = value.substr(0, value.length - 1);
   }
 
-  const headers = {
-    "User-Agent": "request"
-  };
+  // Remove the user_name
+  if (value.split("/").length - 1 === 4) {
+    const nameStart = beginning.length;
+    const nameEnd = value.indexOf("/", nameStart);
+    value = value.substr(0, nameStart) + value.substr(nameEnd + 1);
+  }
 
   return new Promise<StringOrNull>(resolve => {
-    request.get({ url: api + gist, headers }, async (error, response, body) => {
-      if (error) {
-        resolve(invalidGistError + ` ${error}`);
-      } else {
-        const data = JSON.parse(body);
-        const files = data.files;
-
-        if (files === undefined) {
-          // the application token wasn't provided,
-          // and we're being reate limited, so succeed.
-          if (data.message.indexOf("API rate limit") !== -1) {
-            resolve(null);
-            return;
-          }
-
+    fetch(value)
+      .then(async (res: Response) => {
+        if (!res.ok) {
           resolve(invalidGistError);
           return;
         }
 
-        for (const fileName of Object.keys(files)) {
-          const file = files[fileName];
-          const text = await fetchText(file.raw_url);
-
-          if (text.indexOf(getAddress()) !== -1) {
-            resolve(null);
-            return;
-          }
+        const body = await res.text();
+        if (body.indexOf(getAddress()) === -1) {
+          resolve(missingAddrError);
+          return;
         }
 
-        resolve(missingAddrError);
-      }
-    });
+        resolve(null);
+      })
+      .catch((err: Error) => {
+        console.log(err);
+        resolve(invalidGistError);
+      });
   });
 }
