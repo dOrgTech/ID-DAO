@@ -15,7 +15,7 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "test": "npm run build && mocha -r ts-node/register ./test/IdentityDefinition.test.ts --timeout 5000",
+    "test": "npm run build && mocha -r ts-node/register ./test/*.test.ts --timeout 5000",
     "test:env": "concurrently \"docker-compose up\" \"npm explore @dorgtech/id-dao-contracts -- npm run deploy:development\""
   },
   "dependencies": {

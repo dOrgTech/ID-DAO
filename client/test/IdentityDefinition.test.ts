@@ -95,5 +95,11 @@ describe("IdentityDefinition(Form)", () => {
       const res = await form.validate();
       expect(res.hasError).to.be.equal(true);
     });
+
+    it("Optional Social Posts", async () => {
+      form.$.socialPosts.data = { };
+      const res = await form.validate();
+      expect(res.hasError).to.be.equal(false);
+    })
   });
 });

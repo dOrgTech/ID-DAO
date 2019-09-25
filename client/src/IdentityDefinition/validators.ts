@@ -11,11 +11,6 @@ import {
 
 type StringOrNull = string | null | undefined;
 
-const isAddress = (address: Address): boolean => {
-  const addr = address.toLowerCase();
-  return addr[0] === "0" && addr[1] === "x" && Web3Utils.isAddress(addr);
-};
-
 export const requiredText: Validator<StringOrNull> = value => {
   const error = "This is required.";
 
@@ -25,6 +20,26 @@ export const requiredText: Validator<StringOrNull> = value => {
 
   return null;
 }
+
+export const optionalText = (...validators: Validator<string>[]): Validator<string> => {
+  return (value: string) => {
+    if (value !== "") {
+      for (let fn of validators) {
+        const result = fn(value);
+        if (result) {
+          return result;
+        }
+      }
+    }
+
+    return null;
+  }
+}
+
+const isAddress = (address: Address): boolean => {
+  const addr = address.toLowerCase();
+  return addr[0] === "0" && addr[1] === "x" && Web3Utils.isAddress(addr);
+};
 
 export const validAddress: Validator<string> = value => {
   const error = "Please enter a valid address.";
