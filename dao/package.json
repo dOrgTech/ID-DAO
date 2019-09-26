@@ -26,6 +26,7 @@
     "deploy:rinkeby": "truffle migrate --network rinkeby"
   },
   "dependencies": {
+    "@daostack/arc": "0.0.1-rc.27",
     "openzeppelin-solidity": "^2.3.0"
   },
   "devDependencies": {
