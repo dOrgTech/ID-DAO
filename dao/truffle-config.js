@@ -94,12 +94,22 @@ module.exports = {
 
   // Set default mocha options here, use special reporters etc.
   mocha: {
-    // timeout: 100000
+    timeout: 100000
+  },
+  solc: {
+    optimizer: {
+      enabled: true,
+      runs: 200
+    }
   },
   compilers: {
     solc: {
       version: "0.5.11",    // Fetch exact version from solc-bin (default: truffle's version)
       // docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
+      optimizer: {
+        enabled: true,
+        runs: 200
+      }
     }
   }
 }

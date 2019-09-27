@@ -19,6 +19,12 @@ contract HumanReputationClaim is UniversalScheme {
   // (Avatar=>Human=>Claimed)
   mapping(address=>mapping(address=>bool)) claimed;
 
+  struct Parameters {
+    uint256 claimAmount;
+  }
+
+  mapping(bytes32=>Parameters) public parameters;
+
   constructor(IdentityRegistry _registry) public {
     registry = _registry;
   }
@@ -27,11 +33,8 @@ contract HumanReputationClaim is UniversalScheme {
     require(registry.isHuman(_human), "human is not registered");
 
     // Fetch the amount of reputation the human is claiming.
-    // As an optimization, this is simply stored in the controller
-    // as this scheme's params, instead of doing the typical hashing and storing.
-    reputation = uint256(getParametersFromController(_avatar));
+    reputation = parameters[getParametersFromController(_avatar)].claimAmount;
 
-    require(reputation > 0, "reputation must be greater than 0");
     require(
       claimed[address(_avatar)][_human] == false,
       "human has already claimed reputation"
@@ -45,5 +48,18 @@ contract HumanReputationClaim is UniversalScheme {
 
     claimed[address(_avatar)][_human] = true;
     emit HumanReputationClaimed(address(_avatar), _human, reputation);
+  }
+
+  function hasClaimed(Avatar _avatar, address _human) public view returns(bool) {
+    return claimed[address(_avatar)][_human];
+  }
+
+  function setParameters(uint256 _claimAmount) public returns(bytes32 paramsHash) {
+    paramsHash = getParametersHash(_claimAmount);
+    parameters[paramsHash].claimAmount = _claimAmount;
+  }
+
+  function getParametersHash(uint256 _claimAmount) public pure returns(bytes32) {
+    return keccak256(abi.encodePacked(_claimAmount));
   }
 }
