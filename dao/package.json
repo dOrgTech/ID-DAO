@@ -15,7 +15,7 @@
     "compile": "truffle compile --all",
     "test": "wait-on tcp:8545 && truffle test",
     "test:env": "ganache-cli",
-    "ci": "concurrently \"npm:test:env\" \"npm:test\"",
+    "ci": "concurrently --kill-others \"npm:test:env\" \"npm:test\"",
     "deploy:development": "wait-on tcp:8545 && truffle migrate --network development",
     "deploy:rinkeby": "truffle migrate --network rinkeby",
     "coverage": "npx solidity-coverage",
