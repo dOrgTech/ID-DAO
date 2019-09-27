@@ -5,6 +5,7 @@
       "constant": true,
       "inputs": [
         {
+          "internalType": "address",
           "name": "id",
           "type": "address"
         }
@@ -12,6 +13,7 @@
       "name": "isHuman",
       "outputs": [
         {
+          "internalType": "bool",
           "name": "",
           "type": "bool"
         }
@@ -21,7 +23,7 @@
       "type": "function"
     }
   ],
-  "metadata": "",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.11+commit.c082d0b4\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"id\",\"type\":\"address\"}],\"name\":\"isHuman\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"Luis Dominguez <ld@luis.sh>, Jordan Ellis <jelli@dorg.tech>\",\"details\":\"An abstract contract which can be extended by any contract which wishes to inherit human-related functionality.\",\"methods\":{\"isHuman(address)\":{\"details\":\"An abstract function which must be implemented, which determines whether a passed address is human or not.\",\"params\":{\"id\":\"address Address to check\"},\"return\":\"bool Human status of address\"}},\"title\":\"HumanContract\"},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/home/jelli/Dev/Repos/dOrg/ID-DAO/dao/contracts/human/HumanContract.sol\":\"HumanContract\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/jelli/Dev/Repos/dOrg/ID-DAO/dao/contracts/human/HumanContract.sol\":{\"keccak256\":\"0xa8e2523fa7267b89e39fa3d8e3a9942d4dfa6cd1012db9b930ee7be4a71d33fd\",\"urls\":[\"bzz-raw://adf89d8953e3e5b21fabc0a2a92e2d9d6f98f562812010e1ee973a107c608f29\",\"dweb:/ipfs/QmWr6BT6Zmw9ap2GJXWMsGQL5SUw2CncfWRNV8NJucUbEv\"]},\"/home/jelli/Dev/Repos/dOrg/ID-DAO/dao/contracts/human/IVerifyHuman.sol\":{\"keccak256\":\"0xc31c1032355bfb842930c39a68f4352fa36f790b1ec7130fccf0f541bb43e783\",\"urls\":[\"bzz-raw://af5fbffc160c35cbd03296609766b70a7c51c757715a795322ed0fbbe4d849cb\",\"dweb:/ipfs/QmNdnPuJXHv8fEiaY5rU1whtJcrN8FnwCbZEDgqZgUNEWT\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "sourceMap": "",
@@ -32,14 +34,14 @@
     "absolutePath": "/home/jelli/Dev/Repos/dOrg/ID-DAO/dao/contracts/human/HumanContract.sol",
     "exportedSymbols": {
       "HumanContract": [
-        168
+        259
       ]
     },
-    "id": 169,
+    "id": 260,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 145,
+        "id": 236,
         "literals": [
           "solidity",
           "^",
@@ -47,16 +49,16 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:2"
+        "src": "0:23:3"
       },
       {
         "absolutePath": "/home/jelli/Dev/Repos/dOrg/ID-DAO/dao/contracts/human/IVerifyHuman.sol",
         "file": "./IVerifyHuman.sol",
-        "id": 146,
+        "id": 237,
         "nodeType": "ImportDirective",
-        "scope": 169,
-        "sourceUnit": 179,
-        "src": "25:28:2",
+        "scope": 260,
+        "sourceUnit": 270,
+        "src": "25:28:3",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -66,40 +68,40 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 147,
+              "id": 238,
               "name": "IVerifyHuman",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 178,
-              "src": "310:12:2",
+              "referencedDeclaration": 269,
+              "src": "310:12:3",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_IVerifyHuman_$178",
+                "typeIdentifier": "t_contract$_IVerifyHuman_$269",
                 "typeString": "contract IVerifyHuman"
               }
             },
-            "id": 148,
+            "id": 239,
             "nodeType": "InheritanceSpecifier",
-            "src": "310:12:2"
+            "src": "310:12:3"
           }
         ],
         "contractDependencies": [
-          178
+          269
         ],
         "contractKind": "contract",
         "documentation": "@title HumanContract\n@author Luis Dominguez <ld@luis.sh>, Jordan Ellis <jelli@dorg.tech>\n * @dev An abstract contract which can be extended by any contract\nwhich wishes to inherit human-related functionality.",
         "fullyImplemented": false,
-        "id": 168,
+        "id": 259,
         "linearizedBaseContracts": [
-          168,
-          178
+          259,
+          269
         ],
         "name": "HumanContract",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 159,
+              "id": 250,
               "nodeType": "Block",
-              "src": "411:81:2",
+              "src": "411:81:3",
               "statements": [
                 {
                   "expression": {
@@ -112,18 +114,18 @@
                             "argumentTypes": null,
                             "expression": {
                               "argumentTypes": null,
-                              "id": 152,
+                              "id": 243,
                               "name": "msg",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 599,
-                              "src": "437:3:2",
+                              "referencedDeclaration": 2672,
+                              "src": "437:3:3",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_magic_message",
                                 "typeString": "msg"
                               }
                             },
-                            "id": 153,
+                            "id": 244,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
@@ -131,7 +133,7 @@
                             "memberName": "sender",
                             "nodeType": "MemberAccess",
                             "referencedDeclaration": null,
-                            "src": "437:10:2",
+                            "src": "437:10:3",
                             "typeDescriptions": {
                               "typeIdentifier": "t_address_payable",
                               "typeString": "address payable"
@@ -145,18 +147,18 @@
                               "typeString": "address payable"
                             }
                           ],
-                          "id": 151,
+                          "id": 242,
                           "name": "isHuman",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 167,
-                          "src": "429:7:2",
+                          "referencedDeclaration": 258,
+                          "src": "429:7:3",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_internal_view$_t_address_$returns$_t_bool_$",
                             "typeString": "function (address) view returns (bool)"
                           }
                         },
-                        "id": 154,
+                        "id": 245,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -164,7 +166,7 @@
                         "lValueRequested": false,
                         "names": [],
                         "nodeType": "FunctionCall",
-                        "src": "429:19:2",
+                        "src": "429:19:3",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bool",
                           "typeString": "bool"
@@ -173,14 +175,14 @@
                       {
                         "argumentTypes": null,
                         "hexValue": "53656e646572206973206e6f7420612068756d616e",
-                        "id": 155,
+                        "id": 246,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
                         "kind": "string",
                         "lValueRequested": false,
                         "nodeType": "Literal",
-                        "src": "450:23:2",
+                        "src": "450:23:3",
                         "subdenomination": null,
                         "typeDescriptions": {
                           "typeIdentifier": "t_stringliteral_900f2950fe64f7e68bb750d0bfeebd3ccb30fad69b1dbbb25b5242a377be6643",
@@ -200,21 +202,21 @@
                           "typeString": "literal_string \"Sender is not a human\""
                         }
                       ],
-                      "id": 150,
+                      "id": 241,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        602,
-                        603
+                        2675,
+                        2676
                       ],
-                      "referencedDeclaration": 603,
-                      "src": "421:7:2",
+                      "referencedDeclaration": 2676,
+                      "src": "421:7:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 156,
+                    "id": 247,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -222,56 +224,56 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "421:53:2",
+                    "src": "421:53:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 157,
+                  "id": 248,
                   "nodeType": "ExpressionStatement",
-                  "src": "421:53:2"
+                  "src": "421:53:3"
                 },
                 {
-                  "id": 158,
+                  "id": 249,
                   "nodeType": "PlaceholderStatement",
-                  "src": "484:1:2"
+                  "src": "484:1:3"
                 }
               ]
             },
             "documentation": "@dev Throws if not called by a human.",
-            "id": 160,
+            "id": 251,
             "name": "onlyHuman",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 149,
+              "id": 240,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "408:2:2"
+              "src": "408:2:3"
             },
-            "src": "390:102:2",
+            "src": "390:102:3",
             "visibility": "internal"
           },
           {
             "body": null,
             "documentation": "@dev An abstract function which must be implemented, which determines\nwhether a passed address is human or not.\n     * @param id address Address to check\n@return bool Human status of address",
-            "id": 167,
+            "id": 258,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "isHuman",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 163,
+              "id": 254,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 162,
+                  "id": 253,
                   "name": "id",
                   "nodeType": "VariableDeclaration",
-                  "scope": 167,
-                  "src": "750:10:2",
+                  "scope": 258,
+                  "src": "750:10:3",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -279,10 +281,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 161,
+                    "id": 252,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "750:7:2",
+                    "src": "750:7:3",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -293,19 +295,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "749:12:2"
+              "src": "749:12:3"
             },
             "returnParameters": {
-              "id": 166,
+              "id": 257,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 165,
+                  "id": 256,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 167,
-                  "src": "783:4:2",
+                  "scope": 258,
+                  "src": "783:4:3",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -313,10 +315,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 164,
+                    "id": 255,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "783:4:2",
+                    "src": "783:4:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -326,33 +328,33 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "782:6:2"
+              "src": "782:6:3"
             },
-            "scope": 168,
-            "src": "733:56:2",
+            "scope": 259,
+            "src": "733:56:3",
             "stateMutability": "view",
-            "superFunction": 177,
+            "superFunction": 268,
             "visibility": "public"
           }
         ],
-        "scope": 169,
-        "src": "284:507:2"
+        "scope": 260,
+        "src": "284:507:3"
       }
     ],
-    "src": "0:792:2"
+    "src": "0:792:3"
   },
   "legacyAST": {
     "absolutePath": "/home/jelli/Dev/Repos/dOrg/ID-DAO/dao/contracts/human/HumanContract.sol",
     "exportedSymbols": {
       "HumanContract": [
-        168
+        259
       ]
     },
-    "id": 169,
+    "id": 260,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 145,
+        "id": 236,
         "literals": [
           "solidity",
           "^",
@@ -360,16 +362,16 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:2"
+        "src": "0:23:3"
       },
       {
         "absolutePath": "/home/jelli/Dev/Repos/dOrg/ID-DAO/dao/contracts/human/IVerifyHuman.sol",
         "file": "./IVerifyHuman.sol",
-        "id": 146,
+        "id": 237,
         "nodeType": "ImportDirective",
-        "scope": 169,
-        "sourceUnit": 179,
-        "src": "25:28:2",
+        "scope": 260,
+        "sourceUnit": 270,
+        "src": "25:28:3",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -379,40 +381,40 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 147,
+              "id": 238,
               "name": "IVerifyHuman",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 178,
-              "src": "310:12:2",
+              "referencedDeclaration": 269,
+              "src": "310:12:3",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_IVerifyHuman_$178",
+                "typeIdentifier": "t_contract$_IVerifyHuman_$269",
                 "typeString": "contract IVerifyHuman"
               }
             },
-            "id": 148,
+            "id": 239,
             "nodeType": "InheritanceSpecifier",
-            "src": "310:12:2"
+            "src": "310:12:3"
           }
         ],
         "contractDependencies": [
-          178
+          269
         ],
         "contractKind": "contract",
         "documentation": "@title HumanContract\n@author Luis Dominguez <ld@luis.sh>, Jordan Ellis <jelli@dorg.tech>\n * @dev An abstract contract which can be extended by any contract\nwhich wishes to inherit human-related functionality.",
         "fullyImplemented": false,
-        "id": 168,
+        "id": 259,
         "linearizedBaseContracts": [
-          168,
-          178
+          259,
+          269
         ],
         "name": "HumanContract",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 159,
+              "id": 250,
               "nodeType": "Block",
-              "src": "411:81:2",
+              "src": "411:81:3",
               "statements": [
                 {
                   "expression": {
@@ -425,18 +427,18 @@
                             "argumentTypes": null,
                             "expression": {
                               "argumentTypes": null,
-                              "id": 152,
+                              "id": 243,
                               "name": "msg",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 599,
-                              "src": "437:3:2",
+                              "referencedDeclaration": 2672,
+                              "src": "437:3:3",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_magic_message",
                                 "typeString": "msg"
                               }
                             },
-                            "id": 153,
+                            "id": 244,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
@@ -444,7 +446,7 @@
                             "memberName": "sender",
                             "nodeType": "MemberAccess",
                             "referencedDeclaration": null,
-                            "src": "437:10:2",
+                            "src": "437:10:3",
                             "typeDescriptions": {
                               "typeIdentifier": "t_address_payable",
                               "typeString": "address payable"
@@ -458,18 +460,18 @@
                               "typeString": "address payable"
                             }
                           ],
-                          "id": 151,
+                          "id": 242,
                           "name": "isHuman",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 167,
-                          "src": "429:7:2",
+                          "referencedDeclaration": 258,
+                          "src": "429:7:3",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_internal_view$_t_address_$returns$_t_bool_$",
                             "typeString": "function (address) view returns (bool)"
                           }
                         },
-                        "id": 154,
+                        "id": 245,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -477,7 +479,7 @@
                         "lValueRequested": false,
                         "names": [],
                         "nodeType": "FunctionCall",
-                        "src": "429:19:2",
+                        "src": "429:19:3",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bool",
                           "typeString": "bool"
@@ -486,14 +488,14 @@
                       {
                         "argumentTypes": null,
                         "hexValue": "53656e646572206973206e6f7420612068756d616e",
-                        "id": 155,
+                        "id": 246,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
                         "kind": "string",
                         "lValueRequested": false,
                         "nodeType": "Literal",
-                        "src": "450:23:2",
+                        "src": "450:23:3",
                         "subdenomination": null,
                         "typeDescriptions": {
                           "typeIdentifier": "t_stringliteral_900f2950fe64f7e68bb750d0bfeebd3ccb30fad69b1dbbb25b5242a377be6643",
@@ -513,21 +515,21 @@
                           "typeString": "literal_string \"Sender is not a human\""
                         }
                       ],
-                      "id": 150,
+                      "id": 241,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        602,
-                        603
+                        2675,
+                        2676
                       ],
-                      "referencedDeclaration": 603,
-                      "src": "421:7:2",
+                      "referencedDeclaration": 2676,
+                      "src": "421:7:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 156,
+                    "id": 247,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -535,56 +537,56 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "421:53:2",
+                    "src": "421:53:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 157,
+                  "id": 248,
                   "nodeType": "ExpressionStatement",
-                  "src": "421:53:2"
+                  "src": "421:53:3"
                 },
                 {
-                  "id": 158,
+                  "id": 249,
                   "nodeType": "PlaceholderStatement",
-                  "src": "484:1:2"
+                  "src": "484:1:3"
                 }
               ]
             },
             "documentation": "@dev Throws if not called by a human.",
-            "id": 160,
+            "id": 251,
             "name": "onlyHuman",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 149,
+              "id": 240,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "408:2:2"
+              "src": "408:2:3"
             },
-            "src": "390:102:2",
+            "src": "390:102:3",
             "visibility": "internal"
           },
           {
             "body": null,
             "documentation": "@dev An abstract function which must be implemented, which determines\nwhether a passed address is human or not.\n     * @param id address Address to check\n@return bool Human status of address",
-            "id": 167,
+            "id": 258,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "isHuman",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 163,
+              "id": 254,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 162,
+                  "id": 253,
                   "name": "id",
                   "nodeType": "VariableDeclaration",
-                  "scope": 167,
-                  "src": "750:10:2",
+                  "scope": 258,
+                  "src": "750:10:3",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -592,10 +594,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 161,
+                    "id": 252,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "750:7:2",
+                    "src": "750:7:3",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -606,19 +608,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "749:12:2"
+              "src": "749:12:3"
             },
             "returnParameters": {
-              "id": 166,
+              "id": 257,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 165,
+                  "id": 256,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 167,
-                  "src": "783:4:2",
+                  "scope": 258,
+                  "src": "783:4:3",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -626,10 +628,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 164,
+                    "id": 255,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "783:4:2",
+                    "src": "783:4:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -639,28 +641,28 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "782:6:2"
+              "src": "782:6:3"
             },
-            "scope": 168,
-            "src": "733:56:2",
+            "scope": 259,
+            "src": "733:56:3",
             "stateMutability": "view",
-            "superFunction": 177,
+            "superFunction": 268,
             "visibility": "public"
           }
         ],
-        "scope": 169,
-        "src": "284:507:2"
+        "scope": 260,
+        "src": "284:507:3"
       }
     ],
-    "src": "0:792:2"
+    "src": "0:792:3"
   },
   "compiler": {
     "name": "solc",
-    "version": "0.5.4+commit.9549d8ff.Emscripten.clang"
+    "version": "0.5.11+commit.c082d0b4.Emscripten.clang"
   },
   "networks": {},
   "schemaVersion": "3.0.11",
-  "updatedAt": "2019-09-19T15:19:50.722Z",
+  "updatedAt": "2019-09-26T23:59:57.336Z",
   "devdoc": {
     "author": "Luis Dominguez <ld@luis.sh>, Jordan Ellis <jelli@dorg.tech>",
     "details": "An abstract contract which can be extended by any contract which wishes to inherit human-related functionality.",

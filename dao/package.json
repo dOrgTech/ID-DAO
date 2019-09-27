@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@daostack/arc": "0.0.1-rc.27",
+    "@daostack/infra": "0.0.1-rc.14",
     "openzeppelin-solidity": "^2.3.0"
   },
   "devDependencies": {
