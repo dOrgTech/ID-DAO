@@ -60,15 +60,8 @@ jobs:
           <<: *cache_key_node_modules
       - *npm_install_if_necessary
       - run:
-          name: Install Docker Compose
-          command: |
-            curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
-            chmod +x ~/docker-compose
-            sudo mv ~/docker-compose /usr/local/bin/docker-compose
-      - setup_remote_docker
-      - run:
           name: Client Tests
-          command: npm run test:client
+          command: npm run test:client:no-docker
       - run:
           name: DAO Tests
           command: npm run test:dao

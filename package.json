@@ -1,9 +1,10 @@
 {
-  "name": "ID-DAO",
+  "name": "@dorgtech/id-dao",
   "scripts": {
     "postinstall": "npx lerna bootstrap",
     "test:env": "cd ./client && npm run test:env",
     "test:client": "cd ./client && npm run ci",
+    "test:client:no-docker": "cd ./client && npm run ci:no-docker",
     "test:dao": "cd ./dao && npm run ci",
     "lint:dao": "cd ./dao && npm run lint"
   },
