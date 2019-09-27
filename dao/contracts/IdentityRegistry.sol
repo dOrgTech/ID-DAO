@@ -15,63 +15,63 @@ import "openzeppelin-solidity/contracts/cryptography/ECDSA.sol";
  */
 contract IdentityRegistry is SignedRegistry, Ownable, HumanContract {
 
-    /**
-     * @dev Simple add function, adds an address along with metadata associated with the identity.
-     * Restricted to owner.
-     *
-     * @param id address to add
-     * @param metadata a hash of the identity metadata definition
-     * @param sig the user's signature over this metadata
-     */
-    function add(
-        address id,
-        bytes memory metadata,
-        bytes memory sig
-    ) public onlyOwner {
-        _add(id, metadata, sig);
-    }
+  /**
+   * @dev Simple add function, adds an address along with metadata associated with the identity.
+   * Restricted to owner.
+   *
+   * @param id address to add
+   * @param metadata a hash of the identity metadata definition
+   * @param sig the user's signature over this metadata
+   */
+  function add(
+    address id,
+    bytes memory metadata,
+    bytes memory sig
+  ) public onlyOwner {
+    _add(id, metadata, sig);
+  }
 
-    /**
-     * @dev Simple update function, updates an address along with metadata associated with the identity.
-     * Restricted to owner.
-     *
-     * @param id address to update
-     * @param metadata a hash of the identity metadata definition
-     * @param sig the user's signature over this metadata
-     */
-    function update(
-        address id,
-        bytes memory metadata,
-        bytes memory sig
-    ) public onlyOwner {
-        _update(id, metadata, sig);
-    }
+  /**
+   * @dev Simple update function, updates an address along with metadata associated with the identity.
+   * Restricted to owner.
+   *
+   * @param id address to update
+   * @param metadata a hash of the identity metadata definition
+   * @param sig the user's signature over this metadata
+   */
+  function update(
+    address id,
+    bytes memory metadata,
+    bytes memory sig
+  ) public onlyOwner {
+    _update(id, metadata, sig);
+  }
 
-    /**
-     * @dev Simple remove function, removes an address along with metadata associated with the identity.
-     * Restricted to owner.
-     *
-     * @param id address to delete
-     */
-    function remove(address id) public onlyOwner {
-        _remove(id);
-    }
+  /**
+   * @dev Simple remove function, removes an address along with metadata associated with the identity.
+   * Restricted to owner.
+   *
+   * @param id address to delete
+   */
+  function remove(address id) public onlyOwner {
+    _remove(id);
+  }
 
-    /**
-     * @dev Allows a registeredidentity to remove themselves from the registry.
-     * Restricted to registered identity.
-     */
-    function removeSelf() public onlyHuman {
-        _remove(msg.sender);
-    }
+  /**
+   * @dev Allows a registeredidentity to remove themselves from the registry.
+   * Restricted to registered identity.
+   */
+  function removeSelf() public onlyHuman {
+    _remove(msg.sender);
+  }
 
-    /**
-     * @dev Determines whether a passed address is human or not. Checks existence in registry to determine this.
-     *
-     * @param id address to check
-     * @return bool Human status of address
-     */
-    function isHuman(address id) public view returns (bool) {
-        return registry[id].length != 0;
-    }
+  /**
+   * @dev Determines whether a passed address is human or not. Checks existence in registry to determine this.
+   *
+   * @param id address to check
+   * @return bool Human status of address
+   */
+  function isHuman(address id) public view returns (bool) {
+    return registry[id].length != 0;
+  }
 }

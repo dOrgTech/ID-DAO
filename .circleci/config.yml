@@ -16,7 +16,6 @@ aliases:
     run:
       name: Install npm dependencies
       command: | 
-        cd dao
         # If no node_modules directory
         if [ ! -d node_modules ]; then 
           # Perform a clean npm install
@@ -38,7 +37,9 @@ jobs:
       - *npm_install_if_necessary
       - save_cache: # special step to save the dependency cache
           paths:
+            - node_modules
             - dao/node_modules
+            - client/node_modules
           <<: *cache_key_node_modules # Insert our alias to specify cache key to save to
 
   lint:
@@ -50,7 +51,7 @@ jobs:
       - *npm_install_if_necessary
       - run:
           name: Linter
-          command: cd dao && npm run lint
+          command: npm run lint:dao
   test:
     <<: *defaults
     steps:
@@ -58,13 +59,12 @@ jobs:
       - restore_cache:
           <<: *cache_key_node_modules
       - *npm_install_if_necessary
-      - run: 
-          name: Run development blockchain
-          command: cd dao && npm run chain
-          background: true
       - run:
-          name: Unit tests
-          command: cd dao && npm test
+          name: DAO Tests
+          command: npm run test:dao
+      - run:
+          name: Client Tests
+          command: npm run test:client
   coverage:
     <<: *defaults
     steps:

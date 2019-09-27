@@ -15,8 +15,10 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "test": "npm run build && mocha -r ts-node/register ./test/*.test.ts --timeout 5000",
-    "test:env": "concurrently \"docker-compose up\" \"npm explore @dorgtech/id-dao-contracts -- npm run deploy:development\""
+    "test": "npm run build && wait-on tcp:8545 tcp:5001 && mocha -r ts-node/register ./test/*.test.ts --timeout 5000 --exit",
+    "test:env": "concurrently \"docker-compose up -d\" \"npm explore @dorgtech/id-dao-contracts -- npm run deploy:development\"",
+    "test:teardown": "docker-compose down",
+    "ci": "npm run test:env && npm run test && npm run test:teardown"
   },
   "dependencies": {
     "@daostack/client": "^0.2.8",

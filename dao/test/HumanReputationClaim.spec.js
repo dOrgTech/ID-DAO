@@ -26,13 +26,13 @@ contract('HumanReputationClaim', (accounts) => {
   const humanA = {
     address: accounts[1],
     metadata: 'QmV51fPiTNn2ZcgV5hNVUV7AjhgdVRJ6DXim9zaALpWFYK',
-    signature: ''
+    signature: '',
   };
 
   const humanB = {
     address: accounts[2],
     metadata: 'QmNUXzJHtjSbqN59jH3TusBHry1FqeegJLYUtfnaY3AXFJ',
-    signature: ''
+    signature: '',
   };
 
   before(async () => {
@@ -85,9 +85,9 @@ contract('HumanReputationClaim', (accounts) => {
       // HumanReputationClaimed Event
       const claimEvent = tx.logs[0];
       expect(claimEvent).to.not.be.undefined;
-      expect(claimEvent.event).to.be.equal("HumanReputationClaimed");
+      expect(claimEvent.event).to.be.equal('HumanReputationClaimed');
       {
-        const { _avatar, _human, _amount } = claimEvent.args;
+        const {_avatar, _human, _amount} = claimEvent.args;
         expect(_avatar).to.be.equal(avatar.address);
         expect(_human).to.be.equal(human.address);
         expect(_amount.toNumber()).to.be.equal(reputationClaim);
@@ -102,7 +102,7 @@ contract('HumanReputationClaim', (accounts) => {
       expect(
         (await reputation.balanceOf(human.address)).toNumber()
       ).to.be.equal(reputationClaim);
-    }
+    };
 
     await verifyEvent(resA, humanA);
     await verifyEvent(resB, humanB);

@@ -17,7 +17,7 @@ contract HumanReputationClaim is UniversalScheme {
 
   // Flag letting us know if a user has claimed before
   // (Avatar=>Human=>Claimed)
-  mapping(address=>mapping(address=>bool)) claimed;
+  mapping(address=>mapping(address=>bool)) public claimed;
 
   struct Parameters {
     uint256 claimAmount;

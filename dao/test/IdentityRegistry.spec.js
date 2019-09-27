@@ -19,7 +19,7 @@ contract('IdentityRegistry', (accounts) => {
   };
 
   let validSignature;
-  let updatedSignature
+  let updatedSignature;
 
   before(async () => {
     validSignature = await signMessage(
@@ -70,8 +70,8 @@ contract('IdentityRegistry', (accounts) => {
       await SolAssert.revert(
         async () =>
           await instance.removeSelf({from: user.address}),
-          'Sender is not a human'
-        );
+        'Sender is not a human'
+      );
     });
   });
 
