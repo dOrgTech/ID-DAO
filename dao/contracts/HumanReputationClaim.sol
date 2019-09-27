@@ -15,6 +15,10 @@ contract HumanReputationClaim is UniversalScheme {
   // A registry of humans
   IdentityRegistry public registry;
 
+  // Flag letting us know if a user has claimed before
+  // (Avatar=>Human=>Claimed)
+  mapping(address=>mapping(address=>bool)) claimed;
+
   constructor(IdentityRegistry _registry) public {
     registry = _registry;
   }
@@ -29,7 +33,7 @@ contract HumanReputationClaim is UniversalScheme {
 
     require(reputation > 0, "reputation must be greater than 0");
     require(
-      _avatar.nativeReputation().balanceOf(_human) == 0,
+      claimed[address(_avatar)][_human] == false,
       "human has already claimed reputation"
     );
     require(
@@ -38,5 +42,8 @@ contract HumanReputationClaim is UniversalScheme {
       ),
       "failed to mintReputation"
     );
+
+    claimed[address(_avatar)][_human] = true;
+    emit HumanReputationClaimed(address(_avatar), _human, reputation);
   }
 }

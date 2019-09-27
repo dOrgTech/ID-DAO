@@ -1,0 +1,9 @@
+node_modules/
+build/
+coverage/
+coverage.json
+.env
+*.DS*
+*.swp
+*.swo
+*.odt#
