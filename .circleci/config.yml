@@ -60,11 +60,11 @@ jobs:
           <<: *cache_key_node_modules
       - *npm_install_if_necessary
       - run:
-          name: DAO Tests
-          command: npm run test:dao
-      - run:
           name: Client Tests
           command: npm run test:client
+      - run:
+          name: DAO Tests
+          command: npm run test:dao
   coverage:
     <<: *defaults
     steps:
