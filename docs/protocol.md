@@ -7,16 +7,16 @@ The Identity DAO curates a registry of identity entries on the Ethereum blockcha
 2. No two addresses are controlled by the same human identity.
 3. All identity metadata attributed to that address (Full name, Twitter handle, Photo, etc) corresponds to that human identity.
 
-The DAO's protocol is intended to achieve the above functionality in a manner that is
-- *Sound*: Near-0 false positive rate and very low false negative rate
-- *Incentivized*: Encourages profit-seeking individuals to curate diligently in the pusuit of profit
-- *High Throughput*: Can handle hundreds, and eventually thousands of proposals a day
-- *Low Cost*: minimizes and distributes costs for identity verification to its marginal cost
+The DAO protocol is designed to achieve this functionality in a manner that is
+- *Resilient*: low false negatives, near-0 false positives
+- *Scalable*: handles hundreds, and eventually thousands of proposals a day
+- *Cheap*: reduces the price of I.D. curation to its marginal cost
+- *Incentivized*: distributes the work of I.D. curation through economic incentives
 
 ## Overview
 The DAO requires users to attach a small fee with their submissions– part of which is returned to the user upon successful submission and the remainder of which pays out correct voters. This fee not only incentivizes voters but also reduces the likelihood of spam proposals.
 
-In order to scale the throughput of decision-making by voters (quantity) without compromising the soundndess of decision-making (quality), the Identity DAO utilizes the Genesis Protocol– which introduces stakers who can curate the proposals that voters vote on through staking.
+In order to scale the throughput of decision-making (scalability) without compromising the soundndess of decision-making (resilience), the Identity DAO utilizes the Genesis Protocol.
 
 ## Genesis Protocol
 
@@ -29,26 +29,15 @@ The Genesis Protocol achieves holographic consensus by combining a staking game 
 - Boosted proposals are open for finite-time voting, at the end of which they’re resolved with relative majority, given a quiet ending.
 - The DAO downstakes every proposal in proportion to the average downstake in Boost.
 
-## ID DAO Configuration
+### ID DAO Configuration
 
-### Reponomics
+| Parameter Name | Description | Initial Value |
+|-|-|-|
+| Claimable Rep | Reputation that can be claimed by humans that are accepted to the registry. | 100 Rep |
+| Incorrect Voter Rep Loss | Proportion of reputation that is debited from incorrect voters and credited to correct voters for a given proposal | 33% |
+| Proposal Stake | Returned if proposal succeeds, sent to DAO treasury if proposal fails | 0.09 ETH |
+| Proposal Fee| Split among correct voters | 0.01 ETH |
 
-Accepted human redeemable reputation: 100 rep
+Once deployed, the Identity DAO will likely modify parameter values as the market reveals the true costs of I.D. curation.
 
-- Accepted humans will receive 100 *claimable* reputation that can only be redeemed by signing a redeem transaction with the corresponding private key.
-
-Incorrect voter reputation loss: 33%
-
-- This reputation is debited from incorrect voters and credited to correct voters of the same proposal
-
-### Tokenomics
-
-A small fee + stake will be required for all submissions to the Identity DAO. 
-
-Proposal stake: 0.09 ETH
-
-- Returned if proposal succeeds, sent to DAO treasury if proposal fails
-
-Proposal fee: 0.01 ETH
-
-- This fee is split among correct voters
+To learn more about Rep Curated Registries (RCR), [see here](https://daotalk.org/t/reputation-curated-registries-rcr/655).
