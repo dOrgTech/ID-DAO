@@ -20,7 +20,7 @@
     "test:teardown": "docker-compose down",
     "ci": "npm run test:env && npm run test && npm run test:teardown",
     "ci:no-docker": "concurrently \"npx ipfs init && npx ipfs daemon\" \"npx ganache-cli\" \"npm explore @dorgtech/id-dao-contracts -- npm run deploy:development && npm run test:no-docker\"",
-    "test:no-docker": "npm run build && wait-on tcp:8545 tcp:5002 && mocha -r ts-node/register ./test/*.test.ts --timeout 5000 --exit",
+    "test:no-docker": "npm run build && wait-on tcp:8545 tcp:5002 && mocha -r ts-node/register ./test/*.test.ts --timeout 5000 --exit"
   },
   "dependencies": {
     "@daostack/client": "^0.2.8",
