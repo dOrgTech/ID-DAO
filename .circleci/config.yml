@@ -60,9 +60,6 @@ jobs:
           <<: *cache_key_node_modules
       - *npm_install_if_necessary
       - run:
-          name: Client Tests
-          command: npm run test:client:no-docker
-      - run:
           name: DAO Tests
           command: npm run test:dao
   coverage:
