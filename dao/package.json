@@ -13,19 +13,21 @@
   "homepage": "https://github.com/dOrgTech/ID-DAO#readme",
   "scripts": {
     "compile": "truffle compile --all",
-    "test": "truffle test",
-    "test:env": "concurrently \"npm:chain\"",
-    "chain": "ganache-cli",
+    "test": "wait-on tcp:8545 && truffle test",
+    "test:env": "ganache-cli",
+    "ci": "(npm run test:env &) && npm run test",
+    "deploy:development": "wait-on tcp:8545 && truffle migrate --network development",
+    "deploy:rinkeby": "truffle migrate --network rinkeby",
     "coverage": "npx solidity-coverage",
     "lint": "npm run lint:sol && npm run lint:js",
     "lint:fix": "npm run lint:js:fix",
     "lint:sol": "solhint --max-warnings 0 \"contracts/**/*.sol\"",
     "lint:js": "eslint ./test/**/*.js",
-    "lint:js:fix": "eslint --fix ./test/**/*.js",
-    "deploy:development": "wait-on tcp:8545 && truffle migrate --network development",
-    "deploy:rinkeby": "truffle migrate --network rinkeby"
+    "lint:js:fix": "eslint --fix ./test/**/*.js"
   },
   "dependencies": {
+    "@daostack/arc": "0.0.1-rc.27",
+    "@daostack/infra": "0.0.1-rc.14",
     "openzeppelin-solidity": "^2.3.0"
   },
   "devDependencies": {

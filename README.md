@@ -22,9 +22,9 @@ Here is a breakdown of the primary user-groups:
 
 | User Group | Description | Interactions with the Registry / DAO | How? |
 |-|-|-|-|
-| Humans | Individuals who need to access dapps that require identity | Apply to the registry | Through on-boarding portals like GoodDollar or directly on Alchemy |
-| Curators | Maintainers of the registry |  Vote and stake | Directly on Alchemy |
-| Portals | Platforms that help individuals apply to the registry | Apply to the registry on behalf of individuals | Directly to the blockchain through their servers via web3 |  
-| Apps | Apps that need to authenticate user identity | Read from the registry | Directly from the blockchain with javascript plug-in |
+| `Humans` | Individuals who need to access dapps that require identity | Apply to the registry | Through on-boarding portals like GoodDollar or directly on Alchemy |
+| `Curators` | Maintainers of the registry |  Vote and stake | Directly on Alchemy |
+| `Portals` | Platforms that help individuals apply to the registry | Apply to the registry on behalf of individuals | Directly to the blockchain through their servers via web3 |  
+| `Apps` | Apps that need to authenticate user identity | Read from the registry | Directly from the blockchain with javascript plug-in |
 
-These groups are not mutually exclusive. For instance, GoodDollar is both a portal that lets its users apply to the registry and an app that checks the registry to verify its users’ identities. GoodDollar could also act as a curator by voting or staking on proposals. Another cross-over example is an individual who applies to the registry and then starts participating as a curator as well.
+These groups are not mutually exclusive. For instance, GoodDollar is both a `Portal` that lets its users apply to the registry and an `App` that checks the registry to verify its users’ identities. GoodDollar could also act as a `Curator` by voting or staking on proposals. Another cross-over example is a `Human` who applies to the registry and then starts participating as a `Curator` as well.
