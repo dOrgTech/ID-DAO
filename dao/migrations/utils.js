@@ -8,7 +8,7 @@ function contractDeployed(network, contract, address) {
     json = "{}";
   }
 
-  const addresses = JSON.parse(json);
+  let addresses = JSON.parse(json);
 
   if (!addresses) {
     addresses = { };
