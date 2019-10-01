@@ -1,24 +1,30 @@
 const fs = require("fs");
-const daos = require("./dao-addresses.json");
-const registries = __dirname + "/registries.json";
+const addressesPath = __dirname + "/addresses.json";
 
-function registryDeployed(network, address) {
-  const migrations = JSON.parse(
-    fs.readFileSync(registries)
-  );
+function contractDeployed(network, contract, address) {
+  let json = fs.readFileSync(addressesPath).toString();
 
-  migrations[network] = address;
+  if (json.length === 0) {
+    json = "{}";
+  }
+
+  let addresses = JSON.parse(json);
+
+  if (!addresses) {
+    addresses = { };
+  }
+
+  if (!addresses[network]) {
+    addresses[network] = { };
+  }
+
+  addresses[network][contract] = address;
 
   fs.writeFileSync( 
-    registries, JSON.stringify(migrations, null, 2)
+    addressesPath, JSON.stringify(addresses, null, 2)
   );
-}
-
-function daoAddress(network) {
-  return daos[network] ? daos[network].avatar : undefined;
 }
 
 module.exports = {
-  registryDeployed,
-  daoAddress
+  contractDeployed
 };

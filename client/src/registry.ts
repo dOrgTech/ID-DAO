@@ -20,7 +20,7 @@ import {
 } from "./IdentityDefinition/types";
 
 const abi = require("@dorgtech/id-dao-contracts/build/contracts/IdentityRegistry.json");
-const addresses = require("@dorgtech/id-dao-contracts/migrations/registries.json");
+const addresses = require("@dorgtech/id-dao-contracts/migrations/addresses.json");
 
 let registry: any = undefined;
 
@@ -28,7 +28,7 @@ export const getRegistry = async (): Promise<any> => {
   if (!registry) {
     const web3 = await getEnabledWeb3();
     registry = new web3.eth.Contract(
-      abi.abi, addresses[await getNetworkName()]
+      abi.abi, addresses[await getNetworkName()]["IdentityRegistry"]
     );
   }
 

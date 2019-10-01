@@ -3,18 +3,19 @@ require('dotenv').config();
 const HDWalletProvider = require('truffle-hdwallet-provider');
 const infuraKey = process.env.INFURA_KEY;
 const mnemonic = process.env.MNEMONIC;
+const ganachePort = process.env.ID_DAO_GANACHE_PORT ? process.env.ID_DAO_GANACHE_PORT : 8545;
 
 module.exports = {
   networks: {
     development: {
       host: "127.0.0.1",     // Localhost (default: none)
-      port: 8545,            // Standard Ethereum port (default: none)
+      port: ganachePort,            // Standard Ethereum port (default: none)
       network_id: "*",       // Any network (default: none)
     },
 
     coverage: {
       host: '127.0.0.1',
-      port: 8545,
+      port: ganachePort,
       network_id: '*',
     },
 

@@ -2,13 +2,16 @@
   "name": "@dorgtech/id-dao",
   "scripts": {
     "postinstall": "npx lerna bootstrap",
+    "test": "npm run ci:dao",
     "test:env": "cd ./client && npm run test:env",
     "test:client": "cd ./client && npm run ci",
-    "test:client:no-docker": "cd ./client && npm run ci:no-docker",
+    "ci:client": "cd ./client && cp .env.example .env && npm run ci",
     "test:dao": "cd ./dao && npm run ci",
+    "ci:dao": "cd ./dao && cp .env.example .env && npm run ci",
     "lint:dao": "cd ./dao && npm run lint"
   },
   "devDependencies": {
+    "env-cmd": "^10.0.1",
     "lerna": "^3.16.4"
   }
 }
