@@ -19,7 +19,7 @@ import { expect } from "chai";
 
 const json = JSON.stringify(require("./valid-identity.json"));
 
-setWeb3Provider(`http://127.0.0.1:${process.env.ID_DAO_GANACHE_PORT}`);
+setWeb3Provider(`http://127.0.0.1:${process.env.ID_DAO_WEB3_PORT}`);
 setIpfsEndpoint("http://127.0.0.1", process.env.ID_DAO_IPFS_PORT);
 
 describe("Registry", async () => {

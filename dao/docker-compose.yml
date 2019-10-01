@@ -11,5 +11,5 @@ services:
   ganache:
     image: trufflesuite/ganache-cli
     ports:
-      - ${ID_DAO_GANACHE_PORT}:8545
+      - ${ID_DAO_WEB3_PORT}:8545
     command: --gasLimit 10000000 --mnemonic ${ID_DAO_DEV_MNEMONIC}

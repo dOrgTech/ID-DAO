@@ -4,7 +4,7 @@ const waitOn = require('wait-on');
 const opts = {
   resources: [
     `tcp:${process.env.ID_DAO_IPFS_PORT}`,
-    `tcp:${process.env.ID_DAO_GANACHE_PORT}`
+    `tcp:${process.env.ID_DAO_WEB3_PORT}`
   ],
   timeout: 30000
 };
