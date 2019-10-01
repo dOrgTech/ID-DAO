@@ -14,7 +14,7 @@
   "homepage": "https://github.com/dOrgTech/ID-DAO#readme",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc",
+    "build": "npx tsc",
     "test": "npm run build && env-cmd mocha -r ts-node/register ./test/*.test.ts --timeout 5000 --exit",
     "test:env": "env-cmd npm explore @dorgtech/id-dao-contracts -- npm run dev:env",
     "test:teardown": "env-cmd npm explore @dorgtech/id-dao-contracts -- npm run env:down",
