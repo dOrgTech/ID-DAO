@@ -1,4 +1,3 @@
-require("dotenv").config();
 import { Validator } from "formstate";
 import * as Web3Utils from "web3-utils";
 import * as IsIPFS from "is-ipfs";

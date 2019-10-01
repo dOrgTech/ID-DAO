@@ -15,17 +15,14 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "test": "npm run build && wait-on tcp:8545 tcp:5001 && mocha -r ts-node/register ./test/*.test.ts --timeout 5000 --exit",
-    "test:env": "concurrently \"docker-compose up -d\" \"npm explore @dorgtech/id-dao-contracts -- npm run deploy:development\"",
-    "test:teardown": "docker-compose down",
-    "ci": "npm run test:env && npm run test && npm run test:teardown",
-    "ci:no-docker": "concurrently \"npx ipfs init && npx ipfs daemon\" \"npx ganache-cli\" \"npm explore @dorgtech/id-dao-contracts -- npm run deploy:development && npm run test:no-docker\"",
-    "test:no-docker": "npm run build && wait-on tcp:8545 tcp:5002 && mocha -r ts-node/register ./test/*.test.ts --timeout 5000 --exit"
+    "test": "npm run build && env-cmd mocha -r ts-node/register ./test/*.test.ts --timeout 5000 --exit",
+    "test:env": "env-cmd npm explore @dorgtech/id-dao-contracts -- npm run dev:env",
+    "test:teardown": "env-cmd npm explore @dorgtech/id-dao-contracts -- npm run env:down",
+    "ci": "npm run test:env && npm run test && npm run test:teardown"
   },
   "dependencies": {
     "@daostack/client": "^0.2.8",
     "@dorgtech/id-dao-contracts": "1.0.0",
-    "dotenv": "^8.1.0",
     "formstate": "^1.3.0",
     "ipfs-http-client": "^36.0.0",
     "is-ipfs": "^0.6.1",
@@ -42,6 +39,8 @@
     "@types/web3": "1.0.12",
     "chai": "^4.2.0",
     "concurrently": "^4.1.2",
+    "dotenv": "^8.1.0",
+    "env-cmd": "^10.0.1",
     "mocha": "^6.2.0",
     "truffle-hdwallet-provider": "^1.0.15",
     "ts-node": "^8.3.0",

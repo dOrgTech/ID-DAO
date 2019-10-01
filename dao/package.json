@@ -1,6 +1,6 @@
 {
   "name": "@dorgtech/id-dao-contracts",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Identity DAO contracts.",
   "author": "dOrg",
   "repository": {
@@ -13,10 +13,13 @@
   "homepage": "https://github.com/dOrgTech/ID-DAO#readme",
   "scripts": {
     "compile": "truffle compile --all",
-    "test": "wait-on tcp:8545 && truffle test",
-    "test:env": "ganache-cli",
-    "ci": "(npm run test:env &) && npm run test",
-    "deploy:development": "wait-on tcp:8545 && truffle migrate --network development",
+    "test": "node ./ops/wait-on-ports && truffle test",
+    "ci": "npm run test:env && npm run test",
+    "env:up": "docker-compose up -d",
+    "env:down": "docker-compose down",
+    "test:env": "npm run env:up",
+    "dev:env": "npm run env:up && npm run deploy:development",
+    "deploy:development": "node ./ops/wait-on-ports && truffle migrate --network development",
     "deploy:rinkeby": "truffle migrate --network rinkeby",
     "coverage": "npx solidity-coverage",
     "lint": "npm run lint:sol && npm run lint:js",

@@ -6,10 +6,10 @@ services:
   ipfs:
     image: ipfs/go-ipfs
     ports:
-      - 5001:5001
+      - ${ID_DAO_IPFS_PORT}:5001
 
   ganache:
     image: trufflesuite/ganache-cli
     ports:
-      - 8545:8545
-    command: --gasLimit 10000000
+      - ${ID_DAO_GANACHE_PORT}:8545
+    command: --gasLimit 10000000 --mnemonic ${ID_DAO_DEV_MNEMONIC}

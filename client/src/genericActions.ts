@@ -1,11 +1,13 @@
-const addresses = require("@dorgtech/id-dao-contracts/migrations/registries.json");
+const addresses = require("@dorgtech/id-dao-contracts/migrations/addresses.json");
+
+const { mainnet, rinkeby, development } = addresses;
 
 export const genericActions = {
   name: "Identity Registry",
   addresses: {
-    main: [addresses["mainnet"]],
-    rinkeby: [addresses["rinkeby"]],
-    private: [addresses["development"]]
+    main: [mainnet ? mainnet["IdentityRegistry"] : undefined],
+    rinkeby: [rinkeby ? rinkeby["IdentityRegistry"] : undefined],
+    private: [development ? development["IdentityRegistry"] : undefined]
   },
   actions: [
     {
