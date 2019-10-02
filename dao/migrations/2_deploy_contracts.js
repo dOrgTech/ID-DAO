@@ -111,12 +111,17 @@ module.exports = function(deployer, network, accounts) {
         Controller
       } = migration.dao[arcVersion];
 
-      console.log("DAO Successfully Deployed.");
+      const {
+        SchemeRegistrar,
+        UGenericScheme
+      } = migrationAddresses[networkName]["base"][arcVersion];
 
       contractDeployed(network, "Avatar", Avatar);
       contractDeployed(network, "DAOToken", DAOToken);
       contractDeployed(network, "Reputation", Reputation);
       contractDeployed(network, "Controller", Controller);
+      contractDeployed(network, "SchemeRegistrar", SchemeRegistrar);
+      contractDeployed(network, "UGenericScheme", UGenericScheme);
 
       return {
         registry,
@@ -126,6 +131,8 @@ module.exports = function(deployer, network, accounts) {
     })
     // Give the DAO ownership of the IdentityRegistry
     .then(async ({ registry, claimScheme, Avatar }) => {
-      await registry.transferOwnership(Avatar);
+      if (!process.env.ID_DAO_NO_DAO_OWNER) {
+        await registry.transferOwnership(Avatar);
+      }
     });
 };

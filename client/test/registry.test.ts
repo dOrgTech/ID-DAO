@@ -6,7 +6,6 @@ import {
   isHuman,
   removeSelf,
   deserialize,
-  serialize,
   IdentityDefinition,
   getIdentity,
   signAndUploadIdentity

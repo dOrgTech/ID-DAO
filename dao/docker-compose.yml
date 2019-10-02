@@ -12,4 +12,4 @@ services:
     image: daostack/migration:0.0.1-rc.28-v0
     ports:
       - ${ID_DAO_WEB3_PORT}:8545
-    command: --mnemonic ${ID_DAO_DEV_MNEMONIC}
+    command: --mnemonic "${ID_DAO_DEV_MNEMONIC}"

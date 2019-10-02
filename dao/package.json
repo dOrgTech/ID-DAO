@@ -1,6 +1,6 @@
 {
   "name": "@dorgtech/id-dao-contracts",
-  "version": "1.0.10",
+  "version": "1.1.0-rc.1-v2",
   "description": "Identity DAO contracts.",
   "author": "dOrg",
   "repository": {
@@ -27,13 +27,13 @@
     "lint:sol": "solhint --max-warnings 0 \"contracts/**/*.sol\"",
     "lint:js": "eslint ./test/**/*.js",
     "lint:js:fix": "eslint --fix ./test/**/*.js",
-    "package:release": "rm -rf ./package && mkdir ./package && cp -r ./build ./contracts ./migrations ./ops ./test .env.example docker-compose.yml package.json package-lock.json README.md truffle-config.js LICENSE ./package",
+    "package:release": "rm -rf ./package && mkdir ./package && cp -r ./build ./contracts ./migrations ./ops ./utils ./test .env.example .env.test docker-compose.yml package.json package-lock.json README.md truffle-config.js LICENSE ./package",
     "release": "npm run compile && npm run package:release && npm publish ./package --access public"
   },
   "dependencies": {
     "@daostack/arc": "0.0.1-rc.28",
     "@daostack/infra": "0.0.1-rc.14",
-    "@daostack/migration": "0.0.1-rc.28-v0",
+    "@daostack/migration": "0.0.1-rc.28-v1",
     "dotenv": "^8.0.0",
     "openzeppelin-solidity": "^2.3.0",
     "truffle": "^5.0.31",

@@ -9,6 +9,7 @@ export {
 } from "./utils/ipfsUtils";
 
 export * from "./registry";
+export * from "./dao";
 export * from "./genericActions";
 
 /*
