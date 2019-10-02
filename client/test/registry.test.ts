@@ -1,10 +1,11 @@
+require("dotenv").config();
 import {
   setWeb3Provider,
+  setIpfsEndpoint,
   getRegistry,
   isHuman,
   removeSelf,
   deserialize,
-  serialize,
   IdentityDefinition,
   getIdentity,
   signAndUploadIdentity
@@ -17,7 +18,8 @@ import { expect } from "chai";
 
 const json = JSON.stringify(require("./valid-identity.json"));
 
-setWeb3Provider("http://127.0.0.1:8545");
+setWeb3Provider(`http://127.0.0.1:${process.env.ID_DAO_WEB3_PORT}`);
+setIpfsEndpoint("http://127.0.0.1", process.env.ID_DAO_IPFS_PORT);
 
 describe("Registry", async () => {
   let web3: any;

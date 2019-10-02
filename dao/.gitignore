@@ -1,0 +1,12 @@
+*.DS*
+*.swp
+*.swo
+*.odt#
+node_modules/
+build/
+dist/
+bin/
+package/
+coverage/
+coverage.json
+.env

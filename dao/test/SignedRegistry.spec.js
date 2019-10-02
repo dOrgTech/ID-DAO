@@ -1,4 +1,4 @@
-const {signMessage} = require('./SigningUtils');
+const {signMessage} = require('../utils/SigningUtils');
 const {SolAssert} = require('./SolAssert');
 const chai = require('chai');
 const assert = chai.assert;
@@ -125,8 +125,13 @@ contract('SignedRegistry', (accounts) => {
       it('0 address', async () => {
         await SolAssert.revert(
           async () =>
-            await instance.add("0x0000000000000000000000000000000000000000", user.metadata, validSignature0, {from: user.address}),
-            'user must not be zero address'
+            await instance.add(
+              '0x0000000000000000000000000000000000000000',
+              user.metadata,
+              validSignature0,
+              {from: user.address}
+            ),
+          'user must not be zero address'
         );
       });
     });

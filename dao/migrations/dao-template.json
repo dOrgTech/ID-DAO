@@ -1,0 +1,62 @@
+{
+  "orgName": "Identity",
+  "tokenName": "Identity",
+  "tokenSymbol": "ID",
+  "unregisterOwner": true,
+  "useUController": false,
+  "useDaoCreator": false,
+  "schemes": {
+    "SchemeRegistrar": true,
+    "UGenericScheme": true
+  },
+  "VotingMachinesParams": [
+    {
+      "queuedVoteRequiredPercentage": 50,
+      "queuedVotePeriodLimit": 5184000,
+      "thresholdConst": 1500,
+      "proposingRepReward": 200,
+      "minimumDaoBounty": 500,
+      "boostedVotePeriodLimit": 691200,
+      "daoBountyConst": 10,
+      "activationTime": 0,
+      "preBoostedVotePeriodLimit": 172800,
+      "quietEndingPeriod": 345600,
+      "voteOnBehalf": "0x0000000000000000000000000000000000000000",
+      "votersReputationLossRatio": 4
+    },
+    {
+      "queuedVoteRequiredPercentage": 50,
+      "queuedVotePeriodLimit": 604800,
+      "thresholdConst": 1200,
+      "proposingRepReward": 10,
+      "minimumDaoBounty": 50,
+      "boostedVotePeriodLimit": 129600,
+      "daoBountyConst": 10,
+      "activationTime": 0,
+      "preBoostedVotePeriodLimit": 43200,
+      "quietEndingPeriod": 86400,
+      "voteOnBehalf": "0x0000000000000000000000000000000000000000",
+      "votersReputationLossRatio": 1
+    }
+  ],
+  "SchemeRegistrar": [{
+    "voteRegisterParams": 0,
+    "voteRemoveParams": 0
+  }],
+  "UGenericScheme": [{
+    "targetContract": "${IdentityRegistry}",
+    "voteParams": 1
+  }],
+  "CustomSchemes": [
+    {
+      "name": "HumanReputationClaim",
+      "alias" : "HumanReputationClaim",
+      "isUniversal": true,
+      "address": "${HumanReputationClaim}",
+      "params": [ 10 ],
+      "fromArc": false,
+      "permissions": "0x00000000"
+    }
+  ],
+  "founders": [ ]
+}

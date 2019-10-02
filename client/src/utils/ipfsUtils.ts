@@ -2,9 +2,11 @@ const IPFSClient = require("ipfs-http-client");
 
 let ipfs: any;
 let endpoint: string;
+let port: string | undefined;
 
-export const setIpfsEndpoint = (ipfsHttpEndpoint: string) => {
-  endpoint = ipfsHttpEndpoint;
+export const setIpfsEndpoint = (ipfsHttpHost: string, ipfsPort?: string) => {
+  endpoint = ipfsHttpHost.replace("http://", "");
+  port = ipfsPort;
 }
 
 export const getIPFS = (): any => {
@@ -13,7 +15,7 @@ export const getIPFS = (): any => {
       endpoint = "127.0.0.1";
     }
 
-    ipfs = IPFSClient(endpoint);
+    ipfs = IPFSClient(endpoint, port);
   }
 
   return ipfs;
