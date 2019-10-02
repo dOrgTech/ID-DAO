@@ -5,5 +5,5 @@
   (3) address can claim REP in the DAO
   (4) propose functions work
   (5) goodDapp can send proposals
-[ ] dao-params.json (configuration for the ID-DAO)
+[x] dao-params.json (configuration for the ID-DAO)
 [ ] initiating humans (pub addr, identity definition json, signatures)

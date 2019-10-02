@@ -1,5 +1,5 @@
 const fs = require("fs");
-const addressesPath = __dirname + "/addresses.json";
+const addressesPath = __dirname + "/../migrations/addresses.json";
 
 function contractDeployed(network, contract, address) {
   let json = fs.readFileSync(addressesPath).toString();

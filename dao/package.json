@@ -31,8 +31,9 @@
     "release": "npm run compile && npm run package:release && npm publish ./package --access public"
   },
   "dependencies": {
-    "@daostack/arc": "0.0.1-rc.27",
+    "@daostack/arc": "0.0.1-rc.28",
     "@daostack/infra": "0.0.1-rc.14",
+    "@daostack/migration": "0.0.1-rc.28-v0",
     "dotenv": "^8.0.0",
     "openzeppelin-solidity": "^2.3.0",
     "truffle": "^5.0.31",
