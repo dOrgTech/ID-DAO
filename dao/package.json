@@ -1,6 +1,6 @@
 {
   "name": "@dorgtech/id-dao-contracts",
-  "version": "1.0.4",
+  "version": "1.0.10",
   "description": "Identity DAO contracts.",
   "author": "dOrg",
   "repository": {
@@ -12,41 +12,43 @@
   },
   "homepage": "https://github.com/dOrgTech/ID-DAO#readme",
   "scripts": {
-    "compile": "npx truffle compile --all",
-    "test": "node ./ops/wait-on-ports && npx truffle test",
+    "compile": "truffle compile --all",
+    "test": "node ./ops/wait-on-ports && truffle test",
     "ci": "npm run test:env && npm run test && npm run env:down",
     "env:up": "docker-compose up -d",
     "env:down": "docker-compose down",
     "test:env": "npm run env:up",
     "dev:env": "npm run env:up && npm run deploy:development",
-    "deploy:development": "node ./ops/wait-on-ports && npx truffle migrate --network development",
-    "deploy:rinkeby": "npx truffle migrate --network rinkeby",
-    "coverage": "npx solidity-coverage",
+    "deploy:development": "node ./ops/wait-on-ports && truffle migrate --network development --reset",
+    "deploy:rinkeby": "truffle migrate --network rinkeby",
+    "coverage": "solidity-coverage",
     "lint": "npm run lint:sol && npm run lint:js",
     "lint:fix": "npm run lint:js:fix",
     "lint:sol": "solhint --max-warnings 0 \"contracts/**/*.sol\"",
     "lint:js": "eslint ./test/**/*.js",
-    "lint:js:fix": "eslint --fix ./test/**/*.js"
+    "lint:js:fix": "eslint --fix ./test/**/*.js",
+    "package:release": "rm -rf ./package && mkdir ./package && cp -r ./build ./contracts ./migrations ./ops ./test .env.example docker-compose.yml package.json package-lock.json README.md truffle-config.js LICENSE ./package",
+    "release": "npm run compile && npm run package:release && npm publish ./package --access public"
   },
   "dependencies": {
     "@daostack/arc": "0.0.1-rc.27",
     "@daostack/infra": "0.0.1-rc.14",
-    "openzeppelin-solidity": "^2.3.0"
+    "dotenv": "^8.0.0",
+    "openzeppelin-solidity": "^2.3.0",
+    "truffle": "^5.0.31",
+    "truffle-contract": "^4.0.28",
+    "truffle-hdwallet-provider": "^1.0.16",
+    "truffle-resolver": "^5.0.15"
   },
   "devDependencies": {
     "chai": "^4.2.0",
     "concurrently": "^4.1.2",
-    "dotenv": "^8.0.0",
     "eslint": "^6.1.0",
     "eslint-config-google": "^0.13.0",
     "ganache-cli": "^6.6.0",
     "solhint": "^2.2.0",
     "solidity-coverage": "^0.6.4",
     "solidity-docgen": "^0.3.0-beta.4",
-    "truffle": "^5.0.31",
-    "truffle-contract": "^4.0.28",
-    "truffle-hdwallet-provider": "^1.0.16",
-    "truffle-resolver": "^5.0.15",
     "wait-on": "^3.3.0",
     "web3": "^1.0.0-beta.36"
   }

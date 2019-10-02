@@ -3,8 +3,4 @@
 *.swo
 *.odt#
 node_modules/
-dist/
-bin/
-coverage/
-coverage.json
 .env

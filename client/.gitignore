@@ -3,7 +3,6 @@
 *.swo
 *.odt#
 node_modules/
-build/
 dist/
 bin/
 package/

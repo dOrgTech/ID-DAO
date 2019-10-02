@@ -9,6 +9,8 @@ const opts = {
   timeout: 30000
 };
 
+console.log(`Waiting on:${opts.resources.map(resource => ` ${resource}`)}`);
+
 waitOn(opts, function (err) {
   if (err) {
     console.log(err);
