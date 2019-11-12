@@ -1,13 +1,9 @@
 import { Validator } from "formstate";
 import * as Web3Utils from "web3-utils";
 import * as IsIPFS from "is-ipfs";
-import fetch, {
-  Response
-} from "node-fetch";
-import {
-  Address,
-  ContentHost
-} from "./types";
+import { getIdDaoProxy } from "../utils/validatorUtils";
+import fetch, { Response } from "node-fetch";
+import { Address, ContentHost } from "./types";
 
 type StringOrNull = string | null | undefined;
 
@@ -19,9 +15,11 @@ export const requiredText: Validator<StringOrNull> = value => {
   }
 
   return null;
-}
+};
 
-export const optionalText = (...validators: Validator<string>[]): Validator<string> => {
+export const optionalText = (
+  ...validators: Validator<string>[]
+): Validator<string> => {
   return (value: string) => {
     if (value !== "") {
       for (let fn of validators) {
@@ -33,8 +31,8 @@ export const optionalText = (...validators: Validator<string>[]): Validator<stri
     }
 
     return null;
-  }
-}
+  };
+};
 
 const isAddress = (address: Address): boolean => {
   const addr = address.toLowerCase();
@@ -50,25 +48,28 @@ export const validAddress: Validator<string> = value => {
   }
 
   return null;
-}
+};
 
 export const validUrl: Validator<string> = value => {
   const error = "Please enter a valid URL.";
   value = value.trim();
 
-  var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
-    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
-    '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
-    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
-    '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
-    '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+  var pattern = new RegExp(
+    "^(https?:\\/\\/)?" + // protocol
+    "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
+    "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
+    "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
+    "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
+      "(\\#[-a-z\\d_]*)?$",
+    "i"
+  ); // fragment locator
 
-    if (!pattern.test(value)) {
+  if (!pattern.test(value)) {
     return error;
   }
 
   return null;
-}
+};
 
 export const validHash: Validator<string> = value => {
   const error = "Invalid mutihash.";
@@ -79,24 +80,31 @@ export const validHash: Validator<string> = value => {
   } else {
     return error;
   }
-}
+};
 
 export const validContentHost: Validator<string> = value => {
   const error = "Invalid content host.";
 
-  if (!Object.values(ContentHost).includes(value as ContentHost) || value === ContentHost.Unknown) {
+  if (
+    !Object.values(ContentHost).includes(value as ContentHost) ||
+    value === ContentHost.Unknown
+  ) {
     return error;
   }
 
   return null;
-}
+};
 
-export const validTwitterSIVP = async (value: string, getAddress: ()=>string) => {
+export const validTwitterSIVP = async (
+  value: string,
+  getAddress: () => string
+) => {
   // Example Twitter SIVP
   // https://twitter.com/user_name/status/1171073473527250944
 
   // Errors
-  const invalidStatusError = "Invalid Tweet URL, please use the 'twitter.com/user/status/#' format.";
+  const invalidStatusError =
+    "Invalid Tweet URL, please use the 'twitter.com/user/status/#' format.";
   const missingAddrError = "Tweet is missing the public address.";
 
   // Validate the URL is formed correctly
@@ -107,7 +115,7 @@ export const validTwitterSIVP = async (value: string, getAddress: ()=>string) =>
   if (value.indexOf("/status/") === -1) {
     return invalidStatusError;
   }
-
+  value = getIdDaoProxy() + "/twitter" + value.slice(19);
   return new Promise<StringOrNull>(resolve => {
     fetch(value)
       .then(async (res: Response) => {
@@ -129,14 +137,18 @@ export const validTwitterSIVP = async (value: string, getAddress: ()=>string) =>
         resolve(invalidStatusError);
       });
   });
-}
+};
 
-export const validGitHubSIVP = async (value: string, getAddress: ()=>string) => {
+export const validGitHubSIVP = async (
+  value: string,
+  getAddress: () => string
+) => {
   // Example GitHub Gist
   // https://gist.github.com/user_name/883534236ed2f0e0ffc700b96bd092cd
 
   // Errors
-  const invalidGistError = "Invalid Gist URL, please use the 'gist.github.com/user/#' format.";
+  const invalidGistError =
+    "Invalid Gist URL, please use the 'gist.github.com/user/#' format.";
   const missingAddrError = "Gist is missing the public address.";
 
   // Ensure the URL contains the correct domain
@@ -157,7 +169,7 @@ export const validGitHubSIVP = async (value: string, getAddress: ()=>string) => 
     const nameEnd = value.indexOf("/", nameStart);
     value = value.substr(0, nameStart) + value.substr(nameEnd + 1);
   }
-
+  value = getIdDaoProxy + "/gist" + value.slice(23);
   return new Promise<StringOrNull>(resolve => {
     fetch(value)
       .then(async (res: Response) => {
@@ -179,4 +191,4 @@ export const validGitHubSIVP = async (value: string, getAddress: ()=>string) => 
         resolve(invalidGistError);
       });
   });
-}
+};

@@ -1,12 +1,10 @@
 export * from "./IdentityDefinition";
 
-export {
-  setWeb3Provider
-} from "./utils/web3Utils";
+export { setWeb3Provider } from "./utils/web3Utils";
 
-export {
-  setIpfsEndpoint
-} from "./utils/ipfsUtils";
+export { setIdDaoProxy } from "./utils/validatorUtils";
+
+export { setIpfsEndpoint } from "./utils/ipfsUtils";
 
 export * from "./registry";
 export * from "./dao";

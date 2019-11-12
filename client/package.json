@@ -25,6 +25,7 @@
   "dependencies": {
     "@daostack/client": "^0.2.8",
     "@dorgtech/id-dao-contracts": "1.1.0-rc.1-v2",
+    "cid-tool": "^0.3.0",
     "formstate": "^1.3.0",
     "ipfs-http-client": "^36.0.0",
     "is-ipfs": "^0.6.1",
