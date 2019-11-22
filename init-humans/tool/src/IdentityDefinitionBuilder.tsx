@@ -157,18 +157,6 @@ class IdentityDefinitonBuilder extends React.Component<{}, State> {
     zip.generateAsync({ type: "blob" }).then((content: any) => {
       saveFile(content,  `${this.form.$.address.value}_IdentityDefinition`);
     });
-
-    // TODO: put uploads + identitydefinition.json + signature in zip
-
-    // TODO: Saving our blob to a file
-    /*
-    const url = window.URL.createObjectURL(mp4Blob);
-    const a = document.createElement("a");
-    document.body.appendChild(a);
-    a.href = url;
-    a.download = "video.mp4"
-    a.click()
-    */
   }
 
   render() {
