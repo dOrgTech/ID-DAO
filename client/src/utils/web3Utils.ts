@@ -6,6 +6,7 @@ import {
 } from "../IdentityDefinition/types";
 
 const Web3 = require("web3");
+const Web3Utils = require("web3-utils");
 
 let web3: any;
 let provider: string;
@@ -134,8 +135,18 @@ export const signPayload = async (address: Address, payload: string): Promise<st
     await getEnabledWeb3();
   }
 
-  return fixSignature(await web3.eth.sign(
-    web3.utils.keccak256(payload),
-    address
-  ));
+  return await new Promise((resolve, reject) => {
+    web3.eth.sign(
+      address,
+      Web3Utils.keccak256(payload),
+      (error: Error, result: any) => {
+        if (error) {
+          reject(error);
+          return;
+        }
+
+        resolve(fixSignature(result));
+      }
+    );
+  })
 }
