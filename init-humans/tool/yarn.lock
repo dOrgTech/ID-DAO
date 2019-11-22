@@ -996,10 +996,10 @@
     web3 "1.0.0-beta.37"
     yargs "^12.0.2"
 
-"@dorgtech/id-dao-client@^1.1.0-rc.1-v2":
-  version "1.1.0-rc.1-v2"
-  resolved "https://registry.yarnpkg.com/@dorgtech/id-dao-client/-/id-dao-client-1.1.0-rc.1-v2.tgz#a713ef7faee05d050d8f5886b0285ee71c911d31"
-  integrity sha512-VPDy6F/r3KTuWSO4GOC1H9PeRb4Pc1R1S2Xe2/UMi2Fsez/NhP6ajqI4jwW2oLUt3Tno28wmVJPqT1no/3gB3Q==
+"@dorgtech/id-dao-client@1.1.0-rc.1-v3":
+  version "1.1.0-rc.1-v3"
+  resolved "https://registry.yarnpkg.com/@dorgtech/id-dao-client/-/id-dao-client-1.1.0-rc.1-v3.tgz#ae8af5d585d6c5fb55a19457b3f4fd0a773533f8"
+  integrity sha512-IZU0b7YR4Ci9F9P2xsGe5BZ6zxxwrkBUk5rZrGVl3fMlRXv/yQBGH9DYQgQfFQ4LnK9EJz9iT2ccr3XsXSFtKA==
   dependencies:
     "@daostack/client" "^0.2.8"
     "@dorgtech/id-dao-contracts" "1.1.0-rc.1-v2"
