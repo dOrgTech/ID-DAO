@@ -12,8 +12,8 @@ export interface ContentSource {
 }
 
 export interface Uploads {
-  selfie: ContentSource;
-  video: ContentSource;
+  selfie?: ContentSource;
+  video?: ContentSource;
 }
 
 export interface SocialPosts {

@@ -109,7 +109,9 @@ export const validTwitterSIVP = async (value: string, getAddress: ()=>string) =>
   }
 
   return new Promise<StringOrNull>(resolve => {
-    fetch(value)
+    fetch(value, {
+      headers: { "Content-Type": "text/html" }
+    })
       .then(async (res: Response) => {
         if (!res.ok) {
           resolve(invalidStatusError);
@@ -125,8 +127,12 @@ export const validTwitterSIVP = async (value: string, getAddress: ()=>string) =>
         resolve(null);
       })
       .catch((err: Error) => {
-        console.log(err);
-        resolve(invalidStatusError);
+        console.error(
+          "Failed to fetch the post's HTML, this is most likely" +
+          " related to CORS policy, please solve this with a proxy server."
+        );
+        console.error(err);
+        resolve(null);
       });
   });
 }
@@ -175,8 +181,12 @@ export const validGitHubSIVP = async (value: string, getAddress: ()=>string) => 
         resolve(null);
       })
       .catch((err: Error) => {
-        console.log(err);
-        resolve(invalidGistError);
+        console.error(
+          "Failed to fetch the post's HTML, this is most likely" +
+          " related to CORS policy, please solve this with a proxy server."
+        );
+        console.error(err);
+        resolve(null);
       });
   });
 }

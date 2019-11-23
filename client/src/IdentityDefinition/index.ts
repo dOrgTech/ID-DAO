@@ -39,7 +39,6 @@ export class IdentityDefinitionForm extends Form<
   constructor(form?: IdentityDefinitionForm) {
     super({
       name: new StringField(form ? form.$.name.value : "")
-        .validators(requiredText)
         .setDisplayName("Human Name")
         .setDescription("Your human readable name."),
 

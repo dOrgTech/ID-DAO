@@ -11,7 +11,6 @@ import {
 } from "./types";
 import {
   optionalText,
-  requiredText,
   validUrl,
   validHash,
   validContentHost,
@@ -85,7 +84,7 @@ export abstract class Form<
 }
 
 export class ContentSourceForm extends Form<
-  ContentSource,
+  ContentSource | undefined,
   {
     host: StringField;
     hash: StringField;
@@ -93,37 +92,52 @@ export class ContentSourceForm extends Form<
 > {
   constructor(form?: ContentSourceForm) {
     super({
-      host: new StringField(form ? form.$.host.value : "")
-        .validators(requiredText, validContentHost)
+      host: new StringField(form ? form.$.host.value : ContentHost.Unknown)
+        .validators((value) =>
+          value !== ContentHost.Unknown ? validContentHost(value) : null
+        )
         .setDisplayName("Host Type")
         .setDescription("Type of content hosting service."),
 
       hash: new StringField(form ? form.$.hash.value : "")
-        .validators(requiredText, validHash)
+        .validators((value) =>
+          value !== "" ? validHash(value) : null
+        )
         .setDisplayName("Content Hash")
         .setDescription("Hash of the content, used for lookup.")
     });
   }
 
-  public get data(): ContentSource {
-    const hostValue = this.$.host.value;
+  public get data(): ContentSource | undefined {
+    const hash = this.$.hash.value;
+    const host = this.$.host.value;
+
+    if (hash === "" && host === ContentHost.Unknown) {
+      return undefined;
+    }
+
     let type: ContentHost;
 
-    if (validContentHost(hostValue) == null) {
-      type = hostValue as ContentHost;
+    if (validContentHost(host) == null) {
+      type = host as ContentHost;
     } else {
       type = ContentHost.Unknown;
     }
 
     return {
       host: type,
-      hash: this.$.hash.value
+      hash
     };
   }
 
-  public set data(data: ContentSource) {
-    this.$.host.value = data.host;
-    this.$.hash.value = data.hash;
+  public set data(data: ContentSource | undefined) {
+    if (data) {
+      this.$.host.value = data.host;
+      this.$.hash.value = data.hash;
+    } else {
+      this.$.host.value = ContentHost.Unknown;
+      this.$.hash.value = "";
+    }
   }
 }
 

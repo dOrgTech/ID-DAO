@@ -109,6 +109,10 @@ class IdentityDefinitonBuilder extends React.Component<{}, State> {
   }
 
   saveIdentity = async () => {
+    this.setState({
+      saveError: undefined
+    });
+
     // Validate the form
     const res = await this.form.validate();
 
@@ -122,50 +126,65 @@ class IdentityDefinitonBuilder extends React.Component<{}, State> {
 
     console.log(this.form.data);
 
-    // Sign the Identity
-    const { hash, sig } = await signAndUploadIdentity(this.form.data);
+    try {
+      // Sign the Identity
+      const { hash, sig } = await signAndUploadIdentity(this.form.data);
 
-    // Create the zip
-    const zip = new JsZip();
-    const { selfieImage, selfieVideo } = this.state;
+      // Create the zip
+      const zip = new JsZip();
+      const { selfieImage, selfieVideo } = this.state;
 
-    // Save the image
-    if (selfieImage) {
-      zip.file(
-        `${this.form.$.uploads.$.selfie.$.hash.value}.jpeg`,
-        selfieImage.replace("data:image/jpeg;base64,", ""),
-        { base64: true }
-      );
+      // Save the image
+      if (selfieImage) {
+        zip.file(
+          `${this.form.$.uploads.$.selfie.$.hash.value}.jpeg`,
+          selfieImage.replace("data:image/jpeg;base64,", ""),
+          { base64: true }
+        );
+      }
+
+      // Save the video
+      if (selfieVideo) {
+        zip.file(
+          `${this.form.$.uploads.$.video.$.hash.value}.mp4`,
+          selfieVideo,
+          { binary: true }
+        );
+      }
+
+      // Save the IdentityDefinition.json
+      zip.file(`${hash}.json`, serialize(this.form.data));
+
+      // Save the signature
+      zip.file("sig", sig)
+
+      // Save the zip file
+      zip.generateAsync({ type: "blob" }).then((content: any) => {
+        saveFile(content,  `${this.form.$.address.value}_IdentityDefinition`);
+      });
+    } catch (e) {
+      this.setState({
+        saveError: e.message
+      });
     }
-
-    // Save the video
-    if (selfieVideo) {
-      zip.file(
-        `${this.form.$.uploads.$.video.$.hash.value}.mp4`,
-        selfieVideo,
-        { binary: true }
-      );
-    }
-
-    // Save the IdentityDefinition.json
-    zip.file(`${hash}.json`, serialize(this.form.data));
-
-    // Save the signature
-    zip.file("sig", sig)
-
-    // Save the zip file
-    zip.generateAsync({ type: "blob" }).then((content: any) => {
-      saveFile(content,  `${this.form.$.address.value}_IdentityDefinition`);
-    });
   }
 
   render() {
     const form = this.form;
-    const { selfieImage, saveError } = this.state;
+    const { selfieImage, selfieVideo, saveError } = this.state;
 
     return (
       <>
         <h1>Identity Defintion</h1>
+        {"address: "}
+        <input
+          type="text"
+          value={form.$.address.value}
+          onChange={(e)=>form.$.address.onChange(e.target.value)}
+        />
+        <p style={{ color: "red" }}>
+          {form.$.address.error}
+        </p>
         {"name: "}
         <input
           type="text"
@@ -175,14 +194,24 @@ class IdentityDefinitonBuilder extends React.Component<{}, State> {
         <p style={{ color: "red" }}>
           {form.$.name.error}
         </p>
-        {"address: "}
+        {"socialPosts:"}<br/>
+        {"  github:"}
         <input
           type="text"
-          value={form.$.address.value}
-          onChange={(e)=>form.$.address.onChange(e.target.value)}
+          value={form.$.socialPosts.$.github.value}
+          onChange={(e)=>form.$.socialPosts.$.github.onChange(e.target.value)}
         />
         <p style={{ color: "red" }}>
-          {form.$.address.error}
+          {form.$.socialPosts.$.github.error}
+        </p>
+        {"  twitter:"}
+        <input
+          type="text"
+          value={form.$.socialPosts.$.twitter.value}
+          onChange={(e)=>form.$.socialPosts.$.twitter.onChange(e.target.value)}
+        />
+        <p style={{ color: "red" }}>
+          {form.$.socialPosts.$.twitter.error}
         </p>
         {"uploads:"}<br/>
         {"  selfie:"}<br/>
@@ -209,11 +238,22 @@ class IdentityDefinitonBuilder extends React.Component<{}, State> {
             <br/>
           </>
         }
+        <p style={{ color: "red" }}>
+          {form.$.uploads.$.selfie.error}
+        </p>
         {"  video:"}
         <br/>
         <VideoRecorder onRecordingComplete={this.setVideo} />
-        <div>{this.form.$.uploads.$.video.$.host.value}</div>
-        <div>{this.form.$.uploads.$.video.$.hash.value}</div>
+        {selfieVideo ?
+          <>
+            <div>{this.form.$.uploads.$.video.$.host.value}</div>
+            <div>{this.form.$.uploads.$.video.$.hash.value}</div>
+          </> :
+          <></>
+        }
+        <p style={{ color: "red" }}>
+          {form.$.uploads.$.video.error}
+        </p>
         <br/>
         {saveError ?
           <div style={{ color: "red" }}>
