@@ -1,0 +1,13 @@
+{
+  "name": "upload",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./index.js"
+  },
+  "dependencies": {
+    "@dorgtech/id-dao-client": "^1.1.0-rc.1-v4",
+    "adm-zip": "^0.4.13",
+    "dotenv": "^8.2.0",
+    "ipfs-http-client": "39.0.2"
+  }
+}
