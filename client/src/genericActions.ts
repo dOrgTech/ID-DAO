@@ -5,9 +5,9 @@ const { mainnet, rinkeby, development } = addresses;
 export const genericActions = {
   name: "Identity Registry",
   addresses: {
-    main: [mainnet ? mainnet["IdentityRegistry"] : undefined],
-    rinkeby: [rinkeby ? rinkeby["IdentityRegistry"] : undefined],
-    private: [development ? development["IdentityRegistry"] : undefined]
+    main: [mainnet ? mainnet["IdentityRegistry"] : ""],
+    rinkeby: [rinkeby ? rinkeby["IdentityRegistry"] : ""],
+    private: [development ? development["IdentityRegistry"] : ""]
   },
   actions: [
     {

@@ -1,7 +1,8 @@
 {
   "packages": [
     "dao",
-    "client"
+    "client",
+    "initial-set/tool"
   ],
   "version": "1.0.0"
 }
