@@ -5,6 +5,7 @@ const HumanReputationClaim = artifacts.require("HumanReputationClaim");
 const {contractDeployed} = require("../utils/DeployUtils");
 const {signMessage} = require('../utils/SigningUtils');
 const daoParams = require("./dao-template.json");
+const humans = require("./humans.json");
 const migrateDAO = require("@daostack/migration/migrate-dao");
 const migrationAddresses = require("@daostack/migration/migration.json");
 const arcVersion = require("@daostack/migration/package.json").dependencies[
@@ -37,8 +38,13 @@ module.exports = function(deployer, network, accounts) {
         }
       }
 
-      // TODO: From the initial-set.json
-      // 2. @dorgtech/id-dao-init/initial-set.json
+      // Add the initial humans to the registry
+      // TODO: figure out why this signature is off
+      /*for (const human of humans) {
+        const { address, hash, sig } = human;
+        await registry.add(address, asciiToHex(hash), sig);
+        console.log(`Added ${address} to the IdentityRegistry`);
+      }*/
 
       return registry;
     })
@@ -87,11 +93,13 @@ module.exports = function(deployer, network, accounts) {
       // TODO: option for deploying all of ARC
 
       const migration = await migrateDAO({
+        arcVersion,
         migrationParams: daoParams,
         web3,
         spinner: {
           start: (msg) => console.log(msg),
-          fail: (msg) => console.log(`Error: ${msg}`)
+          fail: (msg) => console.log(`Error: ${msg}`),
+          succeed: (msg) => console.log(msg)
         },
         confirm: (msg) => true,
         logTx,
@@ -101,7 +109,45 @@ module.exports = function(deployer, network, accounts) {
           gasLimit: undefined
         },
         previousMigration: { ...migrationAddresses[networkName] },
-        customabislocation: `${__dirname}/../build/contracts/`
+        customAbisLocation: `${__dirname}/../build/contracts/`,
+        restart: true,
+        getState: () => (networkName === "private" ?
+          {
+            proposedRegisteringDAO: true,
+            registeredRegisteringDAO: true
+          } : { }
+        ),
+        setState: () => {},
+        cleanState: () => {},
+        sendTx: async function sendTx (tx, msg) {
+          console.log(msg)
+          let gas = 0
+          let nonce = await web3.eth.getTransactionCount(web3.eth.defaultAccount)
+          const blockLimit = await web3.eth.getBlock('latest').gasLimit
+          try {
+            gas = (await tx.estimateGas())
+            if (gas * 1.1 < block - 100000) {
+              gas *= 1.1
+            }
+          } catch (error) {
+            gas = blockLimit - 100000
+          }
+    
+          let result = tx.send({ gas, nonce })
+          let receipt = await new Promise(resolve => result.on('receipt', resolve).on('error', async error => {
+            console.log('Transaction failed: ' + error)
+            console.log('DAO Migration has failed.')
+            resolve();
+          }))
+
+          if (receipt === 'failed') {
+            return sendTx(tx)
+          }
+
+          result = await result
+          return { receipt, result }
+        },
+        getArcVersionNumber: (ver) => Number(ver.slice(-2))
       });
 
       const {

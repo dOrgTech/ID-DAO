@@ -6,7 +6,6 @@ import Webcam from 'react-webcam';
 import VideoRecorder from 'react-video-recorder';
 import { ContentHost } from '@dorgtech/id-dao-client/dist/IdentityDefinition/types';
 import { b64toBlob } from './utils';
-require("dotenv").config();
 const ipfsClient = require("ipfs-http-client");
 const toBuffer = require("blob-to-buffer");
 const JsZip = require("jszip");
@@ -32,8 +31,6 @@ class IdentityDefinitonBuilder extends React.Component<{}, State> {
     const imageSrc = this.webCamRef.current.getScreenshot();
     const imageBlob = b64toBlob(imageSrc.replace("data:image/jpeg;base64,", ""));
 
-    const ipfs = ipfsClient("localhost", process.env.IPFS_PORT);
-
     toBuffer(imageBlob, async (error: Error, buffer: Buffer) => {
       if (error) {
         console.log(error);
@@ -43,8 +40,8 @@ class IdentityDefinitonBuilder extends React.Component<{}, State> {
         return;
       }
 
+      const ipfs = ipfsClient("localhost", process.env.REACT_APP_IPFS_PORT);
       const hash = await ipfs.add(buffer);
-
       if (hash.length > 0) {
         console.log(hash[0].path);
         this.form.$.uploads.$.selfie.data = {
@@ -77,8 +74,6 @@ class IdentityDefinitonBuilder extends React.Component<{}, State> {
   setVideo = (videoBlob: any, startedAt: any, thumbnailBlob: any, duration: any) => {
     const mp4Blob = new Blob([videoBlob], {type: 'video/mp4'});
 
-    const ipfs = ipfsClient("localhost", process.env.IPFS_PORT);
-
     toBuffer(mp4Blob, async (error: Error, buffer: Buffer) => {
       if (error) {
         console.log(error);
@@ -88,6 +83,7 @@ class IdentityDefinitonBuilder extends React.Component<{}, State> {
         return;
       }
 
+      const ipfs = ipfsClient("localhost", process.env.REACT_APP_IPFS_PORT);
       const hash = await ipfs.add(buffer);
 
       if (hash.length > 0) {
@@ -256,9 +252,14 @@ class IdentityDefinitonBuilder extends React.Component<{}, State> {
         </p>
         <br/>
         {saveError ?
-          <div style={{ color: "red" }}>
-            Errors Found. Check the browser's console if nothing shown in the UI.
-          </div> :
+          <>
+            <div style={{ color: "red" }}>
+              Errors Found. Check the browser's console if nothing shown in the UI.
+            </div>
+            <div>
+              {saveError}
+            </div>
+          </> :
           <></>
         }
         <button type="button" onClick={this.saveIdentity}>

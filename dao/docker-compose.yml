@@ -4,12 +4,12 @@
 version: "3"
 services:
   ipfs:
-    image: ipfs/go-ipfs
+    build: docker/ipfs
     ports:
       - ${ID_DAO_IPFS_PORT}:5001
 
   ganache:
-    image: daostack/migration:0.0.1-rc.28-v0
+    image: daostack/migration:0.0.1-rc.33-v1
     ports:
       - ${ID_DAO_WEB3_PORT}:8545
     command: --mnemonic "${ID_DAO_DEV_MNEMONIC}"

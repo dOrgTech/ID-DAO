@@ -56,13 +56,23 @@ export const removeSelf = async (): Promise<boolean> => {
   return (await toIOperationObservable(observable).send()).result;
 }
 
-export const getIdentity = async (address: Address): Promise<IdentityDefinition> => {
-  const web3 = getWeb3();
-  const registry = await getRegistry();
+export const getIdentity = async (opts: { address?: Address, hash?: string }): Promise<IdentityDefinition> => {
+  if (opts.address === undefined && opts.hash === undefined) {
+    throw Error("address or hash must be present in order to fetch the identity.");
+  }
+
+  const address = opts.address;
+  let hash = opts.hash;
+
+  if (address) {
+    const web3 = getWeb3();
+    const registry = await getRegistry();
+    hash = web3.utils.hexToAscii(
+      await registry.methods.registry(address).call()
+    );
+  }
+
   const ipfs = getIPFS();
-  const hash = web3.utils.hexToAscii(
-    await registry.methods.registry(address).call()
-  );
   const resp = await ipfs.get(hash);
 
   if (resp.length === 0) {

@@ -136,17 +136,29 @@ export const signPayload = async (address: Address, payload: string): Promise<st
   }
 
   return await new Promise((resolve, reject) => {
-    web3.eth.sign(
-      address,
-      Web3Utils.keccak256(payload),
-      (error: Error, result: any) => {
-        if (error) {
-          reject(error);
-          return;
-        }
 
-        resolve(fixSignature(result));
+    const resultHandler = (error: Error, result: any) => {
+      if (error) {
+        reject(error);
+        return;
       }
-    );
+  
+      resolve(fixSignature(result));
+    };
+
+    try {
+      web3.eth.sign(
+        Web3Utils.keccak256(payload),
+        address,
+        resultHandler
+      );
+    } catch (e) {
+      // Web3 breaking change + npm install inconsistency :(
+      web3.eth.sign(
+        address,
+        Web3Utils.keccak256(payload),
+        resultHandler
+      );
+    }
   })
 }

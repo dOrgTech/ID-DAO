@@ -4,7 +4,7 @@
   "tokenSymbol": "ID",
   "unregisterOwner": true,
   "useUController": false,
-  "useDaoCreator": false,
+  "useDaoCreator": true,
   "schemes": {
     "SchemeRegistrar": true,
     "UGenericScheme": true
@@ -58,5 +58,11 @@
       "permissions": "0x00000000"
     }
   ],
-  "founders": [ ]
+  "founders": [
+    {
+      "address": "0xB1B7586656116D546033e3bAFF69BFcD6592225E",
+      "reputation": 0,
+      "tokens": 0
+    }
+  ]
 }

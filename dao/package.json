@@ -1,6 +1,6 @@
 {
   "name": "@dorgtech/id-dao-contracts",
-  "version": "1.1.0-rc.1-v2",
+  "version": "1.1.0-rc.4",
   "description": "Identity DAO contracts.",
   "author": "dOrg",
   "repository": {
@@ -13,7 +13,7 @@
   "homepage": "https://github.com/dOrgTech/ID-DAO#readme",
   "scripts": {
     "compile": "truffle compile --all",
-    "test": "node ./ops/wait-on-ports && truffle test",
+    "test": "node ./ops/wait-on-ports && truffle migrate && truffle test",
     "ci": "npm run test:env && npm run test && npm run env:down",
     "env:up": "docker-compose up -d",
     "env:down": "docker-compose down",
@@ -27,16 +27,16 @@
     "lint:sol": "solhint --max-warnings 0 \"contracts/**/*.sol\"",
     "lint:js": "eslint ./test/**/*.js",
     "lint:js:fix": "eslint --fix ./test/**/*.js",
-    "package:release": "rm -rf ./package && mkdir ./package && cp -r ./build ./contracts ./migrations ./ops ./utils ./test .env.example .env.test docker-compose.yml package.json package-lock.json README.md truffle-config.js LICENSE ./package",
+    "package:release": "rm -rf ./package && mkdir ./package && cp -r ./build ./contracts ./migrations ./ops ./utils ./test .env.example .env.test docker-compose.yml ./docker package.json package-lock.json README.md truffle-config.js LICENSE ./package",
     "release": "npm run compile && npm run package:release && npm publish ./package --access public"
   },
   "dependencies": {
-    "@daostack/arc": "0.0.1-rc.28",
+    "@daostack/arc": "0.0.1-rc.33",
     "@daostack/infra": "0.0.1-rc.14",
-    "@daostack/migration": "0.0.1-rc.28-v1",
+    "@daostack/migration": "0.0.1-rc.33-v1",
     "dotenv": "^8.0.0",
     "openzeppelin-solidity": "^2.3.0",
-    "truffle": "^5.0.31",
+    "truffle": "5.0.34",
     "truffle-contract": "^4.0.28",
     "truffle-hdwallet-provider": "^1.0.16",
     "truffle-resolver": "^5.0.15"
@@ -51,6 +51,6 @@
     "solidity-coverage": "^0.6.4",
     "solidity-docgen": "^0.3.0-beta.4",
     "wait-on": "^3.3.0",
-    "web3": "^1.0.0-beta.36"
+    "web3": "1.2.1"
   }
 }

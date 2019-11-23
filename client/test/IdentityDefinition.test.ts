@@ -43,12 +43,6 @@ describe("IdentityDefinition(Form)", () => {
       expect(res.hasError).to.be.equal(false, error);
     });
 
-    it("No Name", async () => {
-      form.$.name.value = "";
-      const res = await form.validate();
-      expect(res.hasError).to.be.equal(true);
-    });
-
     it("Invalid Address", async () => {
       form.$.address.value = "foo";
       const res = await form.validate();

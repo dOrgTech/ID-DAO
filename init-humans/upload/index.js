@@ -91,12 +91,7 @@ async function upload() {
 if (require.main === module) {
   upload()
     .then((humans) => {
-      humans.map(({ address, hash, sig }, index) => {
-        console.log(`Human ${index}`);
-        console.log(`  Address: ${address}`);
-        console.log(`  Metadata: ${hash}`);
-        console.log(`  Signature: ${sig}`);
-      });
+      console.log(JSON.stringify(humans, null, 2));
     })
     .then(() => process.exit(0))
     .catch(err => {

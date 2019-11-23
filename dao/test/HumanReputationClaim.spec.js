@@ -1,4 +1,4 @@
-const {signMessage} = require('./SigningUtils');
+const {signMessage} = require('../utils/SigningUtils');
 const {SolAssert} = require('./SolAssert');
 const chai = require('chai');
 const assert = chai.assert;

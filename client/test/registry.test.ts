@@ -58,7 +58,12 @@ describe("Registry", async () => {
   });
 
   it("getIdentity", async () => {
-    const fetched = await getIdentity(address);
+    let fetched = await getIdentity({ address });
+    expect(fetched).to.eql(identity);
+
+    // try and get it from the hash
+    const { hash, sig } = await signAndUploadIdentity(identity);
+    fetched = await getIdentity({ hash });
     expect(fetched).to.eql(identity);
   });
 
