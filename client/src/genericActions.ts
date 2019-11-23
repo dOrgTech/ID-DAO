@@ -24,7 +24,8 @@ export const genericActions = {
         {
           label: "Identity Definition IPFS Hash",
           name: "metadata",
-          placeholder: "IPFS Hash..."
+          placeholder: "IPFS Hash...",
+          transformation: "asciiToHex"
         },
         {
           label: "Signed IPFS Hash",
@@ -69,7 +70,8 @@ export const genericActions = {
         {
           label: "Identity Definition IPFS Hash",
           name: "metadata",
-          placeholder: "IPFS Hash..."
+          placeholder: "IPFS Hash...",
+          transformation: "asciiToHex"
         },
         {
           label: "Signed IPFS Hash",
