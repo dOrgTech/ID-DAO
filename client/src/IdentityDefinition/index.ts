@@ -2,6 +2,7 @@ import {
   Address,
   Uploads,
   SocialPosts,
+  ContentSource,
   ContentHost
 } from "./types";
 import {
@@ -17,6 +18,8 @@ import {
 } from "./validators";
 import { getIPFS } from "../utils/ipfsUtils";
 import { signPayload } from "../utils/web3Utils";
+
+export * from "./types";
 
 export interface IdentityDefinition {
   name: string;
@@ -111,4 +114,22 @@ export const signAndUploadIdentity = async (id: IdentityDefinition): Promise<{
     hash,
     sig
   };
+}
+
+export const fetchContent = async (content: ContentSource): Promise<Buffer> => {
+  switch (content.host) {
+    case ContentHost.IPFS: {
+      const ipfs = getIPFS();
+      const resp = await ipfs.get(content.hash);
+
+      if (resp.length === 0) {
+        throw Error("Error Downloading Content: No IPFS response");
+      }
+
+      return resp[0].content;
+    }
+    case ContentHost.GunDB:
+    case ContentHost.Unknown:
+      throw Error("Unsupported ContentHost type");
+  }
 }
