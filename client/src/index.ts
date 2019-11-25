@@ -1,6 +1,13 @@
 export * from "./IdentityDefinition";
 
-export { setWeb3Provider } from "./utils/web3Utils";
+export {
+  setWeb3Provider,
+  signPayload,
+  addIdDaoAccount,
+  getEnabledWeb3,
+  recoverSig,
+  getAccount
+} from "./utils/web3Utils";
 
 export { setIdDaoProxy } from "./utils/validatorUtils";
 

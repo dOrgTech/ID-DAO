@@ -1,9 +1,8 @@
+const util = require("ethereumjs-util");
 import { promisify } from "util";
 import { Observable } from "rxjs";
 import { first } from "rxjs/operators";
-import {
-  Address
-} from "../IdentityDefinition/types";
+import { Address } from "../IdentityDefinition/types";
 
 const Web3 = require("web3");
 
@@ -13,12 +12,12 @@ let enabled = false;
 
 export const setWeb3Provider = (web3Provider: string) => {
   provider = web3Provider;
-}
+};
 
 export const getWeb3 = (): any => {
   if (!web3) {
     if (provider) {
-      web3 = new Web3(provider); 
+      web3 = new Web3(provider);
     } else if (window) {
       web3 = (window as any).web3;
 
@@ -30,16 +29,14 @@ export const getWeb3 = (): any => {
         throw Error("ID-DAO: No Web3 Provider Found");
       }
     } else {
-      throw Error("ID-DAO: Please set a web3 provider.")
+      throw Error("ID-DAO: Please set a web3 provider.");
     }
   }
-
   return web3;
-}
+};
 
 export const getEnabledWeb3 = async (): Promise<any> => {
   const web3 = getWeb3();
-
   if (!web3) {
     throw Error("Identity DAO: Missing Web3 Provider.");
   }
@@ -54,7 +51,7 @@ export const getEnabledWeb3 = async (): Promise<any> => {
   }
 
   return web3;
-}
+};
 
 export const getNetworkName = async (): Promise<string> => {
   if (!web3) {
@@ -62,7 +59,11 @@ export const getNetworkName = async (): Promise<string> => {
   }
 
   const getNetworkId = async (): Promise<string> => {
-    return (await (web3.eth.net ? web3.eth.net.getId() : promisify(web3.version.getNetwork)())).toString();
+    return (
+      await (web3.eth.net
+        ? web3.eth.net.getId()
+        : promisify(web3.version.getNetwork)())
+    ).toString();
   };
 
   const id = await getNetworkId();
@@ -81,41 +82,47 @@ export const getNetworkName = async (): Promise<string> => {
     default:
       return "development";
   }
-}
+};
 
 export const getAccount = (): Promise<Address> => {
   // this complex logic is to get the correct account both from the Web3 as well as from the Metamaask provider
   // This polls for changes. But polling is Evil!
   // cf. https://github.com/MetaMask/faq/blob/master/DEVELOPERS.md#ear-listening-for-selected-account-changes
   return Observable.create(async (observer: any) => {
-    const interval = 1000 /// poll once a second
-    let account: any
-    let prevAccount: any
-    const web3 = await getEnabledWeb3()
+    const interval = 1000; /// poll once a second
+    let account: any;
+    let prevAccount: any;
+    const web3 = await getEnabledWeb3();
     if (web3.eth.accounts[0]) {
-      observer.next(web3.eth.accounts[0].address)
-      prevAccount = web3.eth.accounts[0].address
-    } else if (web3.eth.defaultAccount ) {
-      observer.next(web3.eth.defaultAccount)
-      prevAccount = web3.eth.defaultAccount
+      observer.next(web3.eth.accounts[0].address);
+      prevAccount = web3.eth.accounts[0].address;
+    } else if (web3.eth.defaultAccount) {
+      observer.next(web3.eth.defaultAccount);
+      prevAccount = web3.eth.defaultAccount;
     }
     const timeout = setInterval(() => {
       web3.eth.getAccounts().then((accounts: any) => {
         if (accounts) {
-          account = accounts[0]
+          account = accounts[0];
         } else if (web3.eth.accounts) {
-          account = web3.eth.accounts[0].address
+          account = web3.eth.accounts[0].address;
         }
         if (prevAccount !== account && account) {
-          web3.eth.defaultAccount = account
-          observer.next(account)
-          prevAccount = account
+          web3.eth.defaultAccount = account;
+          observer.next(account);
+          prevAccount = account;
         }
-      })
-    }, interval)
-    return() => clearTimeout(timeout)
-  }).pipe(first()).toPromise();
-}
+      });
+    }, interval);
+    return () => clearTimeout(timeout);
+  })
+    .pipe(first())
+    .toPromise();
+};
+
+export const addIdDaoAccount = (privateKey: string) => {
+  web3.eth.accounts.wallet.add(privateKey);
+};
 
 const fixSignature = (signature: string): string => {
   // in geth its always 27/28, in ganache its 0/1. Change to 27/28 to prevent
@@ -127,15 +134,40 @@ const fixSignature = (signature: string): string => {
   }
   const vHex = v.toString(16);
   return signature.slice(0, 130) + vHex;
-}
+};
 
-export const signPayload = async (address: Address, payload: string): Promise<string> => {
+const unfixSignature = (signature: string): string => {
+  // in geth its always 27/28, in ganache its 0/1. Change to 27/28 to prevent
+  // signature malleability if version is 0/1
+  // see https://github.com/ethereum/go-ethereum/blob/v1.8.23/internal/ethapi/api.go#L465
+  let v = parseInt(signature.slice(130, 132), 16);
+  if (v >= 27) {
+    v -= 27;
+  } else {
+    throw new Error("invalid signature");
+  }
+  const vHex = v.toString(16);
+  return signature.slice(0, 130) + vHex;
+};
+
+export const recoverSig = async (msg: string, sig: string) => {
   if (!web3) {
     await getEnabledWeb3();
   }
+  return web3.eth.accounts.recover(
+    web3.utils.keccak256(msg),
+    unfixSignature(sig)
+  );
+};
 
-  return fixSignature(await web3.eth.sign(
-    web3.utils.keccak256(payload),
-    address
-  ));
-}
+export const signPayload = async (
+  address: Address,
+  payload: string
+): Promise<string> => {
+  if (!web3) {
+    await getEnabledWeb3();
+  }
+  return fixSignature(
+    await web3.eth.sign(web3.utils.keccak256(payload), address)
+  );
+};

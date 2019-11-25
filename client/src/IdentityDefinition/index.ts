@@ -1,20 +1,6 @@
-import {
-  Address,
-  Uploads,
-  SocialPosts,
-  ContentHost
-} from "./types";
-import {
-  Form,
-  StringField,
-  UploadsForm,
-  SocialPostsForm
-} from "./forms";
-import {
-  requiredText,
-  validAddress,
-  validContentHost
-} from "./validators";
+import { Address, Uploads, SocialPosts, ContentHost } from "./types";
+import { Form, StringField, UploadsForm, SocialPostsForm } from "./forms";
+import { requiredText, validAddress, validContentHost } from "./validators";
 import { getIPFS } from "../utils/ipfsUtils";
 import { signPayload } from "../utils/web3Utils";
 
@@ -24,7 +10,7 @@ export interface IdentityDefinition {
   uploads: Uploads;
   socialPosts: SocialPosts;
   // oracles
-  version: "1"
+  version: "1";
 }
 
 export class IdentityDefinitionForm extends Form<
@@ -52,9 +38,14 @@ export class IdentityDefinitionForm extends Form<
         .setDisplayName("Uploaded Proof")
         .setDescription("Upload something to prove you're human."),
 
-      socialPosts: new SocialPostsForm(() => this.$.address.value, form ? form.$.socialPosts : undefined)
+      socialPosts: new SocialPostsForm(
+        () => this.$.address.value,
+        form ? form.$.socialPosts : undefined
+      )
         .setDisplayName("Identity Verification Posts")
-        .setDescription("Post your Ethereum address publicly from one of your social accounts.")
+        .setDescription(
+          "Post your Ethereum address publicly from one of your social accounts."
+        )
     });
   }
 
@@ -94,7 +85,9 @@ export const deserialize = (json: string): IdentityDefinition => {
   }) as IdentityDefinition;
 };
 
-export const signAndUploadIdentity = async (id: IdentityDefinition): Promise<{
+export const signAndUploadIdentity = async (
+  id: IdentityDefinition
+): Promise<{
   hash: string;
   sig: string;
 }> => {
@@ -112,4 +105,4 @@ export const signAndUploadIdentity = async (id: IdentityDefinition): Promise<{
     hash,
     sig
   };
-}
+};

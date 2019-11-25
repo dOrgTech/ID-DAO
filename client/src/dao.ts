@@ -1,11 +1,11 @@
-const multihashing = require("multihashing-async");
+const multihashing = require("multihashing");
 const CIDTool = require("cid-tool");
 import { getRegistry } from "./registry";
 import {
   IdentityDefinition,
   signAndUploadIdentity
 } from "./IdentityDefinition";
-import { getEnabledWeb3, getNetworkName } from "./utils/web3Utils";
+import { getEnabledWeb3, getNetworkName, getAccount } from "./utils/web3Utils";
 // import { getIPFS } from "./utils/ipfsUtils";
 import {
   sendTransaction,
@@ -15,7 +15,7 @@ import {
 
 const abi = require("@daostack/arc/build/contracts/UGenericScheme.json");
 const addresses = require("@dorgtech/id-dao-contracts/migrations/addresses.json");
-
+export const idDaoAddresses = addresses;
 let genericScheme: any = undefined;
 
 export interface ProposalMetadata {
@@ -45,14 +45,12 @@ export async function proposeAdd(
   await getGenericScheme();
   const registry = await getRegistry();
   const web3 = await getEnabledWeb3();
-  // const ipfs = await getIPFS();
 
   const callData = await registry.methods
     .add(address, web3.utils.asciiToHex(hash), signature)
     .encodeABI();
-  const metadataHash = CIDTool.format(
-    await multihashing(Buffer.from(JSON.stringify(metadata)), "sha2-256")
-  );
+  const mh = multihashing(Buffer.from(JSON.stringify(metadata)), "sha2-256");
+  const metadataHash = CIDTool.format(mh);
   // const metadataHash = await ipfs.add(
   //   Buffer.from(JSON.stringify(metadata))
   // );
@@ -86,7 +84,7 @@ export async function proposeAddIdentity(
 ): Promise<string> {
   const address = id.address;
   const { hash, sig } = await signAndUploadIdentity(id);
-  return proposeAdd(address, hash, sig, metadata);
+  return await proposeAdd(address, hash, sig, metadata);
 }
 
 export async function proposeUpdate(
@@ -108,7 +106,7 @@ export async function proposeUpdate(
   //   Buffer.from(JSON.stringify(metadata))
   // );
   const metadataHash = CIDTool.format(
-    await multihashing(Buffer.from(JSON.stringify(metadata)), "sha2-256")
+    multihashing(Buffer.from(JSON.stringify(metadata)), "sha2-256")
   );
 
   const tx = genericScheme.methods.proposeCall(
@@ -158,7 +156,7 @@ export async function proposeRemove(
   //   Buffer.from(JSON.stringify(metadata))
   // );
   const metadataHash = CIDTool.format(
-    await multihashing(Buffer.from(JSON.stringify(metadata)), "sha2-256")
+    multihashing(Buffer.from(JSON.stringify(metadata)), "sha2-256")
   );
 
   const tx = genericScheme.methods.proposeCall(
